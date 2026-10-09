@@ -1,0 +1,6060 @@
+{
+  "generatedFrom": "2026-10-06T22:53:45.461Z",
+  "source": "/mnt/data/audit-card-matching-deterministic.json",
+  "summary": {
+    "setsEligible": 148,
+    "verified": 26155,
+    "structuralVerified": 723,
+    "review": 1421,
+    "conflict": 6505,
+    "unmatched": 489,
+    "missingPrintKey": 708,
+    "duplicatePrintKey": 2303,
+    "examples": {
+      "verified": [
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-1",
+          "a": {
+            "language": "jp",
+            "number": "1",
+            "name": "フシギダネ",
+            "category": "pokemon",
+            "pokedexNumber": 1,
+            "author": [
+              "HYOGONOSUKE"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "1",
+            "name": "이상해씨",
+            "category": "pokemon",
+            "pokedexNumber": 1,
+            "author": [
+              "HYOGONOSUKE"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-2",
+          "a": {
+            "language": "jp",
+            "number": "2",
+            "name": "フシギソウ",
+            "category": "pokemon",
+            "pokedexNumber": 2,
+            "author": [
+              "Takumi Wada"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "2",
+            "name": "이상해풀",
+            "category": "pokemon",
+            "pokedexNumber": 2,
+            "author": [
+              "Takumi Wada"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-3",
+          "a": {
+            "language": "jp",
+            "number": "3",
+            "name": "メガフシギバナex",
+            "category": "pokemon",
+            "pokedexNumber": 3,
+            "author": [
+              "5ban Graphics"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "3",
+            "name": "메가이상해꽃 ex",
+            "category": "pokemon",
+            "pokedexNumber": 3,
+            "author": [
+              "5ban Graphics"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-4",
+          "a": {
+            "language": "jp",
+            "number": "4",
+            "name": "タマタマ",
+            "category": "pokemon",
+            "pokedexNumber": 102,
+            "author": [
+              "aspara"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "4",
+            "name": "아라리",
+            "category": "pokemon",
+            "pokedexNumber": 102,
+            "author": [
+              "aspara"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-5",
+          "a": {
+            "language": "jp",
+            "number": "5",
+            "name": "ナッシー",
+            "category": "pokemon",
+            "pokedexNumber": 103,
+            "author": [
+              "Kazumasa Yasukuni"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "5",
+            "name": "나시",
+            "category": "pokemon",
+            "pokedexNumber": 103,
+            "author": [
+              "Kazumasa Yasukuni"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-6",
+          "a": {
+            "language": "jp",
+            "number": "6",
+            "name": "セレビィ",
+            "category": "pokemon",
+            "pokedexNumber": 251,
+            "author": [
+              "Naoki Saito"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "6",
+            "name": "세레비",
+            "category": "pokemon",
+            "pokedexNumber": 251,
+            "author": [
+              "Naoki Saito"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-7",
+          "a": {
+            "language": "jp",
+            "number": "7",
+            "name": "タネボー",
+            "category": "pokemon",
+            "pokedexNumber": 273,
+            "author": [
+              "Miki Tanaka"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "7",
+            "name": "도토링",
+            "category": "pokemon",
+            "pokedexNumber": 273,
+            "author": [
+              "Miki Tanaka"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-8",
+          "a": {
+            "language": "jp",
+            "number": "8",
+            "name": "コノハナ",
+            "category": "pokemon",
+            "pokedexNumber": 274,
+            "author": [
+              "takashi shiraishi"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "8",
+            "name": "잎새코",
+            "category": "pokemon",
+            "pokedexNumber": 274,
+            "author": [
+              "takashi shiraishi"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-9",
+          "a": {
+            "language": "jp",
+            "number": "9",
+            "name": "ダーテング",
+            "category": "pokemon",
+            "pokedexNumber": 275,
+            "author": [
+              "Uninori"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "9",
+            "name": "다탱구",
+            "category": "pokemon",
+            "pokedexNumber": 275,
+            "author": [
+              "Uninori"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-10",
+          "a": {
+            "language": "jp",
+            "number": "10",
+            "name": "ロコン",
+            "category": "pokemon",
+            "pokedexNumber": 37,
+            "author": [
+              "Naoyo Kimura"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "10",
+            "name": "식스테일",
+            "category": "pokemon",
+            "pokedexNumber": 37,
+            "author": [
+              "Naoyo Kimura"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-11",
+          "a": {
+            "language": "jp",
+            "number": "11",
+            "name": "キュウコン",
+            "category": "pokemon",
+            "pokedexNumber": 38,
+            "author": [
+              "satoma"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "11",
+            "name": "나인테일",
+            "category": "pokemon",
+            "pokedexNumber": 38,
+            "author": [
+              "satoma"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-12",
+          "a": {
+            "language": "jp",
+            "number": "12",
+            "name": "ドンメル",
+            "category": "pokemon",
+            "pokedexNumber": 322,
+            "author": [
+              "Wintr Wandr"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "12",
+            "name": "둔타",
+            "category": "pokemon",
+            "pokedexNumber": 322,
+            "author": [
+              "Wintr Wandr"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-13",
+          "a": {
+            "language": "jp",
+            "number": "13",
+            "name": "メガバクーダex",
+            "category": "pokemon",
+            "pokedexNumber": 323,
+            "author": [
+              "5ban Graphics"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "13",
+            "name": "메가폭타 ex",
+            "category": "pokemon",
+            "pokedexNumber": 323,
+            "author": [
+              "5ban Graphics"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-14",
+          "a": {
+            "language": "jp",
+            "number": "14",
+            "name": "ボルケニオン",
+            "category": "pokemon",
+            "pokedexNumber": 721,
+            "author": [
+              "GIDORA"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "14",
+            "name": "볼케니온",
+            "category": "pokemon",
+            "pokedexNumber": 721,
+            "author": [
+              "GIDORA"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-15",
+          "a": {
+            "language": "jp",
+            "number": "15",
+            "name": "ヒバニー",
+            "category": "pokemon",
+            "pokedexNumber": 813,
+            "author": [
+              "svlt"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "15",
+            "name": "염버니",
+            "category": "pokemon",
+            "pokedexNumber": 813,
+            "author": [
+              "svlt"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-16",
+          "a": {
+            "language": "jp",
+            "number": "16",
+            "name": "ラビフット",
+            "category": "pokemon",
+            "pokedexNumber": 814,
+            "author": [
+              "Narumi Sato"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "16",
+            "name": "래비풋",
+            "category": "pokemon",
+            "pokedexNumber": 814,
+            "author": [
+              "Narumi Sato"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-17",
+          "a": {
+            "language": "jp",
+            "number": "17",
+            "name": "エースバーン",
+            "category": "pokemon",
+            "pokedexNumber": 815,
+            "author": [
+              "REND"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "17",
+            "name": "에이스번",
+            "category": "pokemon",
+            "pokedexNumber": 815,
+            "author": [
+              "REND"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-18",
+          "a": {
+            "language": "jp",
+            "number": "18",
+            "name": "ヘイガニ",
+            "category": "pokemon",
+            "pokedexNumber": 341,
+            "author": [
+              "Sanosuke Sakuma"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "18",
+            "name": "가재군",
+            "category": "pokemon",
+            "pokedexNumber": 341,
+            "author": [
+              "Sanosuke Sakuma"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-19",
+          "a": {
+            "language": "jp",
+            "number": "19",
+            "name": "コレクレー",
+            "category": "pokemon",
+            "pokedexNumber": 999,
+            "author": [
+              "Takeshi Nakamura"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "19",
+            "name": "모으령",
+            "category": "pokemon",
+            "pokedexNumber": 999,
+            "author": [
+              "Takeshi Nakamura"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-20",
+          "a": {
+            "language": "jp",
+            "number": "20",
+            "name": "サンド",
+            "category": "pokemon",
+            "pokedexNumber": 27,
+            "author": [
+              "Shinji Kanda"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "20",
+            "name": "모래두지",
+            "category": "pokemon",
+            "pokedexNumber": 27,
+            "author": [
+              "Shinji Kanda"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-21",
+          "a": {
+            "language": "jp",
+            "number": "21",
+            "name": "サンドパン",
+            "category": "pokemon",
+            "pokedexNumber": 28,
+            "author": [
+              "imoniii"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "21",
+            "name": "고지",
+            "category": "pokemon",
+            "pokedexNumber": 28,
+            "author": [
+              "imoniii"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-22",
+          "a": {
+            "language": "jp",
+            "number": "22",
+            "name": "イワーク",
+            "category": "pokemon",
+            "pokedexNumber": 95,
+            "author": [
+              "Uta"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "22",
+            "name": "롱스톤",
+            "category": "pokemon",
+            "pokedexNumber": 95,
+            "author": [
+              "Uta"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-23",
+          "a": {
+            "language": "jp",
+            "number": "23",
+            "name": "バルキー",
+            "category": "pokemon",
+            "pokedexNumber": 236,
+            "author": [
+              "OKUBO"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "23",
+            "name": "배루키",
+            "category": "pokemon",
+            "pokedexNumber": 236,
+            "author": [
+              "OKUBO"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-24",
+          "a": {
+            "language": "jp",
+            "number": "24",
+            "name": "マクノシタ",
+            "category": "pokemon",
+            "pokedexNumber": 296,
+            "author": [
+              "Jerky"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "24",
+            "name": "마크탕",
+            "category": "pokemon",
+            "pokedexNumber": 296,
+            "author": [
+              "Jerky"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-25",
+          "a": {
+            "language": "jp",
+            "number": "25",
+            "name": "ハリテヤマ",
+            "category": "pokemon",
+            "pokedexNumber": 297,
+            "author": [
+              "GOSSAN"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "25",
+            "name": "하리뭉",
+            "category": "pokemon",
+            "pokedexNumber": 297,
+            "author": [
+              "GOSSAN"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-26",
+          "a": {
+            "language": "jp",
+            "number": "26",
+            "name": "ルナトーン",
+            "category": "pokemon",
+            "pokedexNumber": 337,
+            "author": [
+              "Whisker"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "26",
+            "name": "루나톤",
+            "category": "pokemon",
+            "pokedexNumber": 337,
+            "author": [
+              "Whisker"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-27",
+          "a": {
+            "language": "jp",
+            "number": "27",
+            "name": "ソルロック",
+            "category": "pokemon",
+            "pokedexNumber": 338,
+            "author": [
+              "Whisker"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "27",
+            "name": "솔록",
+            "category": "pokemon",
+            "pokedexNumber": 338,
+            "author": [
+              "Whisker"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-28",
+          "a": {
+            "language": "jp",
+            "number": "28",
+            "name": "リオル",
+            "category": "pokemon",
+            "pokedexNumber": 447,
+            "author": [
+              "hncl"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "28",
+            "name": "리오르",
+            "category": "pokemon",
+            "pokedexNumber": 447,
+            "author": [
+              "hncl"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-29",
+          "a": {
+            "language": "jp",
+            "number": "29",
+            "name": "メガルカリオex",
+            "category": "pokemon",
+            "pokedexNumber": 448,
+            "author": [
+              "5ban Graphics"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "29",
+            "name": "메가루카리오 ex",
+            "category": "pokemon",
+            "pokedexNumber": 448,
+            "author": [
+              "5ban Graphics"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-30",
+          "a": {
+            "language": "jp",
+            "number": "30",
+            "name": "グレッグル",
+            "category": "pokemon",
+            "pokedexNumber": 453,
+            "author": [
+              "matazo"
+            ]
+          },
+          "b": {
+            "language": "ko",
+            "number": "30",
+            "name": "삐딱구리",
+            "category": "pokemon",
+            "pokedexNumber": 453,
+            "author": [
+              "matazo"
+            ]
+          }
+        }
+      ],
+      "structuralVerified": [
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-57",
+          "a": {
+            "language": "ko",
+            "number": "57",
+            "name": "벌레회피스프레이",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "57",
+            "name": "鐵之防禦強化",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-59",
+          "a": {
+            "language": "ko",
+            "number": "59",
+            "name": "파워프로틴",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "59",
+            "name": "戰鬥鑼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-63",
+          "a": {
+            "language": "ko",
+            "number": "63",
+            "name": "위험한 폐허",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "imoniii"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "63",
+            "name": "險惡廢墟",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "imoniii"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-81",
+          "a": {
+            "language": "ko",
+            "number": "81",
+            "name": "밤의 들것",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "81",
+            "name": "力量蛋白飲",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-82",
+          "a": {
+            "language": "ko",
+            "number": "82",
+            "name": "파워프로틴",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "82",
+            "name": "戰鬥鑼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-83",
+          "a": {
+            "language": "ko",
+            "number": "83",
+            "name": "파이팅공",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "83",
+            "name": "夜間擔架",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-84",
+          "a": {
+            "language": "ko",
+            "number": "84",
+            "name": "풍선",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "84",
+            "name": "氣球",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-57",
+          "a": {
+            "language": "ko",
+            "number": "57",
+            "name": "괴상한 시계",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "57",
+            "name": "奇異時鐘",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-58",
+          "a": {
+            "language": "ko",
+            "number": "58",
+            "name": "메가시그널",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "inose yukie"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "58",
+            "name": "超級信號",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "inose yukie"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-61",
+          "a": {
+            "language": "ko",
+            "number": "61",
+            "name": "미스터리 가든",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "61",
+            "name": "活力森林",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-62",
+          "a": {
+            "language": "ko",
+            "number": "62",
+            "name": "파도타기 비치",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "62",
+            "name": "衝浪海灘",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-63",
+          "a": {
+            "language": "ko",
+            "number": "63",
+            "name": "활력의 숲",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "63",
+            "name": "神秘花園",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-82",
+          "a": {
+            "language": "ko",
+            "number": "82",
+            "name": "이상한사탕",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "82",
+            "name": "神奇糖果",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-86",
+          "a": {
+            "language": "ko",
+            "number": "86",
+            "name": "미스터리 가든",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "86",
+            "name": "神秘花園",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-73",
+          "a": {
+            "language": "ko",
+            "number": "73",
+            "name": "점보 아이스",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "73",
+            "name": "超大冰淇淋",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-74",
+          "a": {
+            "language": "ko",
+            "number": "74",
+            "name": "히트 버너",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "74",
+            "name": "高溫燃燒器",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-75",
+          "a": {
+            "language": "ko",
+            "number": "75",
+            "name": "성스러운 부적",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "75",
+            "name": "神聖護符",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-79",
+          "a": {
+            "language": "ko",
+            "number": "79",
+            "name": "배틀 콜로세움",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "MARINA Chikazawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "79",
+            "name": "對戰圓形競技場",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "MARINA Chikazawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-80",
+          "a": {
+            "language": "ko",
+            "number": "80",
+            "name": "현기증 계곡",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "80",
+            "name": "暈眩山谷",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-103",
+          "a": {
+            "language": "ko",
+            "number": "103",
+            "name": "성스러운 부적",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "103",
+            "name": "神聖護符",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-104",
+          "a": {
+            "language": "ko",
+            "number": "104",
+            "name": "펑크멧",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "104",
+            "name": "龐克頭盔",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-108",
+          "a": {
+            "language": "ko",
+            "number": "108",
+            "name": "배틀 콜로세움",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "MARINA Chikazawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "108",
+            "name": "對戰圓形競技場",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "MARINA Chikazawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-115",
+          "a": {
+            "language": "ko",
+            "number": "115",
+            "name": "빛나",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "115",
+            "name": "小光",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-146",
+          "a": {
+            "language": "ko",
+            "number": "146",
+            "name": "N의 포인트업",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "146",
+            "name": "N的ＰＰ提升劑",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-154",
+          "a": {
+            "language": "ko",
+            "number": "154",
+            "name": "유리나팔",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "154",
+            "name": "力量蛋白飲",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-159",
+          "a": {
+            "language": "ko",
+            "number": "159",
+            "name": "파이팅공",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "159",
+            "name": "夜間擔架",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-167",
+          "a": {
+            "language": "ko",
+            "number": "167",
+            "name": "호브의 구애머리띠",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "167",
+            "name": "赫普的講究頭帶",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-181",
+          "a": {
+            "language": "ko",
+            "number": "181",
+            "name": "N의 성",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "181",
+            "name": "N的城堡",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-182",
+          "a": {
+            "language": "ko",
+            "number": "182",
+            "name": "그래비티 마운틴",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "182",
+            "name": "活力森林",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2a",
+          "printKey": "asia:M2a-186",
+          "a": {
+            "language": "ko",
+            "number": "186",
+            "name": "미스터리 가든",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "186",
+            "name": "化朗鎮",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        }
+      ],
+      "review": [
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-28",
+          "a": {
+            "language": "jp",
+            "number": "28",
+            "name": "基本闘エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "28",
+            "name": "小光",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-40",
+          "a": {
+            "language": "jp",
+            "number": "40",
+            "name": "基本闘エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "40",
+            "name": "滿充的體貼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Iori Suzuki"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-10",
+          "a": {
+            "language": "jp",
+            "number": "10",
+            "name": "基本炎エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "10",
+            "name": "阿塞蘿拉的惡作劇",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-11",
+          "a": {
+            "language": "jp",
+            "number": "11",
+            "name": "基本水エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "11",
+            "name": "莉莉艾的決意",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-16",
+          "a": {
+            "language": "jp",
+            "number": "16",
+            "name": "基本鋼エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "16",
+            "name": "開洞之鏟",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-69",
+          "a": {
+            "language": "jp",
+            "number": "69",
+            "name": "マーシャドー",
+            "category": "pokemon",
+            "pokedexNumber": 802,
+            "author": [
+              "0313"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "69",
+            "name": "瑪夏多",
+            "category": "pokemon",
+            "pokedexNumber": 802,
+            "author": [
+              "313"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-58",
+          "a": {
+            "language": "ko",
+            "number": "58",
+            "name": "아이언 디펜드업",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "58",
+            "name": "力量蛋白飲",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-60",
+          "a": {
+            "language": "ko",
+            "number": "60",
+            "name": "파이팅공",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "60",
+            "name": "除蟲噴霧",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-61",
+          "a": {
+            "language": "ko",
+            "number": "61",
+            "name": "릴리에의 결심",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "61",
+            "name": "馬志士的交易",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Hideki Ishikawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-62",
+          "a": {
+            "language": "ko",
+            "number": "62",
+            "name": "마티스의 거래",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Hideki Ishikawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "62",
+            "name": "莉莉艾的決意",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-69",
+          "a": {
+            "language": "ko",
+            "number": "69",
+            "name": "마샤도",
+            "category": "pokemon",
+            "pokedexNumber": 802,
+            "author": [
+              "0313"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "69",
+            "name": "瑪夏多",
+            "category": "pokemon",
+            "pokedexNumber": 802,
+            "author": [
+              "313"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-85",
+          "a": {
+            "language": "ko",
+            "number": "85",
+            "name": "릴리에의 결심",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "85",
+            "name": "馬志士的交易",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Hideki Ishikawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-86",
+          "a": {
+            "language": "ko",
+            "number": "86",
+            "name": "마티스의 거래",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Hideki Ishikawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "86",
+            "name": "莉莉艾的決意",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-90",
+          "a": {
+            "language": "ko",
+            "number": "90",
+            "name": "릴리에의 결심",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "satoma"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "90",
+            "name": "馬志士的交易",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "osare"
+            ]
+          }
+        },
+        {
+          "setDir": "M1L",
+          "printKey": "asia:M1L-91",
+          "a": {
+            "language": "ko",
+            "number": "91",
+            "name": "마티스의 거래",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "osare"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "91",
+            "name": "莉莉艾的決意",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "satoma"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-59",
+          "a": {
+            "language": "ko",
+            "number": "59",
+            "name": "민진의 헤아림",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Iori Suzuki"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "59",
+            "name": "阿塞蘿拉的惡作劇",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-60",
+          "a": {
+            "language": "ko",
+            "number": "60",
+            "name": "아세로라의 장난",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "60",
+            "name": "滿充的體貼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Iori Suzuki"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-81",
+          "a": {
+            "language": "ko",
+            "number": "81",
+            "name": "메가시그널",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "inose yukie"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "81",
+            "name": "好友寶芬",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-83",
+          "a": {
+            "language": "ko",
+            "number": "83",
+            "name": "절친 포핀",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "AYUMI ODASHIMA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "83",
+            "name": "超級信號",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "inose yukie"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-84",
+          "a": {
+            "language": "ko",
+            "number": "84",
+            "name": "민진의 헤아림",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Iori Suzuki"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "84",
+            "name": "阿塞蘿拉的惡作劇",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-85",
+          "a": {
+            "language": "ko",
+            "number": "85",
+            "name": "아세로라의 장난",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "85",
+            "name": "滿充的體貼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Iori Suzuki"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-90",
+          "a": {
+            "language": "ko",
+            "number": "90",
+            "name": "민진의 헤아림",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Jiro Sasumo"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "90",
+            "name": "阿塞蘿拉的惡作劇",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "sui"
+            ]
+          }
+        },
+        {
+          "setDir": "M1S",
+          "printKey": "asia:M1S-91",
+          "a": {
+            "language": "ko",
+            "number": "91",
+            "name": "아세로라의 장난",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "sui"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "91",
+            "name": "滿充的體貼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Jiro Sasumo"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-76",
+          "a": {
+            "language": "ko",
+            "number": "76",
+            "name": "불놀이꾼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Naoki Saito"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "76",
+            "name": "越橘的一步棋",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "GIDORA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-77",
+          "a": {
+            "language": "ko",
+            "number": "77",
+            "name": "블래리의 한 수",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "GIDORA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "77",
+            "name": "小光",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-78",
+          "a": {
+            "language": "ko",
+            "number": "78",
+            "name": "빛나",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "78",
+            "name": "吹火人",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Naoki Saito"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-101",
+          "a": {
+            "language": "ko",
+            "number": "101",
+            "name": "포켓몬 교체",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "101",
+            "name": "高溫燃燒器",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-102",
+          "a": {
+            "language": "ko",
+            "number": "102",
+            "name": "히트 버너",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "102",
+            "name": "寶可夢交替",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Studio Bora Inc."
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-105",
+          "a": {
+            "language": "ko",
+            "number": "105",
+            "name": "불놀이꾼",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Naoki Saito"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "105",
+            "name": "越橘的一步棋",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "GIDORA"
+            ]
+          }
+        },
+        {
+          "setDir": "M2",
+          "printKey": "asia:M2-106",
+          "a": {
+            "language": "ko",
+            "number": "106",
+            "name": "블래리의 한 수",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "GIDORA"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "106",
+            "name": "小光",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Yuu Nishida"
+            ]
+          }
+        }
+      ],
+      "conflict": [
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-1",
+          "a": {
+            "language": "jp",
+            "number": "1",
+            "name": "チコリータ",
+            "category": "pokemon",
+            "pokedexNumber": 152,
+            "author": [
+              "Makura Tami"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "1",
+            "name": "妙蛙種子",
+            "category": "pokemon",
+            "pokedexNumber": 1,
+            "author": [
+              "HYOGONOSUKE"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-2",
+          "a": {
+            "language": "jp",
+            "number": "2",
+            "name": "ラプラスex",
+            "category": "pokemon",
+            "pokedexNumber": 131,
+            "author": [
+              "5ban Graphics"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "2",
+            "name": "妙蛙草",
+            "category": "pokemon",
+            "pokedexNumber": 2,
+            "author": [
+              "Takumi Wada"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-3",
+          "a": {
+            "language": "jp",
+            "number": "3",
+            "name": "マシマシラ",
+            "category": "pokemon",
+            "pokedexNumber": 1015,
+            "author": [
+              "kodama"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "3",
+            "name": "時拉比",
+            "category": "pokemon",
+            "pokedexNumber": 251,
+            "author": [
+              "Naoki Saito"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-4",
+          "a": {
+            "language": "jp",
+            "number": "4",
+            "name": "マクノシタ",
+            "category": "pokemon",
+            "pokedexNumber": 296,
+            "author": [
+              "Takeshi Nakamura"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "4",
+            "name": "凱西",
+            "category": "pokemon",
+            "pokedexNumber": 63,
+            "author": [
+              "Orca"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-5",
+          "a": {
+            "language": "jp",
+            "number": "5",
+            "name": "あなあけスコップ",
+            "category": "trainer",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "5",
+            "name": "拉魯拉絲",
+            "category": "pokemon",
+            "pokedexNumber": 280,
+            "author": [
+              "Terada Tera"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-6",
+          "a": {
+            "language": "jp",
+            "number": "6",
+            "name": "カウンターゲイン",
+            "category": "trainer",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "6",
+            "name": "奇魯莉安",
+            "category": "pokemon",
+            "pokedexNumber": 281,
+            "author": [
+              "satoma"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-7",
+          "a": {
+            "language": "jp",
+            "number": "7",
+            "name": "リーリエの決心",
+            "category": "trainer",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "7",
+            "name": "幕下力士",
+            "category": "pokemon",
+            "pokedexNumber": 296,
+            "author": [
+              "Jerky"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-17",
+          "a": {
+            "language": "jp",
+            "number": "17",
+            "name": "ニャオハ",
+            "category": "pokemon",
+            "pokedexNumber": 906,
+            "author": [
+              "Mina Nakai"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "17",
+            "name": "反擊增幅器",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-18",
+          "a": {
+            "language": "jp",
+            "number": "18",
+            "name": "ホゲータ",
+            "category": "pokemon",
+            "pokedexNumber": 909,
+            "author": [
+              "Tomomi Ozaki"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "18",
+            "name": "莉莉艾的決意",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": [
+              "Atsushi Furusawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-20",
+          "a": {
+            "language": "jp",
+            "number": "20",
+            "name": "ピカチュウ",
+            "category": "pokemon",
+            "pokedexNumber": 25,
+            "author": [
+              "Yuu Nishida"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "20",
+            "name": "小火龍",
+            "category": "pokemon",
+            "pokedexNumber": 4,
+            "author": [
+              "HYOGONOSUKE"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-21",
+          "a": {
+            "language": "jp",
+            "number": "21",
+            "name": "ラルトス",
+            "category": "pokemon",
+            "pokedexNumber": 280,
+            "author": [
+              "Terada Tera"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "21",
+            "name": "火恐龍",
+            "category": "pokemon",
+            "pokedexNumber": 5,
+            "author": [
+              "Uninori"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-22",
+          "a": {
+            "language": "jp",
+            "number": "22",
+            "name": "リオル",
+            "category": "pokemon",
+            "pokedexNumber": 447,
+            "author": [
+              "hncl"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "22",
+            "name": "火焰鳥",
+            "category": "pokemon",
+            "pokedexNumber": 146,
+            "author": [
+              "Kazumasa Yasukuni"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-23",
+          "a": {
+            "language": "jp",
+            "number": "23",
+            "name": "基本草エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "23",
+            "name": "波加曼",
+            "category": "pokemon",
+            "pokedexNumber": 393,
+            "author": [
+              "Hideki Ishikawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-24",
+          "a": {
+            "language": "jp",
+            "number": "24",
+            "name": "基本炎エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "24",
+            "name": "波皇子",
+            "category": "pokemon",
+            "pokedexNumber": 394,
+            "author": [
+              "Atsuya Uki"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-25",
+          "a": {
+            "language": "jp",
+            "number": "25",
+            "name": "基本水エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "25",
+            "name": "狃拉",
+            "category": "pokemon",
+            "pokedexNumber": 215,
+            "author": [
+              "Souichirou Gunjima"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-26",
+          "a": {
+            "language": "jp",
+            "number": "26",
+            "name": "基本雷エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "26",
+            "name": "利牙魚",
+            "category": "pokemon",
+            "pokedexNumber": 318,
+            "author": [
+              "Shin Nagasawa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-27",
+          "a": {
+            "language": "jp",
+            "number": "27",
+            "name": "基本超エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "27",
+            "name": "毒電嬰",
+            "category": "pokemon",
+            "pokedexNumber": 848,
+            "author": [
+              "OKACHEKE"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-29",
+          "a": {
+            "language": "jp",
+            "number": "29",
+            "name": "基本悪エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "29",
+            "name": "超級噴火龍Xex",
+            "category": "pokemon",
+            "pokedexNumber": 6,
+            "author": [
+              "takuyoa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-30",
+          "a": {
+            "language": "jp",
+            "number": "30",
+            "name": "基本鋼エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "30",
+            "name": "蒼響",
+            "category": "pokemon",
+            "pokedexNumber": 888,
+            "author": [
+              "Shiburingaru"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-31",
+          "a": {
+            "language": "jp",
+            "number": "31",
+            "name": "夜のタンカ",
+            "category": "trainer",
+            "pokedexNumber": null,
+            "author": [
+              "Toyste Beach"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "31",
+            "name": "顫弦蠑螈",
+            "category": "pokemon",
+            "pokedexNumber": 849,
+            "author": [
+              "Krgc"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-32",
+          "a": {
+            "language": "jp",
+            "number": "32",
+            "name": "ラティアスex",
+            "category": "pokemon",
+            "pokedexNumber": 380,
+            "author": [
+              "takuyoa"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "32",
+            "name": "基本【火】能量",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-34",
+          "a": {
+            "language": "jp",
+            "number": "34",
+            "name": "シェイミ",
+            "category": "pokemon",
+            "pokedexNumber": 492,
+            "author": [
+              "tono"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "34",
+            "name": "基本【惡】能量",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-35",
+          "a": {
+            "language": "jp",
+            "number": "35",
+            "name": "基本草エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "35",
+            "name": "蒼炎刃鬼",
+            "category": "pokemon",
+            "pokedexNumber": 937,
+            "author": [
+              "Anesaki Dynamic"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-36",
+          "a": {
+            "language": "jp",
+            "number": "36",
+            "name": "基本炎エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "36",
+            "name": "沙漠蜻蜓",
+            "category": "pokemon",
+            "pokedexNumber": 330,
+            "author": [
+              "Oswaldo KATO"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-37",
+          "a": {
+            "language": "jp",
+            "number": "37",
+            "name": "基本水エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "37",
+            "name": "含羞苞",
+            "category": "pokemon",
+            "pokedexNumber": 406,
+            "author": [
+              "Yoriyuki Ikegami"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-37",
+          "a": {
+            "language": "jp",
+            "number": "37",
+            "name": "基本水エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "37",
+            "name": "含羞苞",
+            "category": "pokemon",
+            "pokedexNumber": 406,
+            "author": [
+              "Yoriyuki Ikegami"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-39",
+          "a": {
+            "language": "jp",
+            "number": "39",
+            "name": "基本超エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "39",
+            "name": "萊希拉姆ex",
+            "category": "pokemon",
+            "pokedexNumber": 643,
+            "author": [
+              "5ban Graphics"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-41",
+          "a": {
+            "language": "jp",
+            "number": "41",
+            "name": "基本悪エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "41",
+            "name": "捷克羅姆ex",
+            "category": "pokemon",
+            "pokedexNumber": 644,
+            "author": [
+              "takuyoa"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-42",
+          "a": {
+            "language": "jp",
+            "number": "42",
+            "name": "基本鋼エネルギー",
+            "category": "unknown",
+            "pokedexNumber": null,
+            "author": []
+          },
+          "b": {
+            "language": "tc",
+            "number": "42",
+            "name": "火恐龍",
+            "category": "pokemon",
+            "pokedexNumber": 5,
+            "author": [
+              "Teeziro"
+            ]
+          }
+        },
+        {
+          "setDir": "M-P",
+          "printKey": "asia:M-P-43",
+          "a": {
+            "language": "jp",
+            "number": "43",
+            "name": "ロケット団のミュウツーex",
+            "category": "pokemon",
+            "pokedexNumber": 150,
+            "author": [
+              "aky CG Works"
+            ]
+          },
+          "b": {
+            "language": "tc",
+            "number": "43",
+            "name": "流氓鱷ex",
+            "category": "pokemon",
+            "pokedexNumber": 553,
+            "author": [
+              "5ban Graphics"
+            ]
+          }
+        }
+      ],
+      "unmatched": []
+    }
+  },
+  "sets": [
+    {
+      "setDir": "SV8a",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 381,
+        "ko": 381,
+        "sc": 237,
+        "tc": 381
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 432,
+      "verified": 1967,
+      "structuralVerified": 135,
+      "review": 180,
+      "conflict": 671,
+      "unmatched": 183,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "S12a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 351,
+        "ko": 262,
+        "tc": 250
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 178,
+      "verified": 685,
+      "structuralVerified": 18,
+      "review": 59,
+      "conflict": 272,
+      "unmatched": 1,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "MC",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 774,
+        "ko": 765,
+        "tc": 902
+      },
+      "missingPrintKey": 24,
+      "duplicatePrintKey": 120,
+      "verified": 2153,
+      "structuralVerified": 29,
+      "review": 108,
+      "conflict": 246,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SI",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 561,
+        "ko": 554,
+        "tc": 422
+      },
+      "missingPrintKey": 40,
+      "duplicatePrintKey": 250,
+      "verified": 1526,
+      "structuralVerified": 12,
+      "review": 77,
+      "conflict": 241,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "SV4a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 484,
+        "ko": 484,
+        "tc": 360
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 248,
+      "verified": 1402,
+      "structuralVerified": 23,
+      "review": 53,
+      "conflict": 219,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVI",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 102,
+        "ko": 97,
+        "tc": 133
+      },
+      "missingPrintKey": 53,
+      "duplicatePrintKey": 43,
+      "verified": 162,
+      "structuralVerified": 34,
+      "review": 60,
+      "conflict": 212,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 13,
+        "AUTHOR_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "S8b",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 279,
+        "ko": 278,
+        "tc": 181
+      },
+      "missingPrintKey": 16,
+      "duplicatePrintKey": 0,
+      "verified": 382,
+      "structuralVerified": 13,
+      "review": 46,
+      "conflict": 186,
+      "unmatched": 5,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "SV-P",
+      "languages": [
+        "jp",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 332,
+        "tc": 238
+      },
+      "missingPrintKey": 73,
+      "duplicatePrintKey": 2,
+      "verified": 1,
+      "structuralVerified": 0,
+      "review": 14,
+      "conflict": 186,
+      "unmatched": 6,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 13,
+        "AUTHOR_DIFFERENT": 18,
+        "CATEGORY_DIFFERENT": 6
+      }
+    },
+    {
+      "setDir": "M2a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 250,
+        "ko": 249,
+        "tc": 486
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 118,
+      "verified": 1020,
+      "structuralVerified": 11,
+      "review": 49,
+      "conflict": 140,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "M-P",
+      "languages": [
+        "jp",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 156,
+        "tc": 207
+      },
+      "missingPrintKey": 43,
+      "duplicatePrintKey": 2,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 5,
+      "conflict": 120,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 7,
+        "AUTHOR_DIFFERENT": 12,
+        "CATEGORY_DIFFERENT": 12
+      }
+    },
+    {
+      "setDir": "S-P",
+      "languages": [
+        "jp",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 334,
+        "tc": 151
+      },
+      "missingPrintKey": 19,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 3,
+      "conflict": 117,
+      "unmatched": 14,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 10,
+        "AUTHOR_DIFFERENT": 18,
+        "DEX_DIFFERENT": 10
+      }
+    },
+    {
+      "setDir": "SH",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 78,
+        "ko": 78,
+        "tc": 59
+      },
+      "missingPrintKey": 18,
+      "duplicatePrintKey": 20,
+      "verified": 115,
+      "structuralVerified": 9,
+      "review": 26,
+      "conflict": 111,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 14,
+        "AUTHOR_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "SVM",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 175,
+        "ko": 175,
+        "tc": 183
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 370,
+      "structuralVerified": 7,
+      "review": 44,
+      "conflict": 104,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S4a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 326,
+        "ko": 326,
+        "tc": 190
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 560,
+      "structuralVerified": 9,
+      "review": 28,
+      "conflict": 104,
+      "unmatched": 5,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SV6",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 133,
+        "ko": 133,
+        "tc": 133
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 282,
+      "structuralVerified": 8,
+      "review": 13,
+      "conflict": 96,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVK",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 44,
+        "ko": 44,
+        "tc": 50
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 12,
+      "structuralVerified": 6,
+      "review": 24,
+      "conflict": 86,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 28,
+        "AUTHOR_DIFFERENT": 39,
+        "DEX_DIFFERENT": 12
+      }
+    },
+    {
+      "setDir": "S10a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 148,
+        "ko": 148,
+        "tc": 71
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 98,
+      "verified": 364,
+      "structuralVerified": 8,
+      "review": 9,
+      "conflict": 86,
+      "unmatched": 15,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV7",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 135,
+        "ko": 135,
+        "sc": 132,
+        "tc": 135
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 615,
+      "structuralVerified": 26,
+      "review": 18,
+      "conflict": 82,
+      "unmatched": 60,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S11a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 140,
+        "ko": 140,
+        "tc": 68
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 92,
+      "verified": 358,
+      "structuralVerified": 10,
+      "review": 14,
+      "conflict": 78,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SM12a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 210,
+        "ko": 219
+      },
+      "missingPrintKey": 9,
+      "duplicatePrintKey": 0,
+      "verified": 124,
+      "structuralVerified": 0,
+      "review": 10,
+      "conflict": 76,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "SVHM",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 53,
+        "ko": 53,
+        "tc": 24
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 18,
+      "structuralVerified": 0,
+      "review": 6,
+      "conflict": 71,
+      "unmatched": 2,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 21,
+        "AUTHOR_DIFFERENT": 34,
+        "DEX_DIFFERENT": 16
+      }
+    },
+    {
+      "setDir": "SV7a",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 94,
+        "ko": 94,
+        "sc": 64,
+        "tc": 94
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 354,
+      "structuralVerified": 20,
+      "review": 14,
+      "conflict": 68,
+      "unmatched": 18,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV8",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 138,
+        "ko": 138,
+        "sc": 106,
+        "tc": 138
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 630,
+      "structuralVerified": 18,
+      "review": 18,
+      "conflict": 66,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S9a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 138,
+        "ko": 138,
+        "tc": 67
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 90,
+      "verified": 357,
+      "structuralVerified": 10,
+      "review": 4,
+      "conflict": 66,
+      "unmatched": 15,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SVHK",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 53,
+        "ko": 53,
+        "tc": 24
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 24,
+      "structuralVerified": 0,
+      "review": 6,
+      "conflict": 65,
+      "unmatched": 2,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 21,
+        "AUTHOR_DIFFERENT": 28,
+        "DEX_DIFFERENT": 10
+      }
+    },
+    {
+      "setDir": "SV10",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 132,
+        "ko": 132,
+        "sc": 98,
+        "tc": 132
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 580,
+      "structuralVerified": 18,
+      "review": 28,
+      "conflict": 64,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV2a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 363,
+        "ko": 363
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 306,
+      "verified": 605,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 63,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVD",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 139,
+        "ko": 139,
+        "tc": 147
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 323,
+      "structuralVerified": 6,
+      "review": 26,
+      "conflict": 62,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV9",
+      "languages": [
+        "jp",
+        "ko",
+        "sc",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 132,
+        "ko": 132,
+        "sc": 100,
+        "tc": 132
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 570,
+      "structuralVerified": 20,
+      "review": 22,
+      "conflict": 60,
+      "unmatched": 24,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVF",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 38,
+        "ko": 38,
+        "tc": 46
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 27,
+      "structuralVerified": 7,
+      "review": 22,
+      "conflict": 58,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 22,
+        "AUTHOR_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "SV5K",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 100,
+        "ko": 100,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 226,
+      "structuralVerified": 4,
+      "review": 14,
+      "conflict": 56,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SV5M",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 100,
+        "ko": 100,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 228,
+      "structuralVerified": 4,
+      "review": 12,
+      "conflict": 56,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "M3",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 117,
+        "ko": 116,
+        "tc": 117
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 271,
+      "structuralVerified": 9,
+      "review": 17,
+      "conflict": 52,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV5a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 96,
+        "ko": 96,
+        "tc": 96
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 214,
+      "structuralVerified": 9,
+      "review": 13,
+      "conflict": 52,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV11W",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 254,
+        "ko": 174,
+        "tc": 254
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 160,
+      "verified": 847,
+      "structuralVerified": 15,
+      "review": 9,
+      "conflict": 51,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S9",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 127,
+        "ko": 127,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 263,
+      "structuralVerified": 4,
+      "review": 11,
+      "conflict": 49,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "M5",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 118,
+        "ko": 118,
+        "tc": 118
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 280,
+      "structuralVerified": 7,
+      "review": 19,
+      "conflict": 48,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "M4",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 120,
+        "ko": 120,
+        "tc": 120
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 288,
+      "structuralVerified": 13,
+      "review": 11,
+      "conflict": 48,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "MG",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 34,
+        "ko": 34
+      },
+      "missingPrintKey": 4,
+      "duplicatePrintKey": 32,
+      "verified": 16,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 48,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 8,
+        "AUTHOR_DIFFERENT": 12,
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "S12",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 125,
+        "ko": 125,
+        "tc": 114
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 280,
+      "structuralVerified": 5,
+      "review": 21,
+      "conflict": 47,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "M6",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 110,
+        "ko": 110,
+        "tc": 110
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 261,
+      "structuralVerified": 11,
+      "review": 12,
+      "conflict": 46,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S11",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 127,
+        "ko": 126,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 251,
+      "structuralVerified": 3,
+      "review": 9,
+      "conflict": 43,
+      "unmatched": 20,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV4M",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 95,
+        "ko": 95,
+        "tc": 95
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 197,
+      "structuralVerified": 6,
+      "review": 15,
+      "conflict": 42,
+      "unmatched": 25,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV4K",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 95,
+        "ko": 95,
+        "tc": 95
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 201,
+      "structuralVerified": 3,
+      "review": 14,
+      "conflict": 42,
+      "unmatched": 25,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "MBD",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22,
+        "tc": 24
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 13,
+      "structuralVerified": 2,
+      "review": 9,
+      "conflict": 42,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 15,
+        "CATEGORY_DIFFERENT": 23,
+        "AUTHOR_DIFFERENT": 33
+      }
+    },
+    {
+      "setDir": "M2",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 116,
+        "ko": 115,
+        "tc": 116
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 292,
+      "structuralVerified": 9,
+      "review": 9,
+      "conflict": 36,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV3a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 92,
+        "ko": 92,
+        "tc": 92
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 222,
+      "structuralVerified": 10,
+      "review": 8,
+      "conflict": 36,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV6a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 94,
+        "ko": 94,
+        "tc": 94
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 228,
+      "structuralVerified": 14,
+      "review": 4,
+      "conflict": 36,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVN",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 45,
+        "ko": 45
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 36,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 9
+      }
+    },
+    {
+      "setDir": "SV1a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 103,
+        "ko": 103,
+        "tc": 103
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 259,
+      "structuralVerified": 2,
+      "review": 14,
+      "conflict": 34,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S10b",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 101,
+        "ko": 101,
+        "tc": 79
+      },
+      "missingPrintKey": 24,
+      "duplicatePrintKey": 0,
+      "verified": 192,
+      "structuralVerified": 2,
+      "review": 7,
+      "conflict": 34,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S10D",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 88,
+        "ko": 88,
+        "tc": 67
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 165,
+      "structuralVerified": 4,
+      "review": 4,
+      "conflict": 34,
+      "unmatched": 15,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S10P",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 88,
+        "ko": 88,
+        "tc": 67
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 165,
+      "structuralVerified": 4,
+      "review": 4,
+      "conflict": 34,
+      "unmatched": 15,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "SVOD",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 19,
+        "ko": 19,
+        "tc": 23
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 14,
+      "structuralVerified": 2,
+      "review": 8,
+      "conflict": 33,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 25,
+        "AUTHOR_DIFFERENT": 23,
+        "DEX_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "S4",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 111,
+        "ko": 111,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 263,
+      "structuralVerified": 6,
+      "review": 7,
+      "conflict": 33,
+      "unmatched": 2,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S7D",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 79,
+        "ko": 79,
+        "tc": 67
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 166,
+      "structuralVerified": 11,
+      "review": 3,
+      "conflict": 33,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S7R",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 79,
+        "ko": 79,
+        "tc": 67
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 168,
+      "structuralVerified": 9,
+      "review": 3,
+      "conflict": 33,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "MA",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 43,
+        "ko": 43
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 10,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 33,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 10,
+        "AUTHOR_DIFFERENT": 9
+      }
+    },
+    {
+      "setDir": "SO",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 32,
+        "ko": 32,
+        "tc": 32
+      },
+      "missingPrintKey": 6,
+      "duplicatePrintKey": 0,
+      "verified": 44,
+      "structuralVerified": 3,
+      "review": 11,
+      "conflict": 32,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 12,
+        "AUTHOR_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "S6H",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 83,
+        "ko": 83,
+        "tc": 70
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 178,
+      "structuralVerified": 3,
+      "review": 10,
+      "conflict": 32,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S6K",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 83,
+        "ko": 83,
+        "tc": 70
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 178,
+      "structuralVerified": 3,
+      "review": 10,
+      "conflict": 32,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S8",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 115,
+        "ko": 109,
+        "tc": 100
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 263,
+      "structuralVerified": 6,
+      "review": 8,
+      "conflict": 32,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "M1L",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 92,
+        "ko": 92,
+        "tc": 92
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 229,
+      "structuralVerified": 7,
+      "review": 10,
+      "conflict": 30,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "M1S",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 92,
+        "ko": 92,
+        "tc": 92
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 231,
+      "structuralVerified": 7,
+      "review": 8,
+      "conflict": 30,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S6a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 87,
+        "ko": 87,
+        "tc": 69
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 183,
+      "structuralVerified": 5,
+      "review": 7,
+      "conflict": 30,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "MBG",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22,
+        "tc": 24
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 26,
+      "structuralVerified": 1,
+      "review": 10,
+      "conflict": 29,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 23,
+        "AUTHOR_DIFFERENT": 19,
+        "DEX_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S5R",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 81,
+        "ko": 81,
+        "tc": 70
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 180,
+      "structuralVerified": 2,
+      "review": 10,
+      "conflict": 29,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S5I",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 81,
+        "ko": 81,
+        "tc": 70
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 182,
+      "structuralVerified": 4,
+      "review": 6,
+      "conflict": 29,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "SMN",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 29,
+        "ko": 44
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 29,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 1,
+        "AUTHOR_DIFFERENT": 18,
+        "CATEGORY_DIFFERENT": 19
+      }
+    },
+    {
+      "setDir": "SPZ",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 21,
+        "tc": 20
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 18,
+      "structuralVerified": 3,
+      "review": 11,
+      "conflict": 28,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 28,
+        "AUTHOR_DIFFERENT": 9
+      }
+    },
+    {
+      "setDir": "SPD",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 21,
+        "tc": 20
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 20,
+      "structuralVerified": 3,
+      "review": 9,
+      "conflict": 28,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 28,
+        "AUTHOR_DIFFERENT": 9
+      }
+    },
+    {
+      "setDir": "SD",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 127,
+        "ko": 31
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 4,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 27,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 16,
+        "AUTHOR_DIFFERENT": 15
+      }
+    },
+    {
+      "setDir": "SV9a",
+      "languages": [
+        "jp",
+        "ko",
+        "sc"
+      ],
+      "cardsByLanguage": {
+        "jp": 92,
+        "ko": 92,
+        "sc": 92
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 197,
+      "structuralVerified": 13,
+      "review": 4,
+      "conflict": 26,
+      "unmatched": 36,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVEL",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22,
+        "tc": 21
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 4,
+      "verified": 34,
+      "structuralVerified": 5,
+      "review": 6,
+      "conflict": 25,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 23,
+        "AUTHOR_DIFFERENT": 6
+      }
+    },
+    {
+      "setDir": "SLL",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22,
+        "tc": 22
+      },
+      "missingPrintKey": 3,
+      "duplicatePrintKey": 0,
+      "verified": 26,
+      "structuralVerified": 3,
+      "review": 10,
+      "conflict": 24,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 22,
+        "AUTHOR_DIFFERENT": 7
+      }
+    },
+    {
+      "setDir": "SJ",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 30,
+        "ko": 32,
+        "tc": 30
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 55,
+      "structuralVerified": 2,
+      "review": 9,
+      "conflict": 24,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 8,
+        "AUTHOR_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "SN",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 25,
+        "ko": 25,
+        "tc": 25
+      },
+      "missingPrintKey": 3,
+      "duplicatePrintKey": 0,
+      "verified": 36,
+      "structuralVerified": 5,
+      "review": 7,
+      "conflict": 24,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 16,
+        "AUTHOR_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "SB",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 24,
+        "ko": 33
+      },
+      "missingPrintKey": 9,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 24,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 20,
+        "AUTHOR_DIFFERENT": 12
+      }
+    },
+    {
+      "setDir": "SVB",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 28,
+        "ko": 28
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 4,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 24,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 16,
+        "AUTHOR_DIFFERENT": 11
+      }
+    },
+    {
+      "setDir": "SM11a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 73,
+        "ko": 73
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 50,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 23,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SLD",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 21,
+        "tc": 21
+      },
+      "missingPrintKey": 3,
+      "duplicatePrintKey": 0,
+      "verified": 28,
+      "structuralVerified": 2,
+      "review": 8,
+      "conflict": 22,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 22,
+        "AUTHOR_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "SVC",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 24,
+        "ko": 24,
+        "tc": 22
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 6,
+      "verified": 45,
+      "structuralVerified": 3,
+      "review": 8,
+      "conflict": 22,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 17,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "SVEM",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22,
+        "tc": 21
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 4,
+      "verified": 37,
+      "structuralVerified": 6,
+      "review": 5,
+      "conflict": 22,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 20,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "S5a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 84,
+        "ko": 70,
+        "tc": 70
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 178,
+      "structuralVerified": 6,
+      "review": 4,
+      "conflict": 22,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SK",
+      "languages": [
+        "jp",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 30,
+        "tc": 30
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 10,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 20,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 10
+      }
+    },
+    {
+      "setDir": "SM12",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 108,
+        "ko": 108
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 88,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 20,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVG",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 52,
+        "ko": 52
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 32,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 20,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S3a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 85,
+        "ko": 85
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 66,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 19,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SMI",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 38,
+        "ko": 41
+      },
+      "missingPrintKey": 3,
+      "duplicatePrintKey": 0,
+      "verified": 11,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 19,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 1,
+        "CATEGORY_DIFFERENT": 8,
+        "AUTHOR_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "S3",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 110,
+        "ko": 110
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 92,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 18,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV11B",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 254,
+        "ko": 174
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 80,
+      "verified": 235,
+      "structuralVerified": 1,
+      "review": 0,
+      "conflict": 18,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV1S",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 108,
+        "ko": 108
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 90,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 17,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV1V",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 108,
+        "ko": 108
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 90,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 17,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S2",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 106,
+        "ko": 106
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 89,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 17,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SM11",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 106,
+        "ko": 106
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 89,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 17,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV3",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 141,
+        "ko": 141
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 124,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 16,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SMK",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 31,
+        "ko": 33
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 15,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 16,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 5,
+        "AUTHOR_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SM11b",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 68,
+        "ko": 68
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 53,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 15,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "DEX_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "SMM",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 31,
+        "ko": 33
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 16,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 15,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4,
+        "AUTHOR_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "MF",
+      "languages": [
+        "jp",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 49,
+        "tc": 49
+      },
+      "missingPrintKey": 10,
+      "duplicatePrintKey": 0,
+      "verified": 31,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S1H",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 68,
+        "ko": 68
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 55,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "S1W",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 68,
+        "ko": 68
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 55,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 1
+      }
+    },
+    {
+      "setDir": "S1a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 78,
+        "ko": 78
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 65,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "S2a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 78,
+        "ko": 78
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 65,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SGG",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 20
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 6,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 13,
+        "AUTHOR_DIFFERENT": 7
+      }
+    },
+    {
+      "setDir": "SGI",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 24,
+        "ko": 23
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SVAW",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 26,
+        "ko": 26
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 6,
+      "verified": 19,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 13,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 7,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "SEF",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 22
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 6
+      }
+    },
+    {
+      "setDir": "SM10a",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 62,
+        "ko": 62
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 50,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SVAM",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 26,
+        "ko": 26
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 6,
+      "verified": 20,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 6,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "SVJL",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 21,
+        "ko": 22
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SVLN",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 10,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 10,
+        "AUTHOR_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "SVLS",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 22,
+        "ko": 22
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 10,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 12,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 10,
+        "AUTHOR_DIFFERENT": 7
+      }
+    },
+    {
+      "setDir": "SV2D",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 99,
+        "ko": 99
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 87,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "SV2P",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 99,
+        "ko": 99
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 87,
+      "structuralVerified": 0,
+      "review": 1,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S8a-G",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 16,
+        "ko": 16
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 4,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "SEK",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 20,
+        "ko": 21
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 7
+      }
+    },
+    {
+      "setDir": "SVAL",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 24,
+        "ko": 24
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 6,
+      "verified": 19,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 7,
+        "AUTHOR_DIFFERENT": 5
+      }
+    },
+    {
+      "setDir": "SVJP",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 19,
+        "ko": 20
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 8,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "SVOM",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 20,
+        "ko": 20
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 9,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 11,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 11,
+        "AUTHOR_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "M6a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 140,
+        "ko": 111,
+        "tc": 168
+      },
+      "missingPrintKey": 24,
+      "duplicatePrintKey": 0,
+      "verified": 325,
+      "structuralVerified": 3,
+      "review": 0,
+      "conflict": 9,
+      "unmatched": 1,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "S8a",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 34,
+        "ko": 33,
+        "tc": 33
+      },
+      "missingPrintKey": 24,
+      "duplicatePrintKey": 0,
+      "verified": 65,
+      "structuralVerified": 1,
+      "review": 1,
+      "conflict": 8,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SP5",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 4,
+        "ko": 4,
+        "tc": 4
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 3,
+      "structuralVerified": 1,
+      "review": 0,
+      "conflict": 8,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 8
+      }
+    },
+    {
+      "setDir": "SP6",
+      "languages": [
+        "jp",
+        "ko",
+        "tc"
+      ],
+      "cardsByLanguage": {
+        "jp": 6,
+        "ko": 6,
+        "tc": 6
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 12,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 6,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 6
+      }
+    },
+    {
+      "setDir": "SP2",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 8,
+        "ko": 8
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 4,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "SP3",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 6,
+        "ko": 6
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 2,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 4,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4,
+        "AUTHOR_DIFFERENT": 2
+      }
+    },
+    {
+      "setDir": "SP4",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 8,
+        "ko": 8
+      },
+      "missingPrintKey": 8,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 4,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 4
+      }
+    },
+    {
+      "setDir": "SP1",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 7,
+        "ko": 8
+      },
+      "missingPrintKey": 1,
+      "duplicatePrintKey": 0,
+      "verified": 4,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 3,
+      "unmatched": 0,
+      "exampleConflictCauses": {
+        "CATEGORY_DIFFERENT": 3
+      }
+    },
+    {
+      "setDir": "SVP1",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 7,
+        "ko": 7
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 7,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "bw2",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 98,
+        "ko": 71
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "bw4",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 103,
+        "ko": 73
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "bw7",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 153,
+        "ko": 76
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "bw9",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 122,
+        "ko": 82
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "no_set",
+      "languages": [
+        "jp",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "jp": 94,
+        "ko": 106
+      },
+      "missingPrintKey": 200,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sm10",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 234,
+        "ko": 107
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sm6",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 146,
+        "ko": 102
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sm7",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 183,
+        "ko": 104
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sm8",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 236,
+        "ko": 103
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sm9",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 196,
+        "ko": 109
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "sma",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 94,
+        "ko": 60
+      },
+      "missingPrintKey": 9,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy10",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 129,
+        "ko": 87
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy2",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 110,
+        "ko": 87
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy3",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 114,
+        "ko": 103
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy4",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 124,
+        "ko": 95
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy6",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 112,
+        "ko": 89
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy7",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 101,
+        "ko": 92
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xy9",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 126,
+        "ko": 88
+      },
+      "missingPrintKey": 0,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    },
+    {
+      "setDir": "xya",
+      "languages": [
+        "fr",
+        "ko"
+      ],
+      "cardsByLanguage": {
+        "fr": 6,
+        "ko": 23
+      },
+      "missingPrintKey": 2,
+      "duplicatePrintKey": 0,
+      "verified": 0,
+      "structuralVerified": 0,
+      "review": 0,
+      "conflict": 0,
+      "unmatched": 0,
+      "exampleConflictCauses": {}
+    }
+  ],
+  "note": "exampleConflictCauses are classified only from stored examples, not all conflicts; per-pair counts are aggregated across pair comparisons and therefore are not unique-card totals."
+}

@@ -1,0 +1,28 @@
+# Dépendances
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# Build Next.js
+/.next/
+/out/
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Dépôt de données externe (cloné séparément)
+/PTCG-database/
+
+# Logs et divers
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.pem
+.vercel

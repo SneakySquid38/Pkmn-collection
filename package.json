@@ -1,0 +1,47 @@
+{
+  "name": "pokemon-collection",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "import:set-mappings": "tsx scripts/import-set-mappings.ts",
+    "check:fr-codes": "tsx scripts/check-fr-codes.ts",
+    "match:jp-fr": "tsx scripts/match-jp-fr.ts",
+    "debug:jp-pokemon": "tsx scripts/debug-jp-pokemon.ts",
+    "diagnose:jp-zero": "tsx scripts/diagnose-jp-zero-sets.ts",
+    "sync:tcgdexjp": "tsx scripts/sync-tcgdexjp.ts",
+    "enrich:tcgdexjp": "tsx scripts/enrich-tcgdexjp-dexid.ts",
+    "verify:jp": "tsx scripts/verify-jp-dexids.ts",
+    "insert:jp-card-pokemon": "tsx scripts/insert-jp-card-pokemon.ts",
+    "verify:pokemon-entities": "tsx scripts/verify-pokemon-entities.ts",
+    "add:missing-pokemon": "tsx scripts/add-missing-pokemon.ts",
+    "verify:jp-card-pokemon": "tsx scripts/verify-jp-card-pokemon.ts",
+    "audit:fr-jp": "tsx scripts/audit-fr-jp.ts",
+    "audit:fr-jp-cards": "tsx scripts/audit-fr-jp-cards.ts",
+    "debug:set-mappings": "tsx scripts/debug-set-mappings.ts",
+    "debug:orphan-jp": "tsx scripts/debug-orphan-jp-cards.ts",
+    "audit:tcgdex-jp-sets": "tsx scripts/audit-tcgdex-jp-sets.ts",
+    "audit:fr-jp-smart": "tsx scripts/audit-fr-jp-smart.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.2",
+    "dotenv": "^18.0.5",
+    "next": "16.3.8",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}
