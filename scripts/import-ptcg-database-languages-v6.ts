@@ -18,7 +18,7 @@ const LANGS = [
   { code: "JP", dir: "data_jp", region: "JP" },
   { code: "KR", dir: "data_ko", region: "KR" },
   { code: "SC", dir: "data_sc", region: "CN" },
-  { code: "TC", dir: "data_tc", region: "CN" },
+  { code: "TC", dir: "data_tc", region: "TW" },
 ] as const;
 
 const SOURCE = "ptcg-database";
@@ -31,7 +31,7 @@ const FORCE_ENRICH = process.argv.includes("--force-enrich");
 // -----------------------------------------------------------------------------
 
 type RawCard = Record<string, any> & {
-  number?: string | number;
+  number?: string | number | null;
   name?: string;
   img?: string;
   set_name?: string;
@@ -130,7 +130,7 @@ async function fetchAll<T>(
 ): Promise<T[]> {
   const out: T[] = [];
   for (let from = 0; ; from += PAGE) {
-    let q = supabase.from(table).select(columns).range(from, from + PAGE - 1);
+    let q = supabase.from(table).select(columns).order("id").range(from, from + PAGE - 1);
     if (filter) q = filter(q);
     const { data, error } = await q;
     if (error) throw new Error(`${table}: ${error.message}`);
@@ -474,6 +474,14 @@ async function main() {
   );
   const pokemonByDex = new Map(pokemonEntities.map((p) => [Math.trunc(p.dex_id), p.id]));
 
+  // Toutes les relations carte <-> Pokémon chargées en une fois,
+  // au lieu d'une requête par carte dans la boucle.
+  const existingRelations = await fetchAll<{ card_id: string; pokemon_entity_id: string }>(
+    "card_pokemon",
+    "card_id,pokemon_entity_id",
+  );
+  const relationKeys = new Set(existingRelations.map((r) => `${r.card_id}|${r.pokemon_entity_id}`));
+
   // We intentionally detect the table only in real mode. Dry-run never writes.
   const cardSourceColumns = APPLY ? await detectCardSourcesColumns() : new Set<string>();
 
@@ -642,16 +650,10 @@ async function main() {
       // a valid Dex ID. Existing relationships are not duplicated.
       if (dex != null) {
         const pokemonId = pokemonByDex.get(dex)!;
-        const { data: relationRows, error: relationReadError } = await supabase
-          .from("card_pokemon")
-          .select("card_id,pokemon_entity_id")
-          .eq("card_id", existing.id)
-          .eq("pokemon_entity_id", pokemonId)
-          .limit(1);
+                const relationKey = `${existing.id}|${pokemonId}`;
 
-        if (relationReadError) {
-          report.errors.push(`${data.lang}/${data.code}/${file}: lecture card_pokemon: ${relationReadError.message}`);
-        } else if (!relationRows?.length) {
+        if (!relationKeys.has(relationKey)) {
+          relationKeys.add(relationKey);
           report.relationsInserted++;
           if (APPLY) {
             const { error: relError } = await supabase.from("card_pokemon").insert({
