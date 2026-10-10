@@ -24,6 +24,9 @@
  *   - numéros partagés : quand plusieurs fichiers d'un set ont le même numéro
  *     (decks jumelés, variantes), ce sont des cartes distinctes ; la v6 les
  *     fusionnait et en perdait environ 4 600
+ *   - secondes impressions (même numéro et même nom, autre identifiant officiel :
+ *     motifs Poké Ball / Master Ball...) marquées variant_type = 'alt_print' ;
+ *     la première impression est rapprochée de la carte existante
  */
 
 import dotenv from "dotenv";
@@ -320,6 +323,23 @@ function arraysEqual(a: any[] | null | undefined, b: any[] | null | undefined): 
 // Lecture du dépôt PTCG-database
 // -----------------------------------------------------------------------------
 
+/**
+ * Ordre d'impression d'un fichier : "48167.json" -> [48167, 0], "037-2.json" -> [37, 2].
+ * La première impression d'un numéro (identifiant officiel le plus bas) est la
+ * carte normale ; les suivantes portant le même nom sont des variantes.
+ */
+function printOrder(file: string): [number, number, string] {
+  const base = path.basename(file, ".json");
+  const m = base.match(/^(\d+)(?:-(\d+))?$/);
+  return m ? [Number(m[1]), Number(m[2] ?? 0), base] : [Number.MAX_SAFE_INTEGER, 0, base];
+}
+
+function comparePrintOrder(a: string, b: string): number {
+  const [a1, a2, a3] = printOrder(a);
+  const [b1, b2, b3] = printOrder(b);
+  return a1 - b1 || a2 - b2 || a3.localeCompare(b3);
+}
+
 /** Codes des sets TCG Pocket (dossier data_pocket), en majuscules. */
 function pocketSetCodes(): Set<string> {
   const dir = path.join(ROOT, "data_pocket");
@@ -353,7 +373,7 @@ function readRepository(report: { pocketSetsSkipped: string[] }): SetData[] {
       const setDir = path.join(root, code);
       const cards: { file: string; card: RawCard }[] = [];
 
-      for (const file of fs.readdirSync(setDir).filter((f) => f.endsWith(".json")).sort()) {
+      for (const file of fs.readdirSync(setDir).filter((f) => f.endsWith(".json")).sort(comparePrintOrder)) {
         const full = path.join(setDir, file);
         const card = JSON.parse(fs.readFileSync(full, "utf8")) as RawCard;
         card.number = getCardNumber(card, code);
@@ -523,6 +543,7 @@ async function main() {
     insertSkipped: 0,
     sourceDuplicates: 0,
     sharedNumbers: 0,
+    altPrints: 0,
     enriched: 0,
     fieldsEnriched: 0,
     relationsToInsert: 0,
@@ -574,6 +595,12 @@ async function main() {
   // numéro ne puisse pas les « prendre ».
   const claimed = new Set<string>();
 
+  // Secondes impressions : même set, même numéro, même nom qu'une impression
+  // précédente (motifs Poké Ball / Master Ball, réimpressions...). Les fichiers
+  // étant triés par ordre d'impression, la première rencontrée est la normale.
+  const altPrints = new Set<string>();
+  const seenPrints = new Set<string>();
+
   for (const data of repository) {
     const set = setMap.get(`${data.lang}|${norm(data.code)}`)!;
     for (const { file, card } of data.cards) {
@@ -582,8 +609,13 @@ async function main() {
       if (card.number == null) continue;
       const key = `${data.lang}|${set.id}|${numberKey(card.number)}`;
       sourceCountBySetNumber.set(key, (sourceCountBySetNumber.get(key) ?? 0) + 1);
+
+      const printKey = `${key}|${norm(card.name)}`;
+      if (seenPrints.has(printKey)) altPrints.add(`${data.lang}/${data.code}/${file}`);
+      else seenPrints.add(printKey);
     }
   }
+  report.altPrints = altPrints.size;
   report.sharedNumbers = [...sourceCountBySetNumber.values()].filter((n) => n > 1).length;
 
   const pokemonEntities = await fetchAll<{ id: string; dex_id: number }>("pokemon_entities", "id,dex_id");
@@ -683,7 +715,7 @@ async function main() {
             name: card.name ?? null,
             language: data.lang,
             rarity: card.rarity ?? null,
-            variant_type: null,
+            variant_type: altPrints.has(label) ? "alt_print" : null,
             category: nextCategory,
             hp: card.hp ?? null,
             types: card.types ?? null,
@@ -856,6 +888,7 @@ async function main() {
   }
   console.log(`Doublons dans la source   : ${report.sourceDuplicates}`);
   console.log(`Numéros partagés (source) : ${report.sharedNumbers} (cartes distinctes, gérées une par une)`);
+  console.log(`Secondes impressions      : ${report.altPrints} (marquées variant_type = 'alt_print')`);
   console.log(`Cartes enrichies          : ${report.enriched} (${report.fieldsEnriched} champs)`);
   console.log(`Cartes sans numéro        : ${report.noNumber}`);
   console.log(`Relations à ajouter       : ${report.relationsToInsert}${APPLY ? ` (ajoutées : ${report.relationsInserted})` : ""}`);
