@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Nettoyage : supprime du suivi git tout ce qui ne sert pas à la routine (npm run update).
+# À lancer à la racine du projet APRÈS avoir copié le contenu de ce dossier. Rien n est poussé.
+set -e
+git rm -q --ignore-unmatch \
+  "scripts/add-missing-pokemon.ts" \
+  "scripts/archive/audit-card-entity-readiness-v2.ts" \
+  "scripts/archive/audit-card-entity-readiness-v3.ts" \
+  "scripts/archive/audit-card-entity-readiness.ts" \
+  "scripts/archive/audit-fr-jp.ts" \
+  "scripts/archive/fix-card-pokemon-inconsistency.ts" \
+  "scripts/archive/import-ptcg-database-languages-v2.ts" \
+  "scripts/archive/import-ptcg-database-languages-v3.ts" \
+  "scripts/archive/import-ptcg-database-languages-v4.ts" \
+  "scripts/archive/import-ptcg-database-languages.ts" \
+  "scripts/archive/resolve-card-entities.ts" \
+  "scripts/audit-card-entity-readiness-v4.ts" \
+  "scripts/audit-card-matching-author.ts" \
+  "scripts/audit-card-matching-deterministic.ts" \
+  "scripts/audit-fr-jp-cards.ts" \
+  "scripts/audit-fr-jp-smart.ts" \
+  "scripts/audit-ptcg-database-all-multilang.ts" \
+  "scripts/audit-ptcg-database-jp-detailed.ts" \
+  "scripts/audit-ptcg-database-multilang.ts" \
+  "scripts/audit-ptcg-database-s4.ts" \
+  "scripts/audit-set-mappings.ts" \
+  "scripts/audit-tcgdex-jp-sets.ts" \
+  "scripts/check-fr-codes.ts" \
+  "scripts/debug-jp-pokemon.ts" \
+  "scripts/debug-orphan-jp-cards.ts" \
+  "scripts/debug-set-mappings.ts" \
+  "scripts/diagnose-jp-zero-sets.ts" \
+  "scripts/enrich-tcgdexfr-dexid.ts" \
+  "scripts/enrich-tcgdexjp-dexid.ts" \
+  "scripts/export-fr-sets.ts" \
+  "scripts/export-jp-sets.ts" \
+  "scripts/import-ptcg-database-languages-v5.ts" \
+  "scripts/import-ptcg-database-languages-v6.ts" \
+  "scripts/import-ptcg-database-s4.ts" \
+  "scripts/import-set-mappings.ts" \
+  "scripts/insert-jp-card-pokemon.ts" \
+  "scripts/inventory-ptcg-database-jp.ts" \
+  "scripts/inventory-ptcg-database-repository.ts" \
+  "scripts/list-sets.ts" \
+  "scripts/match-jp-fr.ts" \
+  "scripts/preaudit-ptcg-database-jp.ts" \
+  "scripts/preview-card-entities-ptcg.ts" \
+  "scripts/preview-ptcg-database-set.ts" \
+  "scripts/preview-set-mappings.ts" \
+  "scripts/prototype-card-classification-v2.ts" \
+  "scripts/prototype-mapping-fr-jp.ts" \
+  "scripts/prototype-western-asian.ts" \
+  "scripts/resolve-card-entities-v2-fixed.ts" \
+  "scripts/sync-pokemon-entities.ts" \
+  "scripts/sync-tcgdexfr.ts" \
+  "scripts/sync-tcgdexjp.ts" \
+  "scripts/sync-tcgdexjp.ts.backup" \
+  "scripts/tcgdex-errors.json" \
+  "scripts/tcgdex-jp-errors.json" \
+  "scripts/test-set.ts" \
+  "scripts/test-tcgdex-jp-sets.ts" \
+  "scripts/test-tcgdex-sets.ts" \
+  "scripts/verify-jp-card-pokemon.ts" \
+  "scripts/verify-jp-dexids.ts" \
+  "scripts/verify-pokemon-entities.ts" \
+  "audit-card-entity-readiness-v2.json" \
+  "audit-card-entity-readiness-v3.json" \
+  "audit-card-entity-readiness-v4.json" \
+  "audit-card-entity-readiness.json" \
+  "audit-card-matching-deterministic.json" \
+  "audit-card-matching-summary.json" \
+  "audit-ptcg-database-all-multilang.json" \
+  "audit-sets-jp.txt" \
+  "debug-orphan-jp.txt" \
+  "fr-sets.json" \
+  "jp-sets.json" \
+  "prototype-card-classification-v2.json" \
+  "output/import-v7-apply.json" \
+  "output/import-v7-dry-run.json" \
+
+echo "Nettoyage terminé. Vérifiez avec : git status"
