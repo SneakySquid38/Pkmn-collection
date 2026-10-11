@@ -1,11 +1,11 @@
 {
   "mode": "dry-run",
-  "date": "2026-10-11T11:55:54.771Z",
+  "date": "2026-10-11T21:36:21.625Z",
   "sets": 232,
   "entries": 20345,
   "cards": 13012,
-  "newSets": 232,
-  "newCards": 13012,
+  "newSets": 0,
+  "newCards": 0,
   "byCategory": {
     "Pokémon": 9770,
     "Dresseur": 2787,

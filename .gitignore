@@ -20,6 +20,9 @@ next-env.d.ts
 /PTCG-database/
 /outputs/
 /PTCG-CHS-Datasets/
+plan données.pdf
+runbook.pdf
+Suivi plan données.pdf
 
 # Logs et divers
 npm-debug.log*
@@ -28,3 +31,4 @@ yarn-error.log*
 .DS_Store
 *.pem
 .vercel
+/PTCG-CHS-Datasets/

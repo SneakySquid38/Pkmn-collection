@@ -37,6 +37,7 @@ const FILE =
 const SOURCE = "ptcg-chs";
 const LANGUAGE = "SC";
 const BATCH = 500;
+const PAGE = 1000;
 const REPORT_FILE = path.resolve(process.cwd(), "output", `import-chs-${APPLY ? "apply" : "dry-run"}.json`);
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -173,14 +174,36 @@ function parse(file: string, resolveDex: DexResolver) {
 // Base
 // -----------------------------------------------------------------------------
 
-async function fetchAll<T>(table: string, columns: string, filter: (q: any) => any): Promise<T[]> {
+/**
+ * Lecture paginée « par curseur » (keyset) : on trie sur `key` et on repart après la
+ * dernière valeur lue, au lieu de sauter N lignes (offset).
+ *
+ * Pourquoi : sur `cards` (plusieurs centaines de milliers de lignes), l'ancienne version
+ * filtrait sur source + langue mais triait sur `id`. Postgres parcourait alors toute la
+ * table dans l'ordre des id en cherchant les lignes « ptcg-chs / SC » — dont il n'existe
+ * encore aucune — et dépassait le délai de l'API (statement timeout).
+ * En triant sur `source_id`, la requête utilise directement l'index unique
+ * (source, language, source_id) : elle est instantanée, même quand rien ne correspond.
+ *
+ * `key` doit figurer dans `columns` et être unique pour le filtre donné.
+ */
+async function fetchAll<T extends Record<string, any>>(
+  table: string,
+  columns: string,
+  filter: (q: any) => any,
+  key = "id",
+): Promise<T[]> {
   const out: T[] = [];
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await filter(supabase.from(table).select(columns)).order("id").range(from, from + 999);
+  let last: unknown = null;
+  for (;;) {
+    let q = filter(supabase.from(table).select(columns));
+    if (last !== null) q = q.gt(key, last);
+    const { data, error } = await q.order(key).limit(PAGE);
     if (error) throw new Error(`${table}: ${error.message}`);
     if (!data?.length) break;
     out.push(...(data as T[]));
-    if (data.length < 1000) break;
+    if (data.length < PAGE) break;
+    last = (data[data.length - 1] as T)[key];
   }
   return out;
 }
@@ -190,7 +213,7 @@ async function main() {
   console.log(`Fichier : ${FILE}\n`);
   if (!fs.existsSync(FILE)) throw new Error(`Fichier introuvable : ${FILE}`);
 
-  const species = await fetchAll<{ dex_id: number; name_zh_hans: string | null }>(
+  const species = await fetchAll<{ id: number; dex_id: number; name_zh_hans: string | null }>(
     "pokemon_entities", "id,dex_id,name_zh_hans", (q) => q);
   const { sets, cards, entries } = parse(FILE, makeDexResolver(species));
   console.log(`Produits (sets)          : ${sets.size}`);
@@ -198,9 +221,9 @@ async function main() {
   console.log(`Cartes après regroupement: ${cards.length} (finitions ★ rangées dans variants)`);
 
   const existingSets = await fetchAll<{ id: string; source_id: string }>(
-    "sets", "id,source_id", (q) => q.eq("source", SOURCE).eq("language", LANGUAGE));
+    "sets", "id,source_id", (q) => q.eq("source", SOURCE).eq("language", LANGUAGE), "source_id");
   const existingCards = await fetchAll<{ id: string; source_id: string }>(
-    "cards", "id,source_id", (q) => q.eq("source", SOURCE).eq("language", LANGUAGE));
+    "cards", "id,source_id", (q) => q.eq("source", SOURCE).eq("language", LANGUAGE), "source_id");
   const setIdByCode = new Map(existingSets.map((s) => [s.source_id, s.id]));
   const knownCards = new Set(existingCards.map((c) => c.source_id));
 

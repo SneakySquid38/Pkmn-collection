@@ -1,0 +1,82 @@
+{
+  "apply": false,
+  "date": "2026-10-11T21:36:27.887Z",
+  "results": [
+    {
+      "step": "fetch",
+      "ok": true,
+      "details": {
+        "PTCG-database": "Already up to date.",
+        "PTCG-CHS-Datasets": "Already up to date."
+      },
+      "seconds": 1
+    },
+    {
+      "step": "fr",
+      "ok": true,
+      "details": {
+        "setsTcgdex": 202,
+        "setsCreated": 0,
+        "setsSkippedPocket": 15,
+        "setsSkippedKnown": 4,
+        "setsSkippedEmpty": 0,
+        "cardsFound": 19674,
+        "cardsMissing": 0,
+        "cardsImported": 0,
+        "errors": 0,
+        "errorsSample": []
+      },
+      "seconds": 95
+    },
+    {
+      "step": "jp",
+      "ok": true,
+      "details": {
+        "setsTcgdex": 186,
+        "setsCreated": 0,
+        "setsSkippedPocket": 0,
+        "setsSkippedKnown": 0,
+        "setsSkippedEmpty": 21,
+        "cardsFound": 13006,
+        "cardsMissing": 0,
+        "cardsImported": 0,
+        "errors": 0,
+        "errorsSample": []
+      },
+      "seconds": 76
+    },
+    {
+      "step": "ptcg",
+      "ok": true,
+      "details": {
+        "status": 0
+      },
+      "seconds": 38
+    },
+    {
+      "step": "chs",
+      "ok": true,
+      "details": {
+        "status": 0
+      },
+      "seconds": 3
+    },
+    {
+      "step": "post",
+      "ok": true,
+      "details": {
+        "skipped": true
+      },
+      "seconds": 0
+    },
+    {
+      "step": "controls",
+      "ok": true,
+      "details": {
+        "controls": 20,
+        "aVoir": []
+      },
+      "seconds": 6
+    }
+  ]
+}
