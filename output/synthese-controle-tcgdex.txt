@@ -1,0 +1,20 @@
+== JP ==
+  controle                       169
+  illustrateur_ok                141
+  nom_ok                         169
+  numero_absent_tcgdex           45
+  rarete_absente_tcgdex          10
+  rarete_identique               152
+  rarete_non_mappee              7
+  set_introuvable_tcgdex         86
+
+== TC ==
+  controle                       160
+  illustrateur_ecart             2
+  illustrateur_ok                154
+  nom_ok                         160
+  numero_absent_tcgdex           14
+  rarete_absente_chez_nous       3
+  rarete_absente_tcgdex          82
+  rarete_identique               75
+  set_introuvable_tcgdex         126

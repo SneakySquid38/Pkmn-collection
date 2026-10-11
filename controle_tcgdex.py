@@ -127,9 +127,16 @@ def comparer(ligne, carte_liste_match, carte_detail):
 
 
 def main(fichier_csv):
+    if not os.path.exists(fichier_csv):
+        print(f"Fichier introuvable : {fichier_csv}")
+        print("Vérifie que le CSV exporté du SQL Editor est dans ce dossier, sous ce nom exact.")
+        print("Dossier courant : " + os.getcwd())
+        sys.exit(1)
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(fichier_csv, encoding="utf-8-sig", newline="") as fh:
-        lignes = list(csv.DictReader(fh))
+        # L'export du SQL Editor écrit les valeurs vides sous la forme « null » : on les traite comme vides
+        lignes = [{k: ("" if (v is None or str(v).strip().lower() == "null") else v)
+                   for k, v in ligne.items()} for ligne in csv.DictReader(fh)]
     print(f"{len(lignes)} cartes à contrôler")
 
     cache_sets = {}
