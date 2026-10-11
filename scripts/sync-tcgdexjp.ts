@@ -2,6 +2,15 @@ import dotenv from "dotenv";
 import { createClient } from "@supabase/supabase-js";
 import { writeFile } from "node:fs/promises";
 
+/** Catégorie normalisée (contrainte cards_category_check, migration 2026-10-11) */
+function normalizeCategory(value: string | null | undefined): string | null {
+  const v = (value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  if (v === "pokemon") return "Pokémon";
+  if (v === "trainer" || v === "dresseur") return "Dresseur";
+  if (v === "energy" || v === "energie") return "Énergie";
+  return null;
+}
+
 dotenv.config({
   path: ".env.local",
 });
@@ -340,8 +349,7 @@ async function importCard(
 
     language: DATABASE_LANGUAGE,
 
-    category:
-      card.category ?? null,
+    category: normalizeCategory(card.category),
 
     hp:
       card.hp ?? null,
