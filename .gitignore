@@ -19,6 +19,9 @@ next-env.d.ts
 # Dépôt de données externe (cloné séparément)
 /PTCG-database/
 /outputs/
+output/
+/sauvegardes/
+sauvegardes/
 
 # Logs et divers
 npm-debug.log*
