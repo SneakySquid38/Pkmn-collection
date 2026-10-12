@@ -70,9 +70,16 @@ export default async function Plus() {
           </p>
         </section>
 
-        <section className="rounded-2xl border border-dashed border-ligne bg-surface p-4 text-sm text-encre-douce">
-          Bientôt ici : la collection de l'autre, l'import Pokiframe et l'historique des imports.
-        </section>
+        <Link
+          href="/import"
+          className="flex items-center gap-3 rounded-2xl border border-ligne bg-surface p-4 hover:bg-puce"
+        >
+          <div className="flex-1">
+            <p className="font-bold">Import Pokiframe</p>
+            <p className="text-sm text-encre-douce">Ajouter ta collection depuis un export JSON, et l&apos;historique des imports</p>
+          </div>
+          <span aria-hidden="true" className="text-xl text-encre-douce">›</span>
+        </Link>
       </div>
     </>
   );

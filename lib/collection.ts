@@ -45,6 +45,7 @@ export type CarteListe = {
   image_small: string | null;
   set_nom: string | null;
   quantite?: number;
+  prix?: number | null; // valeur d'un exemplaire en euros (prix Pokiframe à l'import)
   priorite?: number;
   possedee?: boolean;
 };
@@ -83,14 +84,14 @@ function versListe(c: LigneCarte, sets: Map<string, string>): CarteListe {
 export async function lireCollection(supabase: SupabaseClient, membre: string) {
   const { data, error } = await supabase
     .from("collection_items")
-    .select(`quantity, added_at, cards(${CHAMPS_CARTE})`)
+    .select(`quantity, market_price, added_at, cards(${CHAMPS_CARTE})`)
     .eq("user_id", membre)
     .order("added_at", { ascending: false })
     .limit(5000);
   if (error) throw new Error(error.message);
-  const lignes = (data ?? []).filter((l) => l.cards) as unknown as { quantity: number; cards: LigneCarte }[];
+  const lignes = (data ?? []).filter((l) => l.cards) as unknown as { quantity: number; market_price: number | null; cards: LigneCarte }[];
   const sets = await nomsSets(supabase, lignes.map((l) => l.cards));
-  return lignes.map((l) => ({ ...versListe(l.cards, sets), quantite: l.quantity }));
+  return lignes.map((l) => ({ ...versListe(l.cards, sets), quantite: l.quantity, prix: l.market_price === null ? null : Number(l.market_price) }));
 }
 
 // Envies d'un membre, triées par priorité puis les plus récentes ; « possédée » si le membre l'a déjà.

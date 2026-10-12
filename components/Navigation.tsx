@@ -23,7 +23,8 @@ function Icone({ d }: { d: string }) {
 // Barre d'onglets en bas sur téléphone, barre latérale sur ordinateur (à partir de 1024 px).
 export function Navigation() {
   const chemin = usePathname();
-  const actif = (href: string) => chemin === href || chemin.startsWith(href + "/");
+  const actif = (href: string) =>
+    chemin === href || chemin.startsWith(href + "/") || (href === "/plus" && chemin.startsWith("/import"));
 
   return (
     <>

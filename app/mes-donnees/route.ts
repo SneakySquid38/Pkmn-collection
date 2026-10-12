@@ -9,10 +9,11 @@ export async function GET() {
   if (!claims?.sub) return NextResponse.json({ erreur: "Non connecté" }, { status: 401 });
 
   // La lecture croisée rend visibles les collections des autres : on filtre bien sur son propre compte.
-  const [profil, collection, envies] = await Promise.all([
+  const [profil, collection, envies, imports] = await Promise.all([
     supabase.from("profiles").select("*").eq("id", claims.sub).single(),
     supabase.from("collection_items").select("*").eq("user_id", claims.sub),
     supabase.from("wishlist_items").select("*").eq("user_id", claims.sub),
+    supabase.from("import_lots").select("*, import_lines(*)").eq("user_id", claims.sub),
   ]);
 
   const export_ = {
@@ -21,6 +22,7 @@ export async function GET() {
     profil: profil.data,
     collection: collection.data ?? [],
     envies: envies.data ?? [],
+    imports: imports.data ?? [],
   };
 
   return new NextResponse(JSON.stringify(export_, null, 2), {
