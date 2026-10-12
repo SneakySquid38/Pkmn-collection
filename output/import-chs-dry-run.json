@@ -1,0 +1,160 @@
+{
+  "mode": "dry-run",
+  "date": "2026-10-11T21:36:21.625Z",
+  "sets": 232,
+  "entries": 20345,
+  "cards": 13012,
+  "newSets": 0,
+  "newCards": 0,
+  "byCategory": {
+    "Pokémon": 9770,
+    "Dresseur": 2787,
+    "Énergie": 455
+  },
+  "rawRarities": {
+    "无标记": 5342,
+    "C": 2010,
+    "U": 1605,
+    "SR": 729,
+    "R": 632,
+    "RR": 558,
+    "●": 272,
+    "◆": 263,
+    "UR": 217,
+    "HR": 187,
+    "SAR": 185,
+    "★": 161,
+    "S": 154,
+    "★★": 145,
+    "★★★": 138,
+    "AR": 112,
+    "RRR": 107,
+    "SSR": 63,
+    "ACE": 35,
+    "PR": 26,
+    "CSR": 23,
+    "CHR": 19,
+    "K": 15,
+    "A": 9,
+    "∅": 3,
+    "FUR": 2
+  },
+  "pokemonWithoutDex": 8,
+  "examples": [
+    {
+      "set_code": "CSM1DC",
+      "source_id": "SC-CSM1DC-1",
+      "local_id": "GRA",
+      "number": "GRA",
+      "name": "基本草能量",
+      "rarity": "无标记",
+      "category": "Énergie",
+      "hp": null,
+      "types": [
+        "Grass"
+      ],
+      "artist": null,
+      "dex_ids": null,
+      "regulation_mark": null,
+      "variants": [
+        {
+          "type": "normal",
+          "finish": null,
+          "chs_id": 1
+        }
+      ]
+    },
+    {
+      "set_code": "CSM1DC",
+      "source_id": "SC-CSM1DC-2",
+      "local_id": "FIR",
+      "number": "FIR",
+      "name": "基本火能量",
+      "rarity": "无标记",
+      "category": "Énergie",
+      "hp": null,
+      "types": [
+        "Fire"
+      ],
+      "artist": null,
+      "dex_ids": null,
+      "regulation_mark": null,
+      "variants": [
+        {
+          "type": "normal",
+          "finish": null,
+          "chs_id": 2
+        }
+      ]
+    },
+    {
+      "set_code": "CSM1DC",
+      "source_id": "SC-CSM1DC-3",
+      "local_id": "WAT",
+      "number": "WAT",
+      "name": "基本水能量",
+      "rarity": "无标记",
+      "category": "Énergie",
+      "hp": null,
+      "types": [
+        "Water"
+      ],
+      "artist": null,
+      "dex_ids": null,
+      "regulation_mark": null,
+      "variants": [
+        {
+          "type": "normal",
+          "finish": null,
+          "chs_id": 3
+        }
+      ]
+    },
+    {
+      "set_code": "CSM1DC",
+      "source_id": "SC-CSM1DC-4",
+      "local_id": "LIG",
+      "number": "LIG",
+      "name": "基本雷能量",
+      "rarity": "无标记",
+      "category": "Énergie",
+      "hp": null,
+      "types": [
+        "Lightning"
+      ],
+      "artist": null,
+      "dex_ids": null,
+      "regulation_mark": null,
+      "variants": [
+        {
+          "type": "normal",
+          "finish": null,
+          "chs_id": 4
+        }
+      ]
+    },
+    {
+      "set_code": "CSM1DC",
+      "source_id": "SC-CSM1DC-5",
+      "local_id": "PSY",
+      "number": "PSY",
+      "name": "基本超能量",
+      "rarity": "无标记",
+      "category": "Énergie",
+      "hp": null,
+      "types": [
+        "Psychic"
+      ],
+      "artist": null,
+      "dex_ids": null,
+      "regulation_mark": null,
+      "variants": [
+        {
+          "type": "normal",
+          "finish": null,
+          "chs_id": 5
+        }
+      ]
+    }
+  ]
+}
