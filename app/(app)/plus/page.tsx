@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { cookies } from "next/headers";
 import { choisirTheme, seDeconnecter } from "@/app/actions";
 import { EnTete } from "@/components/EnTete";
+import { LEGAL } from "@/lib/legal";
 import { profilConnecte } from "@/lib/profil";
 
 export const metadata = { title: "Plus · Krikrou collection" };
@@ -47,6 +49,25 @@ export default async function Plus() {
               </button>
             ))}
           </form>
+        </section>
+
+        <section className="flex flex-col gap-3 rounded-2xl border border-ligne bg-surface p-4">
+          <h2 className="font-bold">Mes données</h2>
+          <a
+            href="/mes-donnees"
+            download
+            className="flex min-h-11 items-center justify-center rounded-xl border border-ligne px-4 text-sm font-semibold"
+          >
+            Télécharger toutes mes données
+          </a>
+          <p className="text-sm text-encre-douce">
+            Pour corriger une information ou supprimer ton compte et toute ta collection, écris à{" "}
+            <a href={`mailto:${LEGAL.contact}`} className="font-semibold text-accent-texte underline">{LEGAL.contact}</a>.
+          </p>
+          <p className="flex gap-4 text-sm">
+            <Link href="/confidentialite" className="text-accent-texte underline">Confidentialité</Link>
+            <Link href="/mentions-legales" className="text-accent-texte underline">Mentions légales</Link>
+          </p>
         </section>
 
         <section className="rounded-2xl border border-dashed border-ligne bg-surface p-4 text-sm text-encre-douce">

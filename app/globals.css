@@ -74,3 +74,28 @@ body {
   font-family: var(--font-figtree), system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Images doublées clair / sombre (mascotte) : une seule des deux est visible. */
+.seul-sombre { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) .seul-clair { display: none; }
+  :root:not([data-theme="clair"]) .seul-sombre { display: block; }
+}
+:root[data-theme="sombre"] .seul-clair { display: none; }
+:root[data-theme="sombre"] .seul-sombre { display: block; }
+
+/* Silhouette de Krikrou, colorée par la palette (cartes sans image). */
+.silhouette {
+  background-color: var(--encre-douce);
+  -webkit-mask: url("/mascotte/silhouette.svg") center / contain no-repeat;
+  mask: url("/mascotte/silhouette.svg") center / contain no-repeat;
+}
+
+/* Pages Confidentialité et Mentions légales */
+.texte-legal h1 { font-family: var(--font-bricolage), sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.4px; }
+.texte-legal h2 { font-weight: 700; font-size: 18px; margin-top: 8px; }
+.texte-legal p, .texte-legal li { line-height: 1.55; }
+.texte-legal ul { list-style: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.texte-legal a { color: var(--accent-texte); text-decoration: underline; }
+.texte-legal table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.texte-legal th, .texte-legal td { border: 1px solid var(--ligne); padding: 8px; text-align: left; vertical-align: top; }

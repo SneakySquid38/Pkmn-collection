@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Mascotte } from "@/components/Mascotte";
 
 const ONGLETS = [
   { href: "/collection", label: "Collection", icone: "M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM3 6v13M21 6v13" },
@@ -47,7 +48,7 @@ export function Navigation() {
 
       <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col gap-6 border-r border-ligne bg-surface px-4 py-6 lg:flex">
         <div className="flex items-center gap-2.5 px-2">
-          <div aria-hidden="true" className="flex size-10 items-center justify-center rounded-xl bg-accent font-titre text-xl font-extrabold text-[#1f1814]">K</div>
+          <Mascotte expression="petite" largeur={44} prioritaire />
           <span className="font-titre text-lg leading-tight font-extrabold">Krikrou<br />collection</span>
         </div>
         <nav aria-label="Navigation principale" className="flex flex-col gap-1">

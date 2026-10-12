@@ -4,6 +4,8 @@ import { NextResponse, type NextRequest } from "next/server";
 // Rafraîchit la session Supabase à chaque requête et renvoie vers /connexion
 // toute personne non connectée. L'inscription est fermée : les comptes sont créés
 // depuis le tableau de bord Supabase.
+const PAGES_PUBLIQUES = ["/confidentialite", "/mentions-legales"];
+
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -29,7 +31,10 @@ export async function proxy(request: NextRequest) {
 
   const { data } = await supabase.auth.getClaims();
   const connecte = Boolean(data?.claims);
-  const surConnexion = request.nextUrl.pathname.startsWith("/connexion");
+  const chemin = request.nextUrl.pathname;
+  const surConnexion = chemin.startsWith("/connexion");
+  // Pages légales lisibles par tous, connecté ou non.
+  if (PAGES_PUBLIQUES.includes(chemin)) return response;
 
   if (!connecte && !surConnexion) {
     const url = request.nextUrl.clone();
