@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
+/* Palette Krikrou collection (validée sur les maquettes du 12/10/2026). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --fond: #fbf6f0;
+  --surface: #ffffff;
+  --puce: #f1e7db;
+  --ligne: #e8dccd;
+  --encre: #1f1814;
+  --encre-douce: #6b4a35;
+  --accent: #d9712b;
+  --accent-texte: #a3501a;
+  --accent-doux: rgba(217, 113, 43, 0.16);
+  --terracotta: #b5533a;
+  --vert: #4f7a4a;
+  --sur-vert: #ffffff;
+  color-scheme: light;
+}
+
+/* Sombre : suit le téléphone par défaut, sauf choix manuel (data-theme). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) {
+    --fond: #1b1410;
+    --surface: #2a201a;
+    --puce: #3d3029;
+    --ligne: #3d3029;
+    --encre: #f5ede3;
+    --encre-douce: #bfa48e;
+    --accent: #f08a3e;
+    --accent-texte: #f08a3e;
+    --accent-doux: rgba(240, 138, 62, 0.18);
+    --terracotta: #e07a5f;
+    --vert: #7ba874;
+    --sur-vert: #1b1410;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="sombre"] {
+  --fond: #1b1410;
+  --surface: #2a201a;
+  --puce: #3d3029;
+  --ligne: #3d3029;
+  --encre: #f5ede3;
+  --encre-douce: #bfa48e;
+  --accent: #f08a3e;
+  --accent-texte: #f08a3e;
+  --accent-doux: rgba(240, 138, 62, 0.18);
+  --terracotta: #e07a5f;
+  --vert: #7ba874;
+  --sur-vert: #1b1410;
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-fond: var(--fond);
+  --color-surface: var(--surface);
+  --color-puce: var(--puce);
+  --color-ligne: var(--ligne);
+  --color-encre: var(--encre);
+  --color-encre-douce: var(--encre-douce);
+  --color-accent: var(--accent);
+  --color-accent-texte: var(--accent-texte);
+  --color-accent-doux: var(--accent-doux);
+  --color-terracotta: var(--terracotta);
+  --color-vert: var(--vert);
+  --color-sur-vert: var(--sur-vert);
+  --font-sans: var(--font-figtree);
+  --font-titre: var(--font-bricolage);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
