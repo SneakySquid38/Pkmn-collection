@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { ActionsCarte } from "@/components/ActionsCarte";
 import { CardImage } from "@/components/CardImage";
 import { EtatVide } from "@/components/EtatVide";
 import { LANGUES, libelleLangue } from "@/lib/catalogue";
+import { libellePriorite } from "@/lib/collection";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -35,7 +37,7 @@ export async function FicheCarte({
     );
   }
 
-  const [set, rarete, illustrateur, autres] = await Promise.all([
+  const [set, rarete, illustrateur, autres, claims, possedes, envies, membres] = await Promise.all([
     supabase.from("sets_display").select("display_name, code").eq("set_id", carte.set_id).maybeSingle(),
     carte.rarity_code
       ? supabase.from("rarities").select("label_fr").eq("code", carte.rarity_code).maybeSingle()
@@ -46,7 +48,20 @@ export async function FicheCarte({
     carte.card_entity_id
       ? supabase.from("cards").select("id, language, number, set_id, image_small").eq("card_entity_id", carte.card_entity_id).neq("id", carte.id).limit(24)
       : Promise.resolve({ data: [] as { id: string; language: string; number: string | null; set_id: string; image_small: string | null }[] }),
+    supabase.auth.getClaims(),
+    // Lecture croisée : qui a cette carte, et qui la veut.
+    supabase.from("collection_items").select("user_id, quantity").eq("card_id", carte.id),
+    supabase.from("wishlist_items").select("user_id, priority").eq("card_id", carte.id),
+    supabase.from("profiles").select("id, display_name"),
   ]);
+  const moi = claims.data?.claims?.sub ?? null;
+  const prenom = (id: string) => membres.data?.find((m) => m.id === id)?.display_name ?? "Un membre";
+  const maQuantite = possedes.data?.find((p) => p.user_id === moi)?.quantity ?? 0;
+  const monEnvie = envies.data?.find((e) => e.user_id === moi)?.priority ?? null;
+  const chezLesAutres = [
+    ...(possedes.data ?? []).filter((p) => p.user_id !== moi).map((p) => `${prenom(p.user_id)} l'a (${p.quantity} ex.)`),
+    ...(envies.data ?? []).filter((e) => e.user_id !== moi).map((e) => `${prenom(e.user_id)} la veut · ${libellePriorite(e.priority)}`),
+  ];
 
   const setsAutres = autres.data?.length
     ? (await supabase.from("sets_display").select("set_id, display_name").in("set_id", [...new Set(autres.data.map((a) => a.set_id))])).data ?? []
@@ -82,6 +97,15 @@ export async function FicheCarte({
           <p className="text-xs text-encre-douce">Nom français déduit, pas encore officiel</p>
         )}
       </div>
+
+      {moi && <ActionsCarte carte={carte.id} quantite={maQuantite} priorite={monEnvie} />}
+      {chezLesAutres.length > 0 && (
+        <ul className="flex flex-col gap-1 text-sm text-encre-douce">
+          {chezLesAutres.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
 
       <dl className="grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-ligne bg-surface p-4 text-sm">
         <Info titre="Set">
@@ -135,9 +159,6 @@ export async function FicheCarte({
         </section>
       )}
 
-      <p className="rounded-xl border border-dashed border-ligne p-3 text-center text-sm text-encre-douce">
-        L&apos;ajout à la collection et aux envies arrive en phase 3.
-      </p>
     </article>
   );
 }

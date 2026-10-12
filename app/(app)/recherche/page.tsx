@@ -3,6 +3,7 @@ import { EnTete } from "@/components/EnTete";
 import { EtatVide } from "@/components/EtatVide";
 import { FicheCarte } from "@/components/FicheCarte";
 import { GrilleCartes } from "@/components/GrilleCartes";
+import { lirePossessions } from "@/lib/collection";
 import { chercherCartes, libelleLangue, lireFiltres, versParams, type CarteResultat } from "@/lib/catalogue";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
@@ -18,12 +19,15 @@ export default async function Recherche({ searchParams }: PageProps<"/recherche"
 
   let premiers: CarteResultat[] = [];
   let erreur = false;
-  const [resultats, raretes, series, set, illustrateur] = await Promise.all([
+  const { data: claims } = await supabase.auth.getClaims();
+  const moi = claims?.claims?.sub;
+  const [resultats, raretes, series, set, illustrateur, possessions] = await Promise.all([
     chercherCartes(supabase, filtres, 0).catch(() => null),
     supabase.from("rarities").select("code, label_fr").neq("code", "none").order("sort_order"),
     supabase.from("series").select("code, name_fr").order("sort_order"),
     filtres.set ? supabase.from("sets_display").select("display_name").eq("set_id", filtres.set).maybeSingle() : null,
     filtres.illustrateur ? supabase.from("illustrators").select("name").eq("id", filtres.illustrateur).maybeSingle() : null,
+    moi ? lirePossessions(supabase, moi).catch(() => null) : null,
   ]);
   if (resultats) premiers = resultats;
   else erreur = true;
@@ -60,7 +64,15 @@ export default async function Recherche({ searchParams }: PageProps<"/recherche"
               <strong className="text-encre">{total.toLocaleString("fr-FR")} carte{total > 1 ? "s" : ""}</strong>
               {filtres.langues.length ? ` · ${filtres.langues.map(libelleLangue).join(", ")}` : ""}
             </p>
-            <GrilleCartes key={cle} filtres={filtres} premiers={premiers} total={total} carteOuverte={carte} />
+            <GrilleCartes
+              key={cle}
+              filtres={filtres}
+              premiers={premiers}
+              total={total}
+              carteOuverte={carte}
+              possedees={Object.fromEntries(possessions?.parCarte ?? [])}
+              familles={Object.fromEntries(possessions?.parFamille ?? [])}
+            />
           </>
         )}
       </div>

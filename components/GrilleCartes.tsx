@@ -13,11 +13,15 @@ export function GrilleCartes({
   premiers,
   total,
   carteOuverte,
+  possedees,
+  familles,
 }: {
   filtres: Filtres;
   premiers: CarteResultat[];
   total: number;
   carteOuverte: string | null;
+  possedees: Record<string, number>; // exemplaires possédés par carte
+  familles: Record<string, number>; // exemplaires possédés par famille multilingue (toutes langues)
 }) {
   const [cartes, setCartes] = useState(premiers);
   const [fin, setFin] = useState(premiers.length < TAILLE_PAGE);
@@ -61,6 +65,7 @@ export function GrilleCartes({
           const nom = c.search_name_fr ?? c.name;
           const ouverte = c.card_id === carteOuverte;
           const langues = c.languages?.length ? c.languages : [c.language];
+          const possede = possedees[c.card_id] ?? (c.card_entity_id ? familles[c.card_entity_id] : 0) ?? 0;
           return (
             <li key={c.card_id}>
               <Link
@@ -71,6 +76,11 @@ export function GrilleCartes({
               >
                 <div className="relative">
                   <CardImage src={c.image_small} alt={nom} lang={langues.map(libelleLangue).join(" · ")} prioritaire={i < 4} />
+                  {possede > 0 && (
+                    <span className="absolute top-1.5 right-1.5 rounded-md bg-vert px-1.5 py-0.5 text-[11px] font-bold text-sur-vert">
+                      <span aria-hidden="true">✓</span> {possede > 1 ? `×${possede}` : "Possédée"}
+                    </span>
+                  )}
                   {c.image_small && (
                     <span className="absolute bottom-1.5 left-1.5 flex gap-1">
                       {langues.map((l) => (
