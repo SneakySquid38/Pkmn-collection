@@ -29,7 +29,10 @@ export function ClasseurPages({
 }) {
   const router = useRouter();
   const n = classeur.slots_per_page;
-  const [colonnes] = DISPOSITION[n];
+  const [colonnes, lignes] = DISPOSITION[n];
+  // Sur téléphone, la page entière tient dans l'espace restant : largeur limitée par la hauteur disponible
+  // (cases au format carte 63×88, écart de 8 px, marge intérieure de 8 px et bordure de 1 px).
+  const largeurMobile = `min(100cqw, calc((100cqh - ${18 + (lignes - 1) * 8}px) * ${((colonnes * 63) / (lignes * 88)).toFixed(4)} + ${18 + (colonnes - 1) * 8}px))`;
 
   const [locales, setLocales] = useState(() => new Map(cases.map((c) => [c.position, c])));
   const [pages, setPages] = useState(classeur.pages);
@@ -306,17 +309,21 @@ export function ClasseurPages({
   const carteGlissee = deplace ? locales.get(deplace.de) : null;
 
   return (
-    <section aria-label={`Page ${page} sur ${pages}`} aria-busy={enCours} className="flex flex-col gap-3">
+    <section
+      aria-label={`Page ${page} sur ${pages}`}
+      aria-busy={enCours}
+      className="flex flex-col gap-3 max-lg:min-h-0 max-lg:flex-1 max-lg:gap-2 max-lg:*:shrink-0"
+    >
       {proprietaire && (
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="min-w-48 flex-1 text-sm text-encre-douce">
+          <p className={`min-w-48 flex-1 text-sm text-encre-douce ${ranger ? "max-lg:text-xs" : "max-lg:hidden"}`}>
             {ranger ? "Touche une carte, puis la case où la mettre." : "Touche une case vide pour la remplir. Maintiens une carte pour la déplacer."}
           </p>
           {!ranger && (
             <button
               type="button"
               onClick={() => setALaSuite(true)}
-              className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-bold text-[#1f1814]"
+              className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-bold text-[#1f1814] max-lg:h-9"
             >
               <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                 <path d="M12 5v14M5 12h14" />
@@ -331,7 +338,7 @@ export function ClasseurPages({
               setRanger((r) => !r);
               setSelection(null);
             }}
-            className={`h-10 shrink-0 rounded-full border px-4 text-sm font-semibold ${ranger ? "border-accent bg-accent text-[#1f1814]" : "border-ligne bg-surface"}`}
+            className={`h-10 shrink-0 rounded-full border px-4 text-sm font-semibold max-lg:h-9 ${ranger ? "border-accent bg-accent text-[#1f1814]" : "border-ligne bg-surface"}`}
           >
             {ranger ? "Terminé" : "Ranger"}
           </button>
@@ -345,67 +352,72 @@ export function ClasseurPages({
         onPointerMove={proprietaire ? bouge : undefined}
         onPointerUp={proprietaire ? lache : undefined}
         onPointerCancel={proprietaire ? finirGlisse : undefined}
-        className="rounded-2xl border border-ligne bg-puce p-3 sm:p-4"
+        className="flex justify-center max-lg:min-h-0 max-lg:flex-1 max-lg:items-center max-lg:[container-type:size]"
       >
-        <ol
-          onClickCapture={proprietaire ? clicApresGlisse : undefined}
-          className={`mx-auto grid gap-2 sm:gap-3 ${proprietaire ? "select-none [-webkit-touch-callout:none]" : ""}`}
-          style={{
-            gridTemplateColumns: `repeat(${colonnes}, minmax(0, 1fr))`,
-            maxWidth: `${colonnes * 170}px`,
-          }}
+        <div
+          className="rounded-2xl border border-ligne bg-puce p-2 max-lg:h-fit max-lg:w-(--largeur-page) lg:w-full lg:p-4"
+          style={{ "--largeur-page": largeurMobile } as React.CSSProperties}
         >
-          {Array.from({ length: n }, (_, i) => {
-            const pos = debut + i;
-            const c = locales.get(pos);
-            const choisi = selection === pos;
-            const source = deplace?.de === pos;
-            const survolee = deplace !== null && deplace.survol === pos && !source;
-            const contenu = c ? (
-              <Visuel carte={c} />
-            ) : (
-              <CaseVide ajout={proprietaire && !ranger && !deplace} cible={selection !== null || survolee} />
-            );
-            const classe = `block w-full rounded-lg text-left outline-offset-2 transition-opacity ${choisi || survolee ? "ring-3 ring-accent" : ""} ${c && c.card_id === ouverte ? "ring-2 ring-accent" : ""} ${source ? "opacity-30" : ""}`;
-            return (
-              <li
-                key={pos}
-                data-case={proprietaire ? pos : undefined}
-                onPointerDown={proprietaire && c ? (e) => appui(e, pos) : undefined}
-                onContextMenu={proprietaire && c ? (e) => e.preventDefault() : undefined}
-                onDragStart={proprietaire ? (e) => e.preventDefault() : undefined}
-              >
-                {proprietaire && (ranger || !c) ? (
-                  <button
-                    type="button"
-                    onClick={() => toucherCase(pos)}
-                    aria-pressed={ranger && c ? choisi : undefined}
-                    aria-label={
-                      c
-                        ? `${c.nom}, ${c.possedee ? "possédée" : "à trouver"}, ${numero(pos)}`
-                        : `${numero(pos)}, vide${selection !== null ? " : déplacer ici" : " : ajouter une carte"}`
-                    }
-                    className={classe}
-                  >
-                    {contenu}
-                  </button>
-                ) : c ? (
-                  <Link
-                    href={lienFiche(c.card_id)}
-                    scroll={false}
-                    draggable={!proprietaire}
-                    className={classe}
-                    aria-label={`${c.nom}, ${c.possedee ? "possédée" : "à trouver"}`}
-                  >
-                    {contenu}
-                  </Link>
-                ) : (
-                  <div className={classe}>{contenu}</div>
-                )}
-              </li>
-            );
-          })}
-        </ol>
+          <ol
+            onClickCapture={proprietaire ? clicApresGlisse : undefined}
+            className={`mx-auto grid gap-2 lg:gap-3 ${proprietaire ? "select-none [-webkit-touch-callout:none]" : ""}`}
+            style={{
+              gridTemplateColumns: `repeat(${colonnes}, minmax(0, 1fr))`,
+              maxWidth: `${colonnes * 170}px`,
+            }}
+          >
+            {Array.from({ length: n }, (_, i) => {
+              const pos = debut + i;
+              const c = locales.get(pos);
+              const choisi = selection === pos;
+              const source = deplace?.de === pos;
+              const survolee = deplace !== null && deplace.survol === pos && !source;
+              const contenu = c ? (
+                <Visuel carte={c} />
+              ) : (
+                <CaseVide ajout={proprietaire && !ranger && !deplace} cible={selection !== null || survolee} />
+              );
+              const classe = `block w-full rounded-lg text-left outline-offset-2 transition-opacity ${choisi || survolee ? "ring-3 ring-accent" : ""} ${c && c.card_id === ouverte ? "ring-2 ring-accent" : ""} ${source ? "opacity-30" : ""}`;
+              return (
+                <li
+                  key={pos}
+                  data-case={proprietaire ? pos : undefined}
+                  onPointerDown={proprietaire && c ? (e) => appui(e, pos) : undefined}
+                  onContextMenu={proprietaire && c ? (e) => e.preventDefault() : undefined}
+                  onDragStart={proprietaire ? (e) => e.preventDefault() : undefined}
+                >
+                  {proprietaire && (ranger || !c) ? (
+                    <button
+                      type="button"
+                      onClick={() => toucherCase(pos)}
+                      aria-pressed={ranger && c ? choisi : undefined}
+                      aria-label={
+                        c
+                          ? `${c.nom}, ${c.possedee ? "possédée" : "à trouver"}, ${numero(pos)}`
+                          : `${numero(pos)}, vide${selection !== null ? " : déplacer ici" : " : ajouter une carte"}`
+                      }
+                      className={classe}
+                    >
+                      {contenu}
+                    </button>
+                  ) : c ? (
+                    <Link
+                      href={lienFiche(c.card_id)}
+                      scroll={false}
+                      draggable={!proprietaire}
+                      className={classe}
+                      aria-label={`${c.nom}, ${c.possedee ? "possédée" : "à trouver"}`}
+                    >
+                      {contenu}
+                    </Link>
+                  ) : (
+                    <div className={classe}>{contenu}</div>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
 
       {choisie && selection !== null && (
@@ -428,10 +440,11 @@ export function ClasseurPages({
         </div>
       )}
 
-      <nav aria-label="Pages du classeur" className="flex items-center justify-between gap-2">
+      {/* Sur téléphone, on tourne les pages du doigt : seul le numéro reste affiché (les flèches restent pour les lecteurs d'écran). */}
+      <nav aria-label="Pages du classeur" className="flex items-center justify-between gap-2 max-lg:justify-center">
         <BoutonPage sens="precedente" onClick={() => aller(page - 1)} disabled={page <= 1} survol={deplace !== null} />
         {pages > 3 ? (
-          <label className="flex items-center gap-1.5 text-sm font-semibold">
+          <label className="flex items-center gap-1.5 text-sm font-semibold max-lg:hidden">
             Page
             <select value={page} onChange={(e) => aller(Number(e.target.value))} className="h-10 rounded-xl border border-ligne bg-surface px-2">
               {Array.from({ length: pages }, (_, i) => (
@@ -443,10 +456,13 @@ export function ClasseurPages({
             / {pages}
           </label>
         ) : (
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-semibold max-lg:hidden">
             Page {page} / {pages}
           </span>
         )}
+        <span aria-hidden="true" className="text-xs font-semibold text-encre-douce lg:hidden">
+          {page} / {pages}
+        </span>
         <BoutonPage sens="suivante" onClick={() => aller(page + 1)} disabled={page >= pages} survol={deplace !== null} />
       </nav>
 
@@ -577,7 +593,7 @@ function BoutonPage({ sens, onClick, disabled, survol }: { sens: "precedente" | 
       disabled={disabled}
       data-tourne={sens === "precedente" ? -1 : 1}
       aria-label={sens === "precedente" ? "Page précédente" : "Page suivante"}
-      className={`flex items-center justify-center rounded-full border bg-surface transition-all disabled:opacity-40 ${survol && !disabled ? "size-16 border-accent" : "size-11 border-ligne"}`}
+      className={`flex items-center justify-center rounded-full border bg-surface transition-all max-lg:sr-only disabled:opacity-40 ${survol && !disabled ? "size-16 border-accent" : "size-11 border-ligne"}`}
     >
       <svg
         aria-hidden="true"

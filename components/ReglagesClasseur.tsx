@@ -38,7 +38,11 @@ export function ReglagesClasseur({ classeur }: { classeur: Classeur }) {
 
   return (
     <>
-      <button type="button" onClick={() => setOuvert(true)} className="h-10 shrink-0 rounded-full border border-ligne bg-surface px-4 text-sm font-semibold">
+      <button
+        type="button"
+        onClick={() => setOuvert(true)}
+        className="h-10 shrink-0 rounded-full border border-ligne bg-surface px-4 text-sm font-semibold max-lg:h-8 max-lg:px-3 max-lg:text-xs"
+      >
         Réglages
       </button>
       {ouvert && (

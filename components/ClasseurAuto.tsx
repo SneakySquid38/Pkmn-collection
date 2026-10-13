@@ -59,22 +59,22 @@ export function ClasseurAuto({
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div role="group" aria-label="Cartes affichées" className="grid grid-cols-3 rounded-xl bg-puce p-1">
+    <div className="flex flex-col gap-3 max-lg:min-h-0 max-lg:flex-1 max-lg:gap-2">
+      <div role="group" aria-label="Cartes affichées" className="grid shrink-0 grid-cols-3 rounded-xl bg-puce p-1">
         {CHOIX.map((c) => (
           <button
             key={c.valeur}
             type="button"
             aria-pressed={voir === c.valeur}
             onClick={() => changer(c.valeur)}
-            className={`flex h-9 items-center justify-center gap-1 rounded-lg text-sm font-bold ${voir === c.valeur ? "bg-surface" : "text-encre-douce"}`}
+            className={`flex h-9 items-center max-lg:h-8 justify-center gap-1 rounded-lg text-sm font-bold ${voir === c.valeur ? "bg-surface" : "text-encre-douce"}`}
           >
             {c.label} <span className="text-xs font-semibold text-encre-douce">{nombres[c.valeur]}</span>
           </button>
         ))}
       </div>
       {affichees.length === 0 ? (
-        <p className="rounded-2xl border border-ligne bg-surface p-4 text-sm text-encre-douce">
+        <p className="shrink-0 rounded-2xl border border-ligne bg-surface p-4 text-sm text-encre-douce">
           {voir === "a-trouver" ? "Tu as toutes les cartes de ce classeur. Bravo !" : "Aucune carte possédée pour l'instant."}
         </p>
       ) : (

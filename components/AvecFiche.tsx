@@ -7,15 +7,17 @@ export function AvecFiche({
   fermer,
   lienCarte,
   children,
+  pleinEcran = false,
 }: {
   carte: string | null;
   fermer: string;
   lienCarte: (id: string) => string;
   children: React.ReactNode;
+  pleinEcran?: boolean; // sur téléphone, le contenu occupe exactement l'écran (page de classeur)
 }) {
   return (
     <div className={carte ? "lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-6" : ""}>
-      <div className="flex min-w-0 flex-col gap-4">{children}</div>
+      <div className={`flex min-w-0 flex-col gap-4 ${pleinEcran ? "plein-ecran-mobile max-lg:gap-2" : ""}`}>{children}</div>
       {carte && (
         <aside
           aria-label="Fiche de la carte"

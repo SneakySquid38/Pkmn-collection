@@ -75,6 +75,18 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Page de classeur sur téléphone : le contenu occupe exactement l'écran, entre le haut et la barre de navigation
+   (61,5 px + la zone du bas de l'iPhone), sans défilement. La marge du bas annule la réserve prévue sous <main>. */
+:root {
+  --barre-nav: calc(61.5px + max(env(safe-area-inset-bottom), 12px));
+}
+@media (width < 64rem) {
+  .plein-ecran-mobile {
+    height: calc(100dvh - max(env(safe-area-inset-top), 18px) - var(--barre-nav) - 10px);
+    margin-bottom: calc(var(--barre-nav) + 10px - 7rem);
+  }
+}
+
 /* Navigation au clavier : un contour bien visible sur l'élément actif, dans les deux thèmes. */
 :focus-visible {
   outline: 2px solid var(--accent-texte);
