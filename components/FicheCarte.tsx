@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ActionsCarte } from "@/components/ActionsCarte";
+import { AjoutClasseur } from "@/components/AjoutClasseur";
 import { CardImage } from "@/components/CardImage";
 import { EtatVide } from "@/components/EtatVide";
 import { LANGUES, libelleLangue } from "@/lib/catalogue";
@@ -63,6 +64,18 @@ export async function FicheCarte({
     ...(envies.data ?? []).filter((e) => e.user_id !== moi).map((e) => `${prenom(e.user_id)} la veut · ${libellePriorite(e.priority)}`),
   ];
 
+  // Mes classeurs, et ceux où cette carte est déjà rangée.
+  const { data: mesClasseurs } = moi
+    ? await supabase.from("binders").select("id, name, slots_per_page").eq("user_id", moi).order("created_at")
+    : { data: [] as { id: string; name: string; slots_per_page: number }[] };
+  const { data: rangees } = mesClasseurs?.length
+    ? await supabase.from("binder_slots").select("binder_id, position").eq("card_id", carte.id).in("binder_id", mesClasseurs.map((c) => c.id))
+    : { data: [] as { binder_id: string; position: number }[] };
+  const dejaDans = (rangees ?? []).map((r) => {
+    const c = mesClasseurs!.find((x) => x.id === r.binder_id)!;
+    return { id: c.id, nom: c.name, page: Math.floor(r.position / c.slots_per_page) + 1 };
+  });
+
   const setsAutres = autres.data?.length
     ? (await supabase.from("sets_display").select("set_id, display_name").in("set_id", [...new Set(autres.data.map((a) => a.set_id))])).data ?? []
     : [];
@@ -99,6 +112,9 @@ export async function FicheCarte({
       </div>
 
       {moi && <ActionsCarte carte={carte.id} quantite={maQuantite} priorite={monEnvie} />}
+      {moi && (
+        <AjoutClasseur carte={carte.id} classeurs={(mesClasseurs ?? []).map((c) => ({ id: c.id, nom: c.name }))} dejaDans={dejaDans} />
+      )}
       {chezLesAutres.length > 0 && (
         <ul className="flex flex-col gap-1 text-sm text-encre-douce">
           {chezLesAutres.map((t) => (

@@ -48,8 +48,8 @@ export default function Confidentialite() {
       <ul>
         <li>Vous, pour toutes vos données.</li>
         <li>
-          Les autres membres du site peuvent consulter votre prénom, votre collection et votre liste
-          d&apos;envies, sans pouvoir les modifier. Personne d&apos;autre que vous ne peut les modifier.
+          Les autres membres du site peuvent consulter votre prénom, votre collection, votre liste
+          d&apos;envies et vos classeurs, sans pouvoir les modifier. Personne d&apos;autre que vous ne peut les modifier.
         </li>
         <li>{LEGAL.editeur}, en tant qu&apos;administrateur, pour la maintenance et pour répondre à vos demandes.</li>
         <li>

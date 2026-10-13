@@ -50,7 +50,7 @@ export type CarteListe = {
   possedee?: boolean;
 };
 
-type LigneCarte = {
+export type LigneCarte = {
   id: string;
   name: string;
   search_name_fr: string | null;
@@ -60,16 +60,16 @@ type LigneCarte = {
   set_id: string;
 };
 
-const CHAMPS_CARTE = "id, name, search_name_fr, language, number, image_small, set_id";
+export const CHAMPS_CARTE = "id, name, search_name_fr, language, number, image_small, set_id";
 
-async function nomsSets(supabase: SupabaseClient, cartes: LigneCarte[]) {
+export async function nomsSets(supabase: SupabaseClient, cartes: LigneCarte[]) {
   const ids = [...new Set(cartes.map((c) => c.set_id))];
   if (!ids.length) return new Map<string, string>();
   const { data } = await supabase.from("sets_display").select("set_id, display_name").in("set_id", ids);
   return new Map((data ?? []).map((s) => [s.set_id as string, s.display_name as string]));
 }
 
-function versListe(c: LigneCarte, sets: Map<string, string>): CarteListe {
+export function versListe(c: LigneCarte, sets: Map<string, string>): CarteListe {
   return {
     card_id: c.id,
     nom: c.search_name_fr ?? c.name,
