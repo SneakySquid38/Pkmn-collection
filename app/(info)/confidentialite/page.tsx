@@ -78,6 +78,15 @@ export default function Confidentialite() {
       </ul>
       <p>Aucun cookie de mesure d&apos;audience, de publicité ou de réseau social.</p>
 
+      <h2>Copie sur votre appareil</h2>
+      <p>
+        Pour que l&apos;appli reste consultable sans réseau, votre navigateur garde une copie des pages déjà
+        ouvertes (collection, envies, classeurs…) et des images de cartes déjà vues. Cette copie reste sur
+        votre appareil : elle n&apos;est envoyée à personne. Les pages gardées sont effacées à la déconnexion ;
+        les images, qui ne contiennent aucune donnée personnelle, sont remplacées au fil de l&apos;usage
+        (200 au plus). Vous pouvez tout effacer en supprimant les données du site dans votre navigateur.
+      </p>
+
       <h2>Combien de temps</h2>
       <ul>
         <li>Compte et collection : tant que le compte existe. Un compte sans connexion depuis 3 ans est supprimé.</li>
@@ -87,6 +96,7 @@ export default function Confidentialite() {
           disparaissent ensuite selon leurs propres cycles courts.
         </li>
         <li>Cookie de thème : un an au plus.</li>
+        <li>Copie des pages sur votre appareil : jusqu&apos;à la déconnexion.</li>
       </ul>
 
       <h2>Vos droits</h2>

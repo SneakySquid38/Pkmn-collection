@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { cookies } from "next/headers";
+import { EnregistrementHorsLigne } from "@/components/HorsLigne";
 import "./globals.css";
 
 const figtree = Figtree({ variable: "--font-figtree", subsets: ["latin"] });
@@ -37,7 +38,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       data-theme={dataTheme}
       className={`${figtree.variable} ${bricolage.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <EnregistrementHorsLigne />
+      </body>
     </html>
   );
 }

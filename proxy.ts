@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // Rafraîchit la session Supabase à chaque requête et renvoie vers /connexion
 // toute personne non connectée. L'inscription est fermée : les comptes sont créés
 // depuis le tableau de bord Supabase.
-const PAGES_PUBLIQUES = ["/confidentialite", "/mentions-legales"];
+const PAGES_PUBLIQUES = ["/confidentialite", "/mentions-legales", "/hors-ligne"];
 
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -55,6 +55,6 @@ export async function proxy(request: NextRequest) {
 export const config = {
   // Tout sauf les fichiers statiques, les icônes et le manifeste de l'application.
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|icons/|.*\\.(?:png|svg|jpg|jpeg|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|sw.js|icons/|.*\\.(?:png|svg|jpg|jpeg|webp|ico)$).*)",
   ],
 };

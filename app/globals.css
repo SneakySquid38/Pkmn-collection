@@ -9,10 +9,10 @@
   --encre: #1f1814;
   --encre-douce: #6b4a35;
   --accent: #d9712b;
-  --accent-texte: #a3501a;
+  --accent-texte: #a04e19;
   --accent-doux: rgba(217, 113, 43, 0.16);
-  --terracotta: #b5533a;
-  --vert: #4f7a4a;
+  --terracotta: #a74c35;
+  --vert: #497145;
   --sur-vert: #ffffff;
   color-scheme: light;
 }
@@ -73,6 +73,12 @@ body {
   color: var(--encre);
   font-family: var(--font-figtree), system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Navigation au clavier : un contour bien visible sur l'élément actif, dans les deux thèmes. */
+:focus-visible {
+  outline: 2px solid var(--accent-texte);
+  outline-offset: 2px;
 }
 
 /* Images doublées clair / sombre (mascotte) : une seule des deux est visible. */

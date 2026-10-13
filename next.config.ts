@@ -11,7 +11,11 @@ const enTetesSecurite = [
 
 const nextConfig: NextConfig = {
   async headers() {
-    return [{ source: "/:path*", headers: enTetesSecurite }];
+    return [
+      { source: "/:path*", headers: enTetesSecurite },
+      // Le service worker doit toujours être relu, pour que les mises à jour du site arrivent.
+      { source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] },
+    ];
   },
 };
 

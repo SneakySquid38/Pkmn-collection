@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OublierPages } from "@/components/HorsLigne";
 import { Mascotte } from "@/components/Mascotte";
 import { FormulaireConnexion } from "./FormulaireConnexion";
 
@@ -13,6 +14,7 @@ export default function Connexion() {
         <p className="text-sm text-encre-douce">Connecte-toi pour retrouver vos cartes.</p>
       </div>
       <FormulaireConnexion />
+      <OublierPages />
       <p className="flex justify-center gap-4 text-xs text-encre-douce">
         <Link href="/confidentialite" className="underline">Confidentialité</Link>
         <Link href="/mentions-legales" className="underline">Mentions légales</Link>

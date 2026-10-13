@@ -3,5 +3,5 @@
 export const LEGAL = {
   editeur: "Hugo",
   contact: "hugoprevot.hp@gmail.com",
-  miseAJour: "12 octobre 2026",
+  miseAJour: "13 octobre 2026",
 };

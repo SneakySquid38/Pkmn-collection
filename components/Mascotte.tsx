@@ -33,8 +33,8 @@ export function Mascotte({ expression = "normale", largeur, alt = "", prioritair
   };
   return (
     <span className={`inline-block shrink-0 ${className}`} style={{ width: largeur, height: hauteur }} aria-hidden={alt ? undefined : true}>
-      <img {...commun} src={`/mascotte/${base}.webp`} className="seul-clair h-full w-full object-contain" />
-      <img {...commun} src={`/mascotte/${base}-sombre.webp`} className="seul-sombre h-full w-full object-contain" />
+      <img {...commun} alt={alt} src={`/mascotte/${base}.webp`} className="seul-clair h-full w-full object-contain" />
+      <img {...commun} alt={alt} src={`/mascotte/${base}-sombre.webp`} className="seul-sombre h-full w-full object-contain" />
     </span>
   );
 }
