@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Krikrou collection
 
-## Getting Started
+Catalogue et collection de cartes Pokémon (FR, JP, KR, chinois) pour Hugo et Louise.
+Site : https://www.krikroucollection.fr — Next.js 16 sur Vercel, base Supabase.
 
-First, run the development server:
+## Lancer le site en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`.env.local` (jamais dans git) : `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
+et pour les scripts de mise à jour seulement `SUPABASE_SERVICE_ROLE_KEY`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Organisation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Dossier | Contenu |
+|---|---|
+| `app/`, `components/`, `lib/`, `proxy.ts` | le site |
+| `public/` | icônes de l'application et mascotte |
+| `scripts/` | mise à jour du catalogue : `update.ts` (chef d'orchestre), `import-ptcg-database-languages-v7.ts` (JP, KR, TC), `import-chs.ts` (chinois simplifié) ; `prototype-mapping-fr-jp.ts` (essai de rapprochement FR ↔ JP, lecture seule) |
+| `supabase/migrations/` | historique des scripts SQL appliqués à la base, dans l'ordre des dates |
+| `supabase/tests/` | tests à blanc (rollback), à lancer dans le SQL Editor |
+| `.github/workflows/mise-a-jour.yml` | mise à jour du catalogue sur GitHub Actions |
+| `vercel.json` | région Paris et réveil quotidien de la base (`/api/reveil`) |
 
-## Learn More
+## Mise à jour du catalogue
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Voir [ROUTINE.md](ROUTINE.md).
