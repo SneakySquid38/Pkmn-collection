@@ -1,11 +1,24 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { listesFiltres, type OptionListe } from "@/app/(app)/recherche/actions";
 import { chercherCartes, type CarteResultat } from "@/lib/catalogue";
-import { estFormat, NOM_MAX, PAGES_MAX, pagesApresFormat, type Classeur, type Format } from "@/lib/classeurs";
-import { lireCollection, type CarteListe } from "@/lib/collection";
+import {
+  CARTES_MAX,
+  CHAMPS_CLASSEUR,
+  cartesDuClasseur,
+  estFormat,
+  NOM_MAX,
+  nettoyerRegle,
+  PAGES_MAX,
+  pagesApresFormat,
+  regleAssezPrecise,
+  type Classeur,
+  type Format,
+  type Regle,
+} from "@/lib/classeurs";
+import { lireCollection, lirePossessions, type CarteListe } from "@/lib/collection";
 import { createSupabaseServer } from "@/lib/supabase-server";
-
 
 export type Resultat<T = null> = { ok: true; valeur: T } | { ok: false; erreur: string };
 
@@ -29,22 +42,23 @@ async function connecte() {
 }
 
 // Le classeur, seulement s'il appartient à l'utilisateur connecté (la RLS refuserait de toute façon).
-async function monClasseur(id: string) {
+async function monClasseur(id: string, sorte?: Classeur["kind"]) {
   if (!UUID.test(id)) throw new Error("Classeur inconnu");
   const { supabase, moi } = await connecte();
-  const { data } = await supabase
-    .from("binders")
-    .select("id, user_id, name, slots_per_page, pages")
-    .eq("id", id)
-    .eq("user_id", moi)
-    .maybeSingle();
+  const { data } = await supabase.from("binders").select(CHAMPS_CLASSEUR).eq("id", id).eq("user_id", moi).maybeSingle();
   if (!data) throw new Error("Classeur introuvable");
-  return { supabase, moi, classeur: data as Classeur };
+  const classeur = data as Classeur;
+  if (sorte === "binder" && classeur.kind !== "binder") throw new Error("Ce classeur se remplit tout seul à partir de ses filtres");
+  if (sorte === "classeur" && classeur.kind !== "classeur") throw new Error("Ce binder se range à la main");
+  return { supabase, moi, classeur };
 }
+
+// Les cases ne se remplissent à la main que dans un binder.
+const monBinder = (id: string) => monClasseur(id, "binder");
 
 function nomPropre(nom: string) {
   const n = String(nom ?? "").trim().slice(0, NOM_MAX);
-  if (!n) throw new Error("Donne un nom au classeur");
+  if (!n) throw new Error("Donne un nom");
   return n;
 }
 
@@ -56,7 +70,11 @@ function position(p: unknown, classeur: Classeur) {
 
 function rafraichir(id?: string) {
   revalidatePath("/classeurs");
-  if (id) revalidatePath(`/classeurs/${id}`);
+  revalidatePath("/binders");
+  if (id) {
+    revalidatePath(`/classeurs/${id}`);
+    revalidatePath(`/binders/${id}`);
+  }
 }
 
 async function toucher(supabase: Awaited<ReturnType<typeof connecte>>["supabase"], id: string, champs: Record<string, unknown> = {}) {
@@ -81,7 +99,7 @@ export async function creerClasseur(nom: string, format: number) {
 // Renommer et changer le format de page : les cartes gardent leur ordre et se répartissent sur les pages.
 export async function modifierClasseur(id: string, nom: string, format: number) {
   return essayer(async () => {
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     const nouveau: Format = estFormat(format) ? format : classeur.slots_per_page;
     const { data: derniere } = await supabase
       .from("binder_slots")
@@ -116,7 +134,7 @@ export async function supprimerClasseur(id: string) {
 export async function placerCarte(id: string, pos: number, carte: string) {
   return essayer(async () => {
     if (!UUID.test(carte)) throw new Error("Carte inconnue");
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     const { error } = await supabase
       .from("binder_slots")
       .upsert({ binder_id: id, position: position(pos, classeur), card_id: carte, added_at: new Date().toISOString() }, { onConflict: "binder_id,position" });
@@ -128,7 +146,7 @@ export async function placerCarte(id: string, pos: number, carte: string) {
 
 export async function viderCase(id: string, pos: number) {
   return essayer(async () => {
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     const { error } = await supabase.from("binder_slots").delete().eq("binder_id", id).eq("position", position(pos, classeur));
     if (error) throw new Error(error.message);
     await toucher(supabase, id);
@@ -139,7 +157,7 @@ export async function viderCase(id: string, pos: number) {
 // Déplace une carte ; si la case d'arrivée est prise, les deux cartes s'échangent.
 export async function deplacerCarte(id: string, de: number, vers: number) {
   return essayer(async () => {
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     const { error } = await supabase.rpc("move_binder_slot", {
       p_binder: id,
       p_from: position(de, classeur),
@@ -152,7 +170,7 @@ export async function deplacerCarte(id: string, de: number, vers: number) {
 
 export async function ajouterPage(id: string) {
   return essayer(async () => {
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     if (classeur.pages >= PAGES_MAX) throw new Error("Nombre de pages maximum atteint");
     await toucher(supabase, id, { pages: classeur.pages + 1 });
     rafraichir(id);
@@ -163,7 +181,7 @@ export async function ajouterPage(id: string) {
 // Retire la dernière page, seulement si elle est vide.
 export async function retirerPage(id: string) {
   return essayer(async () => {
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     if (classeur.pages <= 1) throw new Error("Un classeur garde au moins une page");
     const debut = (classeur.pages - 1) * classeur.slots_per_page;
     const { count } = await supabase
@@ -182,14 +200,14 @@ export async function retirerPage(id: string) {
 export async function ajouterAuClasseur(id: string, carte: string) {
   return essayer(async () => {
     if (!UUID.test(carte)) throw new Error("Carte inconnue");
-    const { supabase, classeur } = await monClasseur(id);
+    const { supabase, classeur } = await monBinder(id);
     const { data } = await supabase.from("binder_slots").select("position").eq("binder_id", id).limit(PAGES_MAX * 12);
     const prises = new Set((data ?? []).map((s) => s.position as number));
     const capacite = classeur.pages * classeur.slots_per_page;
     let libre = 0;
     while (prises.has(libre)) libre++;
     if (libre >= capacite) {
-      if (classeur.pages >= PAGES_MAX) throw new Error("Classeur plein");
+      if (classeur.pages >= PAGES_MAX) throw new Error("Binder plein");
       await toucher(supabase, id, { pages: classeur.pages + 1 });
     }
     const { error } = await supabase.from("binder_slots").insert({ binder_id: id, position: libre, card_id: carte });
@@ -198,6 +216,73 @@ export async function ajouterAuClasseur(id: string, carte: string) {
     rafraichir(id);
     return { page: Math.floor(libre / classeur.slots_per_page) + 1 };
   });
+}
+
+// --- Classeurs automatiques --------------------------------------------------------------------
+
+// Filtres valides et assez précis, avec le nombre de cartes qu'ils donnent (refus au-delà de la limite).
+async function regleAcceptable(supabase: Awaited<ReturnType<typeof connecte>>["supabase"], brute: unknown) {
+  const regle = nettoyerRegle(brute);
+  if (!regleAssezPrecise(regle)) throw new Error("Choisis au moins un filtre en plus de la langue");
+  const cartes = await cartesDuClasseur(supabase, regle);
+  if (cartes.length >= CARTES_MAX) throw new Error(`Plus de ${CARTES_MAX.toLocaleString("fr-FR")} cartes : ajoute un filtre`);
+  if (!cartes.length) throw new Error("Aucune carte ne correspond à ces filtres");
+  return regle;
+}
+
+export async function creerClasseurAuto(nom: string, format: number, regle: Regle) {
+  return essayer(async () => {
+    const { supabase, moi } = await connecte();
+    const rule = await regleAcceptable(supabase, regle);
+    const { data, error } = await supabase
+      .from("binders")
+      .insert({ user_id: moi, name: nomPropre(nom), slots_per_page: estFormat(format) ? format : 9, pages: 1, kind: "classeur", rule })
+      .select("id")
+      .single();
+    if (error) throw new Error(error.message);
+    rafraichir();
+    return data.id as string;
+  });
+}
+
+export async function modifierClasseurAuto(id: string, nom: string, format: number, regle: Regle) {
+  return essayer(async () => {
+    const { supabase, classeur } = await monClasseur(id, "classeur");
+    const rule = await regleAcceptable(supabase, regle);
+    await toucher(supabase, id, { name: nomPropre(nom), slots_per_page: estFormat(format) ? format : classeur.slots_per_page, rule });
+    rafraichir(id);
+  });
+}
+
+export type Apercu = { total: number; possedees: number; plein: boolean; cartes: (CarteListe & { possedee: boolean })[] };
+
+// Ce que donneraient ces filtres : nombre de cartes, combien je possède, et les premières.
+export async function apercuClasseur(regle: Regle): Promise<Resultat<Apercu>> {
+  return essayer(async () => {
+    const { supabase, moi } = await connecte();
+    const propre = nettoyerRegle(regle);
+    if (!regleAssezPrecise(propre)) return { total: 0, possedees: 0, plein: false, cartes: [] };
+    const [cartes, { parCarte }] = await Promise.all([cartesDuClasseur(supabase, propre), lirePossessions(supabase, moi)]);
+    return {
+      total: cartes.length,
+      possedees: cartes.filter((c) => parCarte.has(c.card_id)).length,
+      plein: cartes.length >= CARTES_MAX,
+      cartes: cartes.slice(0, 12).map((c) => ({ ...c, possedee: parCarte.has(c.card_id) })),
+    };
+  });
+}
+
+// Listes des filtres : Pokémon, sets et illustrateurs (chargées à l'ouverture du formulaire).
+export async function listesClasseur(): Promise<{ pokemons: OptionListe[]; sets: OptionListe[]; illustrateurs: OptionListe[] }> {
+  const { supabase } = await connecte();
+  const [{ data }, autres] = await Promise.all([
+    supabase.from("pokemon_entities").select("id, dex_id, name_fr").order("dex_id").limit(2000),
+    listesFiltres(),
+  ]);
+  const pokemons = (data ?? [])
+    .filter((p) => p.name_fr)
+    .map((p) => ({ id: p.id as string, label: p.name_fr as string, detail: p.dex_id ? `n° ${p.dex_id}` : undefined }));
+  return { pokemons, ...autres };
 }
 
 // --- Choix d'une carte pour une case -------------------------------------------------------------

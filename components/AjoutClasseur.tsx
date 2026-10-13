@@ -8,7 +8,7 @@ import { ajouterAuClasseur } from "@/app/(app)/classeurs/actions";
 type Choix = { id: string; nom: string };
 type Place = { id: string; nom: string; page: number };
 
-// Sur la fiche d'une carte : la ranger dans un de ses classeurs (première case libre).
+// Sur la fiche d'une carte : la ranger dans un de ses binders (première case libre).
 export function AjoutClasseur({ carte, classeurs, dejaDans }: { carte: string; classeurs: Choix[]; dejaDans: Place[] }) {
   const router = useRouter();
   const [choisi, setChoisi] = useState(classeurs[0]?.id ?? "");
@@ -20,19 +20,19 @@ export function AjoutClasseur({ carte, classeurs, dejaDans }: { carte: string; c
       const r = await ajouterAuClasseur(choisi, carte);
       const nom = classeurs.find((c) => c.id === choisi)?.nom ?? "";
       if (!r.ok) return setMessage({ texte: r.erreur, erreur: true });
-      setMessage({ texte: `Rangée dans « ${nom} », page ${r.valeur.page}.`, lien: `/classeurs/${choisi}?page=${r.valeur.page}` });
+      setMessage({ texte: `Rangée dans « ${nom} », page ${r.valeur.page}.`, lien: `/binders/${choisi}?page=${r.valeur.page}` });
       router.refresh();
     });
 
   return (
-    <section aria-label="Mes classeurs" className="flex flex-col gap-2 rounded-2xl border border-ligne bg-surface p-4">
-      <span className="text-sm font-semibold">Mes classeurs</span>
+    <section aria-label="Mes binders" className="flex flex-col gap-2 rounded-2xl border border-ligne bg-surface p-4">
+      <span className="text-sm font-semibold">Mes binders</span>
       {dejaDans.length > 0 && (
         <ul className="flex flex-col gap-1 text-sm text-encre-douce">
           {dejaDans.map((d) => (
             <li key={`${d.id}-${d.page}`}>
               Déjà dans{" "}
-              <Link href={`/classeurs/${d.id}?page=${d.page}`} className="font-semibold text-accent-texte underline">
+              <Link href={`/binders/${d.id}?page=${d.page}`} className="font-semibold text-accent-texte underline">
                 {d.nom}
               </Link>
               , page {d.page}
@@ -42,8 +42,8 @@ export function AjoutClasseur({ carte, classeurs, dejaDans }: { carte: string; c
       )}
       {classeurs.length === 0 ? (
         <p className="text-sm text-encre-douce">
-          <Link href="/classeurs" className="font-semibold text-accent-texte underline">
-            Crée un classeur
+          <Link href="/binders" className="font-semibold text-accent-texte underline">
+            Crée un binder
           </Link>{" "}
           pour y ranger cette carte.
         </p>
@@ -53,7 +53,7 @@ export function AjoutClasseur({ carte, classeurs, dejaDans }: { carte: string; c
             <select
               value={choisi}
               onChange={(e) => setChoisi(e.target.value)}
-              aria-label="Classeur"
+              aria-label="Binder"
               className="h-11 min-w-0 flex-1 rounded-xl border border-ligne bg-fond px-2 text-sm"
             >
               {classeurs.map((c) => (

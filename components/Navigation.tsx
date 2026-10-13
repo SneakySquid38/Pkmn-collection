@@ -8,6 +8,7 @@ const ONGLETS = [
   { href: "/collection", label: "Collection", icone: "M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM3 6v13M21 6v13" },
   { href: "/recherche", label: "Recherche", icone: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5" },
   { href: "/classeurs", label: "Classeurs", icone: "M5 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5zM9 3v18M5 8h2M5 16h2" },
+  { href: "/binders", label: "Binders", icone: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" },
   { href: "/envies", label: "Envies", icone: "M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z" },
   { href: "/plus", label: "Plus", icone: "M5 12h.01M12 12h.01M19 12h.01" },
 ];
@@ -30,7 +31,7 @@ export function Navigation() {
     <>
       <nav
         aria-label="Navigation principale"
-        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-5 border-t border-ligne bg-surface px-1 pt-1.5 pb-[max(env(safe-area-inset-bottom),12px)] lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-20 grid grid-cols-6 border-t border-ligne bg-surface px-1 pt-1.5 pb-[max(env(safe-area-inset-bottom),12px)] lg:hidden"
       >
         {ONGLETS.map((o) => (
           <Link
@@ -39,7 +40,7 @@ export function Navigation() {
             aria-current={actif(o.href) ? "page" : undefined}
             className={`flex min-h-11 flex-col items-center gap-0.5 py-1 text-[11px] ${actif(o.href) ? "font-bold text-accent-texte" : "font-medium text-encre-douce"}`}
           >
-            <span className={`flex h-7 w-13 items-center justify-center rounded-full ${actif(o.href) ? "bg-accent-doux" : ""}`}>
+            <span className={`flex h-7 w-12 items-center justify-center rounded-full ${actif(o.href) ? "bg-accent-doux" : ""}`}>
               <Icone d={o.icone} />
             </span>
             {o.label}

@@ -327,7 +327,7 @@ async function stepPost() {
   const done: Record<string, unknown> = {};
   const calls: [string, Record<string, unknown>?][] = [
     ["apply_set_calendar"], ["apply_set_series"], ["apply_set_translations"],
-    ["apply_asia_families"], ["apply_inherited_rarities"], ["apply_search_names", { p_all: false }],
+    ["apply_asia_families"], ["apply_inherited_rarities"], ["apply_team_pokemon"], ["apply_search_names", { p_all: false }],
     ["refresh_search_text", { p_card_ids: null }],
   ];
   for (const [fn, params] of calls) {

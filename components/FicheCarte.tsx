@@ -64,9 +64,9 @@ export async function FicheCarte({
     ...(envies.data ?? []).filter((e) => e.user_id !== moi).map((e) => `${prenom(e.user_id)} la veut · ${libellePriorite(e.priority)}`),
   ];
 
-  // Mes classeurs, et ceux où cette carte est déjà rangée.
+  // Mes binders, et ceux où cette carte est déjà rangée (les classeurs automatiques se remplissent seuls).
   const { data: mesClasseurs } = moi
-    ? await supabase.from("binders").select("id, name, slots_per_page").eq("user_id", moi).order("created_at")
+    ? await supabase.from("binders").select("id, name, slots_per_page").eq("user_id", moi).eq("kind", "binder").order("created_at")
     : { data: [] as { id: string; name: string; slots_per_page: number }[] };
   const { data: rangees } = mesClasseurs?.length
     ? await supabase.from("binder_slots").select("binder_id, position").eq("card_id", carte.id).in("binder_id", mesClasseurs.map((c) => c.id))

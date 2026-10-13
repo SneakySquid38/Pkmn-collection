@@ -4,12 +4,10 @@ import { EtatVide } from "@/components/EtatVide";
 import { FicheCarte } from "@/components/FicheCarte";
 import { GrilleCartes } from "@/components/GrilleCartes";
 import { lirePossessions } from "@/lib/collection";
-import { chercherCartes, libelleLangue, lireFiltres, versParams, type CarteResultat } from "@/lib/catalogue";
+import { ANNEES, chercherCartes, libelleLangue, lireFiltres, versParams, type CarteResultat } from "@/lib/catalogue";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
 export const metadata = { title: "Recherche · Krikrou collection" };
-
-const ANNEES = Array.from({ length: new Date().getFullYear() - 1995 }, (_, i) => new Date().getFullYear() - i);
 
 export default async function Recherche({ searchParams }: PageProps<"/recherche">) {
   const params = await searchParams;

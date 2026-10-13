@@ -6,7 +6,7 @@ import { modifierClasseur, supprimerClasseur } from "@/app/(app)/classeurs/actio
 import { ChoixFormat } from "@/components/ChoixFormat";
 import { NOM_MAX, type Classeur, type Format } from "@/lib/classeurs";
 
-// Renommer le classeur, changer le nombre de cases par page, ou le supprimer.
+// Renommer le binder, changer le nombre de cases par page, ou le supprimer.
 export function ReglagesClasseur({ classeur }: { classeur: Classeur }) {
   const router = useRouter();
   const [ouvert, setOuvert] = useState(false);
@@ -22,17 +22,17 @@ export function ReglagesClasseur({ classeur }: { classeur: Classeur }) {
       const r = await modifierClasseur(classeur.id, nom, format);
       if (!r.ok) return setErreur(r.erreur);
       setOuvert(false);
-      router.replace(`/classeurs/${classeur.id}`, { scroll: false });
+      router.replace(`/binders/${classeur.id}`, { scroll: false });
       router.refresh();
     });
   };
 
   const supprimer = () => {
-    if (!window.confirm(`Supprimer le classeur « ${classeur.name} » ? Les cartes restent dans ta collection.`)) return;
+    if (!window.confirm(`Supprimer le binder « ${classeur.name} » ? Les cartes restent dans ta collection.`)) return;
     demarrer(async () => {
       const r = await supprimerClasseur(classeur.id);
       if (!r.ok) return setErreur(r.erreur);
-      router.push("/classeurs");
+      router.push("/binders");
     });
   };
 
@@ -42,9 +42,9 @@ export function ReglagesClasseur({ classeur }: { classeur: Classeur }) {
         Réglages
       </button>
       {ouvert && (
-        <div role="dialog" aria-modal="true" aria-label="Réglages du classeur" className="fixed inset-0 z-40 flex items-end justify-center bg-black/40 lg:items-center">
+        <div role="dialog" aria-modal="true" aria-label="Réglages du binder" className="fixed inset-0 z-40 flex items-end justify-center bg-black/40 lg:items-center">
           <form onSubmit={enregistrer} className="flex w-full max-w-md flex-col gap-4 rounded-t-3xl bg-fond p-5 pb-[max(env(safe-area-inset-bottom),20px)] lg:rounded-3xl">
-            <h2 className="font-titre text-lg font-extrabold">Réglages du classeur</h2>
+            <h2 className="font-titre text-lg font-extrabold">Réglages du binder</h2>
             <label className="flex flex-col gap-1.5">
               <span className="text-sm font-semibold">Nom</span>
               <input
@@ -69,7 +69,7 @@ export function ReglagesClasseur({ classeur }: { classeur: Classeur }) {
               </button>
             </div>
             <button type="button" onClick={supprimer} disabled={enCours} className="h-11 rounded-xl border border-terracotta font-semibold text-terracotta">
-              Supprimer le classeur
+              Supprimer le binder
             </button>
           </form>
         </div>

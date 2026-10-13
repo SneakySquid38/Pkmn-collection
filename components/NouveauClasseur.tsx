@@ -6,7 +6,7 @@ import { creerClasseur } from "@/app/(app)/classeurs/actions";
 import { ChoixFormat } from "@/components/ChoixFormat";
 import { NOM_MAX, type Format } from "@/lib/classeurs";
 
-// Bouton « Nouveau classeur », qui s'ouvre en petit formulaire : nom et format de page.
+// Bouton « Nouveau binder », qui s'ouvre en petit formulaire : nom et format de page.
 export function NouveauClasseur() {
   const router = useRouter();
   const [ouvert, setOuvert] = useState(false);
@@ -25,7 +25,7 @@ export function NouveauClasseur() {
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
           <path d="M12 5v14M5 12h14" />
         </svg>
-        Nouveau classeur
+        Nouveau binder
       </button>
     );
   }
@@ -35,7 +35,7 @@ export function NouveauClasseur() {
     setErreur(null);
     demarrer(async () => {
       const r = await creerClasseur(nom, format);
-      if (r.ok) router.push(`/classeurs/${r.valeur}`);
+      if (r.ok) router.push(`/binders/${r.valeur}`);
       else setErreur(r.erreur);
     });
   };
@@ -43,14 +43,14 @@ export function NouveauClasseur() {
   return (
     <form onSubmit={creer} className="flex flex-col gap-4 rounded-2xl border border-ligne bg-surface p-4">
       <label className="flex flex-col gap-1.5">
-        <span className="text-sm font-semibold">Nom du classeur</span>
+        <span className="text-sm font-semibold">Nom du binder</span>
         <input
           autoFocus
           required
           maxLength={NOM_MAX}
           value={nom}
           onChange={(e) => setNom(e.target.value)}
-          placeholder="Dracaufeu toutes langues"
+          placeholder="Mon binder 9 cases rouge"
           className="h-12 rounded-xl border border-ligne bg-fond px-3 text-base"
         />
       </label>

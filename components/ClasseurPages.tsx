@@ -3,26 +3,29 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useRef, useState, useTransition } from "react";
-import { ajouterPage, deplacerCarte, placerCarte, retirerPage, viderCase, type Resultat } from "@/app/(app)/classeurs/actions";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { ajouterAuClasseur, ajouterPage, deplacerCarte, placerCarte, retirerPage, viderCase, type Resultat } from "@/app/(app)/classeurs/actions";
 import { ChoixCarte, type CarteChoisie } from "@/components/ChoixCarte";
 import { libelleLangue } from "@/lib/catalogue";
-import { DISPOSITION, type Case, type Classeur } from "@/lib/classeurs";
+import { cheminClasseur, DISPOSITION, type Case, type Classeur } from "@/lib/classeurs";
 
-// Les pages d'un classeur, une à la fois. Le propriétaire remplit les cases vides (choix d'une carte),
-// et en mode « Ranger » déplace ou retire les cartes : toucher une carte, puis la case où la mettre.
+// Les pages d'un classeur, une à la fois. Dans un binder, le propriétaire remplit les cases vides (choix d'une carte),
+// déplace les cartes par glisser-déposer (maintenir le doigt, ou cliquer-glisser à la souris), et en mode « Ranger »
+// les déplace ou les retire au toucher : une carte, puis la case où la mettre.
 export function ClasseurPages({
   classeur,
   cases,
   pageInitiale,
   proprietaire,
   ouverte,
+  parametres = "",
 }: {
   classeur: Classeur;
   cases: Case[];
   pageInitiale: number;
   proprietaire: boolean;
   ouverte: string | null;
+  parametres?: string; // gardés dans le lien vers la fiche (filtre d'un classeur automatique)
 }) {
   const router = useRouter();
   const n = classeur.slots_per_page;
@@ -34,6 +37,7 @@ export function ClasseurPages({
   const [ranger, setRanger] = useState(false);
   const [selection, setSelection] = useState<number | null>(null);
   const [cible, setCible] = useState<number | null>(null);
+  const [aLaSuite, setALaSuite] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
   const [enCours, demarrer] = useTransition();
 
@@ -66,7 +70,7 @@ export function ClasseurPages({
   const depart = useRef<number | null>(null);
   const toucherDebut = (e: React.TouchEvent) => (depart.current = e.touches[0].clientX);
   const toucherFin = (e: React.TouchEvent) => {
-    if (depart.current === null) return;
+    if (depart.current === null || sansClic.current) return;
     const ecart = e.changedTouches[0].clientX - depart.current;
     depart.current = null;
     if (Math.abs(ecart) > 60) aller(page + (ecart < 0 ? 1 : -1));
@@ -134,6 +138,24 @@ export function ClasseurPages({
     if (suivante < capacite && Math.floor(suivante / n) + 1 !== page) aller(Math.floor(suivante / n) + 1);
   };
 
+  // « Ajouter des cartes » : chaque carte choisie va dans la première case libre, avec une page en plus si le binder est plein.
+  const ajouterSuite = (carte: CarteChoisie) => {
+    let pos = 0;
+    while (locales.has(pos)) pos++;
+    const pageCible = Math.floor(pos / n) + 1;
+    enregistrer(
+      () => {
+        setLocales((avant) => new Map(avant).set(pos, { ...carte, position: pos, possedee: carte.possedee }));
+        if (pos >= capacite) setPages((p) => Math.max(p, pageCible));
+        setPage(pageCible);
+        const params = new URLSearchParams(window.location.search);
+        params.set("page", String(pageCible));
+        window.history.replaceState(null, "", `?${params}`);
+      },
+      () => ajouterAuClasseur(classeur.id, carte.card_id),
+    );
+  };
+
   const nouvellePage = () =>
     enregistrer(
       () => {
@@ -167,18 +189,141 @@ export function ClasseurPages({
     }
   };
 
+  // --- Glisser-déposer -------------------------------------------------------------------------
+  // Souris : la carte part après 6 px. Doigt : après 300 ms d'appui sans bouger (sinon c'est un défilement).
+  // La carte lâchée sur une case y va ; si la case est prise, les deux cartes s'échangent.
+  // Survoler une flèche de page tourne la page, pour déposer ailleurs dans le binder.
+  const glisse = useRef<{ de: number; x: number; y: number; id: number; souris: boolean; largeur: number; actif: boolean; minuteur?: number } | null>(
+    null,
+  );
+  const [deplace, setDeplace] = useState<{ de: number; survol: number | null; x: number; y: number; largeur: number } | null>(null);
+  const fantome = useRef<HTMLDivElement>(null);
+  const sansClic = useRef(false);
+  const tourne = useRef<{ sens: number; minuteur: number } | null>(null);
+
+  // Pendant un glisser au doigt, la page ne doit pas défiler (écouteur non passif, impossible en React).
+  useEffect(() => {
+    if (!proprietaire) return;
+    const bloquer = (e: TouchEvent) => glisse.current?.actif && e.cancelable && e.preventDefault();
+    document.addEventListener("touchmove", bloquer, { passive: false });
+    return () => document.removeEventListener("touchmove", bloquer);
+  }, [proprietaire]);
+
+  const arreterTourne = () => {
+    if (tourne.current) clearTimeout(tourne.current.minuteur);
+    tourne.current = null;
+  };
+
+  const finirGlisse = () => {
+    if (glisse.current?.minuteur) clearTimeout(glisse.current.minuteur);
+    glisse.current = null;
+    arreterTourne();
+    setDeplace(null);
+  };
+
+  const sous = (x: number, y: number) => {
+    const el = document.elementFromPoint(x, y);
+    const caseEl = el?.closest<HTMLElement>("[data-case]");
+    const fleche = el?.closest<HTMLElement>("[data-tourne]");
+    return { pos: caseEl ? Number(caseEl.dataset.case) : null, sens: fleche && !(fleche as HTMLButtonElement).disabled ? Number(fleche.dataset.tourne) : 0 };
+  };
+
+  const lancer = (x: number, y: number) => {
+    const g = glisse.current;
+    if (!g) return;
+    g.actif = true;
+    sansClic.current = true;
+    setSelection(null);
+    setDeplace({ de: g.de, survol: g.de, x, y, largeur: g.largeur });
+    navigator.vibrate?.(15);
+  };
+
+  const appui = (e: React.PointerEvent<HTMLElement>, pos: number) => {
+    if (!proprietaire || !locales.has(pos) || e.button !== 0 || enCours) return;
+    const souris = e.pointerType === "mouse";
+    glisse.current = { de: pos, x: e.clientX, y: e.clientY, id: e.pointerId, souris, largeur: e.currentTarget.offsetWidth, actif: false };
+    if (!souris) {
+      const { clientX, clientY } = e;
+      glisse.current.minuteur = window.setTimeout(() => lancer(clientX, clientY), 300);
+    }
+  };
+
+  const bouge = (e: React.PointerEvent) => {
+    const g = glisse.current;
+    if (!g || e.pointerId !== g.id) return;
+    if (!g.actif) {
+      const distance = Math.hypot(e.clientX - g.x, e.clientY - g.y);
+      if (g.souris && distance > 6) {
+        (e.target as Element).setPointerCapture?.(e.pointerId);
+        lancer(e.clientX, e.clientY);
+      } else if (!g.souris && distance > 10) finirGlisse();
+      return;
+    }
+    if (fantome.current) fantome.current.style.transform = `translate(${e.clientX - g.largeur / 2}px, ${e.clientY - g.largeur * 0.7}px)`;
+    const { pos, sens } = sous(e.clientX, e.clientY);
+    setDeplace((d) => (d && d.survol !== pos ? { ...d, survol: pos } : d));
+    if (sens !== (tourne.current?.sens ?? 0)) {
+      arreterTourne();
+      if (sens) {
+        const tourner = () => {
+          setPage((p) => {
+            const suivante = Math.min(Math.max(p + sens, 1), pages);
+            const params = new URLSearchParams(window.location.search);
+            params.set("page", String(suivante));
+            window.history.replaceState(null, "", `?${params}`);
+            return suivante;
+          });
+          tourne.current = { sens, minuteur: window.setTimeout(tourner, 800) };
+        };
+        tourne.current = { sens, minuteur: window.setTimeout(tourner, 450) };
+      }
+    }
+  };
+
+  const lache = (e: React.PointerEvent) => {
+    const g = glisse.current;
+    if (!g || e.pointerId !== g.id) return;
+    if (g.actif) {
+      const { pos } = sous(e.clientX, e.clientY);
+      if (pos !== null && pos !== g.de && pos < capacite) deplacer(g.de, pos);
+    }
+    finirGlisse();
+  };
+
+  // Après un glisser, le relâchement ne doit pas ouvrir la fiche ni choisir la case.
+  const clicApresGlisse = (e: React.MouseEvent) => {
+    if (!sansClic.current) return;
+    sansClic.current = false;
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   const fermerChoix = useCallback(() => setCible(null), []);
+  const fermerSuite = useCallback(() => setALaSuite(false), []);
   const choisie = selection !== null ? locales.get(selection) : null;
   const numero = (pos: number) => `case ${(pos % n) + 1}, page ${Math.floor(pos / n) + 1}`;
-  const lienFiche = (id: string) => `/classeurs/${classeur.id}?page=${page}&carte=${id}`;
+  const lienFiche = (id: string) => `${cheminClasseur(classeur)}?page=${page}${parametres ? `&${parametres}` : ""}&carte=${id}`;
+  const carteGlissee = deplace ? locales.get(deplace.de) : null;
 
   return (
     <section aria-label={`Page ${page} sur ${pages}`} aria-busy={enCours} className="flex flex-col gap-3">
       {proprietaire && (
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-sm text-encre-douce">
-            {ranger ? "Touche une carte, puis la case où la mettre." : "Touche une case vide pour y mettre une carte."}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="min-w-48 flex-1 text-sm text-encre-douce">
+            {ranger ? "Touche une carte, puis la case où la mettre." : "Touche une case vide pour la remplir. Maintiens une carte pour la déplacer."}
           </p>
+          {!ranger && (
+            <button
+              type="button"
+              onClick={() => setALaSuite(true)}
+              className="flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-accent px-4 text-sm font-bold text-[#1f1814]"
+            >
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              Ajouter des cartes
+            </button>
+          )}
           <button
             type="button"
             aria-pressed={ranger}
@@ -193,9 +338,18 @@ export function ClasseurPages({
         </div>
       )}
 
-      <div onTouchStart={toucherDebut} onTouchEnd={toucherFin} className="rounded-2xl border border-ligne bg-puce p-3 sm:p-4">
+      <div
+        onTouchStart={toucherDebut}
+        onTouchEnd={toucherFin}
+        onPointerDownCapture={() => (sansClic.current = false)}
+        onPointerMove={proprietaire ? bouge : undefined}
+        onPointerUp={proprietaire ? lache : undefined}
+        onPointerCancel={proprietaire ? finirGlisse : undefined}
+        className="rounded-2xl border border-ligne bg-puce p-3 sm:p-4"
+      >
         <ol
-          className="mx-auto grid gap-2 sm:gap-3"
+          onClickCapture={proprietaire ? clicApresGlisse : undefined}
+          className={`mx-auto grid gap-2 sm:gap-3 ${proprietaire ? "select-none [-webkit-touch-callout:none]" : ""}`}
           style={{
             gridTemplateColumns: `repeat(${colonnes}, minmax(0, 1fr))`,
             maxWidth: `${colonnes * 170}px`,
@@ -205,10 +359,22 @@ export function ClasseurPages({
             const pos = debut + i;
             const c = locales.get(pos);
             const choisi = selection === pos;
-            const contenu = c ? <Visuel carte={c} /> : <CaseVide ajout={proprietaire && !ranger} cible={selection !== null} />;
-            const classe = `block w-full rounded-lg text-left outline-offset-2 ${choisi ? "ring-3 ring-accent" : ""} ${c && c.card_id === ouverte ? "ring-2 ring-accent" : ""}`;
+            const source = deplace?.de === pos;
+            const survolee = deplace !== null && deplace.survol === pos && !source;
+            const contenu = c ? (
+              <Visuel carte={c} />
+            ) : (
+              <CaseVide ajout={proprietaire && !ranger && !deplace} cible={selection !== null || survolee} />
+            );
+            const classe = `block w-full rounded-lg text-left outline-offset-2 transition-opacity ${choisi || survolee ? "ring-3 ring-accent" : ""} ${c && c.card_id === ouverte ? "ring-2 ring-accent" : ""} ${source ? "opacity-30" : ""}`;
             return (
-              <li key={pos}>
+              <li
+                key={pos}
+                data-case={proprietaire ? pos : undefined}
+                onPointerDown={proprietaire && c ? (e) => appui(e, pos) : undefined}
+                onContextMenu={proprietaire && c ? (e) => e.preventDefault() : undefined}
+                onDragStart={proprietaire ? (e) => e.preventDefault() : undefined}
+              >
                 {proprietaire && (ranger || !c) ? (
                   <button
                     type="button"
@@ -227,6 +393,7 @@ export function ClasseurPages({
                   <Link
                     href={lienFiche(c.card_id)}
                     scroll={false}
+                    draggable={!proprietaire}
                     className={classe}
                     aria-label={`${c.nom}, ${c.possedee ? "possédée" : "à trouver"}`}
                   >
@@ -252,7 +419,7 @@ export function ClasseurPages({
               onClick={() => retirer(selection)}
               className="h-11 flex-1 rounded-xl border border-terracotta font-semibold text-terracotta"
             >
-              Retirer du classeur
+              Retirer du binder
             </button>
             <button type="button" onClick={() => setSelection(null)} className="h-11 flex-1 rounded-xl border border-ligne font-semibold">
               Annuler
@@ -262,7 +429,7 @@ export function ClasseurPages({
       )}
 
       <nav aria-label="Pages du classeur" className="flex items-center justify-between gap-2">
-        <BoutonPage sens="precedente" onClick={() => aller(page - 1)} disabled={page <= 1} />
+        <BoutonPage sens="precedente" onClick={() => aller(page - 1)} disabled={page <= 1} survol={deplace !== null} />
         {pages > 3 ? (
           <label className="flex items-center gap-1.5 text-sm font-semibold">
             Page
@@ -280,7 +447,7 @@ export function ClasseurPages({
             Page {page} / {pages}
           </span>
         )}
-        <BoutonPage sens="suivante" onClick={() => aller(page + 1)} disabled={page >= pages} />
+        <BoutonPage sens="suivante" onClick={() => aller(page + 1)} disabled={page >= pages} survol={deplace !== null} />
       </nav>
 
       {proprietaire && ranger && (
@@ -306,12 +473,32 @@ export function ClasseurPages({
         </p>
       )}
 
+      {deplace && (
+        <>
+          {page > 1 && <BordTourne sens={-1} />}
+          {page < pages && <BordTourne sens={1} />}
+        </>
+      )}
+      {deplace && carteGlissee && (
+        <div
+          ref={fantome}
+          aria-hidden="true"
+          className="pointer-events-none fixed top-0 left-0 z-50"
+          style={{ width: deplace.largeur, transform: `translate(${deplace.x - deplace.largeur / 2}px, ${deplace.y - deplace.largeur * 0.7}px)` }}
+        >
+          <span className="block scale-105 -rotate-3 rounded-lg shadow-2xl">
+            <Visuel carte={carteGlissee} />
+          </span>
+        </div>
+      )}
+
+      {aLaSuite && <ChoixCarte titre="Ajouter des cartes à la suite" choisir={ajouterSuite} fermer={fermerSuite} />}
       {cible !== null && <ChoixCarte titre={`Choisir une carte · ${numero(cible)}`} choisir={(carte) => placer(cible, carte)} fermer={fermerChoix} />}
     </section>
   );
 }
 
-// Carte d'une case : en couleur si possédée, en grisé « À trouver » sinon.
+// Carte d'une case : normale si possédée, en transparence sinon (à trouver).
 function Visuel({ carte }: { carte: Case }) {
   const langue = libelleLangue(carte.language);
   return (
@@ -324,8 +511,9 @@ function Visuel({ carte }: { carte: Case }) {
           height={342}
           loading="lazy"
           decoding="async"
+          draggable={false}
           referrerPolicy="no-referrer"
-          className={`aspect-[63/88] h-auto w-full rounded-lg bg-surface object-cover ${carte.possedee ? "" : "opacity-40 grayscale"}`}
+          className={`aspect-[63/88] h-auto w-full rounded-lg bg-surface object-cover ${carte.possedee ? "" : "opacity-35"}`}
         />
       ) : (
         <span
@@ -339,11 +527,6 @@ function Visuel({ carte }: { carte: Case }) {
         </span>
       )}
       <span className="absolute bottom-1 left-1 rounded-md bg-[#1f1814] px-1.5 py-0.5 text-[10px] font-bold text-[#fbf6f0]">{langue}</span>
-      {!carte.possedee && (
-        <span className="absolute inset-x-1 top-1 rounded-md bg-surface/90 px-1 py-0.5 text-center text-[10px] font-bold text-terracotta">
-          À trouver
-        </span>
-      )}
     </span>
   );
 }
@@ -372,14 +555,29 @@ function CaseVide({ ajout, cible }: { ajout: boolean; cible: boolean }) {
   );
 }
 
-function BoutonPage({ sens, onClick, disabled }: { sens: "precedente" | "suivante"; onClick: () => void; disabled: boolean }) {
+// Pendant un glisser, bandes au bord de l'écran : y amener la carte tourne la page.
+function BordTourne({ sens }: { sens: -1 | 1 }) {
+  return (
+    <div
+      data-tourne={sens}
+      aria-hidden="true"
+      className={`fixed inset-y-0 z-40 flex w-9 items-center justify-center bg-accent/25 text-2xl font-bold text-accent-texte ${sens < 0 ? "left-0" : "right-0"}`}
+    >
+      {sens < 0 ? "‹" : "›"}
+    </div>
+  );
+}
+
+// Flèche de page ; pendant un glisser, elle grossit : la survoler tourne la page.
+function BoutonPage({ sens, onClick, disabled, survol }: { sens: "precedente" | "suivante"; onClick: () => void; disabled: boolean; survol: boolean }) {
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
+      data-tourne={sens === "precedente" ? -1 : 1}
       aria-label={sens === "precedente" ? "Page précédente" : "Page suivante"}
-      className="flex size-11 items-center justify-center rounded-full border border-ligne bg-surface disabled:opacity-40"
+      className={`flex items-center justify-center rounded-full border bg-surface transition-all disabled:opacity-40 ${survol && !disabled ? "size-16 border-accent" : "size-11 border-ligne"}`}
     >
       <svg
         aria-hidden="true"

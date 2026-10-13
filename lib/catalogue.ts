@@ -105,3 +105,17 @@ export async function chercherCartes(supabase: SupabaseClient, f: Filtres, offse
   if (error) throw new Error(error.message);
   return (data ?? []) as CarteResultat[];
 }
+
+export const ANNEES = Array.from({ length: new Date().getFullYear() - 1995 }, (_, i) => new Date().getFullYear() - i);
+
+// Raretés et séries proposées dans les filtres.
+export async function listesCourtes(supabase: SupabaseClient) {
+  const [raretes, series] = await Promise.all([
+    supabase.from("rarities").select("code, label_fr").neq("code", "none").order("sort_order"),
+    supabase.from("series").select("code, name_fr").order("sort_order"),
+  ]);
+  return {
+    raretes: (raretes.data ?? []).map((r) => ({ valeur: r.code as string, label: r.label_fr as string })),
+    series: (series.data ?? []).map((s) => ({ valeur: s.code as string, label: s.name_fr as string })),
+  };
+}
