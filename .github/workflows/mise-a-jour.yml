@@ -1,0 +1,56 @@
+# Mise à jour du catalogue (scripts/update.ts) lancée depuis GitHub, sans l'ordinateur de Hugo.
+# Déclenchée à la main (onglet Actions, ou bouton « Catalogue » dans Plus sur le site).
+# Secrets GitHub nécessaires : NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY.
+name: Mise à jour du catalogue
+run-name: Mise à jour du catalogue (${{ inputs.mode }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "simulation (ne modifie rien) ou application"
+        required: true
+        default: simulation
+        type: choice
+        options: [simulation, application]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mise-a-jour-catalogue
+  cancel-in-progress: false
+
+jobs:
+  mise-a-jour:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Dépôts de données
+        run: |
+          git clone --depth 1 https://github.com/type-null/PTCG-database.git PTCG-database
+          git clone --depth 1 https://github.com/duanxr/PTCG-CHS-Datasets.git PTCG-CHS-Datasets
+          mkdir -p output
+
+      - name: Mise à jour (${{ inputs.mode }})
+        run: npm run ${{ inputs.mode == 'application' && 'update:apply' || 'update' }}
+
+      - name: Rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-${{ inputs.mode }}
+          path: output/
+          retention-days: 30

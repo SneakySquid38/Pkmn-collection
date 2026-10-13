@@ -35,6 +35,8 @@ export async function proxy(request: NextRequest) {
   const surConnexion = chemin.startsWith("/connexion");
   // Pages légales lisibles par tous, connecté ou non.
   if (PAGES_PUBLIQUES.includes(chemin)) return response;
+  // Réveil quotidien de la base (Vercel Cron) : protégé par son propre secret.
+  if (chemin === "/api/reveil") return response;
 
   if (!connecte && !surConnexion) {
     const url = request.nextUrl.clone();

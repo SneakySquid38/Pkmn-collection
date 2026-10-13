@@ -2,6 +2,8 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { choisirTheme, seDeconnecter } from "@/app/actions";
 import { EnTete } from "@/components/EnTete";
+import { MiseAJourCatalogue } from "@/components/MiseAJourCatalogue";
+import { dernieresExecutions, estAdmin, majConfiguree, type Execution } from "@/lib/catalogue-maj";
 import { LEGAL } from "@/lib/legal";
 import { profilConnecte } from "@/lib/profil";
 
@@ -16,6 +18,9 @@ const THEMES = [
 export default async function Plus() {
   const profil = await profilConnecte();
   const actuel = (await cookies()).get("theme")?.value ?? "auto";
+  const admin = estAdmin(profil?.id);
+  let executions: Execution[] | null = [];
+  if (admin && majConfiguree()) executions = await dernieresExecutions().catch(() => null);
 
   return (
     <>
@@ -69,6 +74,22 @@ export default async function Plus() {
             <Link href="/mentions-legales" className="text-accent-texte underline">Mentions légales</Link>
           </p>
         </section>
+
+        {admin && (
+          <section className="flex flex-col gap-2 rounded-2xl border border-ligne bg-surface p-4">
+            <h2 className="font-bold">Catalogue</h2>
+            <p className="text-sm text-encre-douce">
+              Ajoute les nouvelles extensions (TCGdex, PTCG-database, chinois). Lance d&apos;abord une simulation, regarde
+              qu&apos;elle réussit, puis applique. Pense ensuite à réimporter ton fichier Pokiframe pour retenter les
+              cartes introuvables.
+            </p>
+            {majConfiguree() ? (
+              <MiseAJourCatalogue executions={executions} />
+            ) : (
+              <p className="text-sm text-terracotta">Pas encore configuré : il manque GITHUB_TOKEN ou GITHUB_REPO dans Vercel.</p>
+            )}
+          </section>
+        )}
 
         <Link
           href="/import"
