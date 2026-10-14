@@ -17,6 +17,8 @@ export function BarreRecherche({
   annees,
   nomSet,
   nomIllustrateur,
+  garder,
+  placeholder = "Pokémon, carte, set, numéro…",
 }: {
   filtres: Filtres;
   raretes: Option[];
@@ -24,6 +26,8 @@ export function BarreRecherche({
   annees: number[];
   nomSet: string | null;
   nomIllustrateur: string | null;
+  garder?: Record<string, string>; // paramètres d'adresse à conserver (ex. le membre affiché dans la collection)
+  placeholder?: string;
 }) {
   const router = useRouter();
   const chemin = usePathname();
@@ -53,7 +57,9 @@ export function BarreRecherche({
   const aller = (f: Filtres) => {
     envoye.current = f.q;
     setLangues(f.langues);
-    const p = versParams(f).toString();
+    const params = versParams(f);
+    for (const [k, v] of Object.entries(garder ?? {})) params.set(k, v);
+    const p = params.toString();
     demarrer(() => router.replace(p ? `${chemin}?${p}` : chemin, { scroll: false }));
   };
 
@@ -129,7 +135,7 @@ export function BarreRecherche({
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Pokémon, carte, set, numéro…"
+          placeholder={placeholder}
           aria-label="Rechercher une carte"
           enterKeyHint="search"
           className="h-full min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-encre-douce"

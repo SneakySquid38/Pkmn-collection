@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Filtres } from "@/lib/catalogue";
 
 export const PRIORITES = [
   { valeur: 1, label: "Très envie" },
@@ -80,16 +81,32 @@ export function versListe(c: LigneCarte, sets: Map<string, string>): CarteListe 
   };
 }
 
+const sansAccents = (t: string) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
 // Collection d'un membre, les ajouts les plus récents d'abord.
-export async function lireCollection(supabase: SupabaseClient, membre: string) {
-  const { data, error } = await supabase
-    .from("collection_items")
-    .select(`quantity, market_price, added_at, cards(${CHAMPS_CARTE})`)
-    .eq("user_id", membre)
-    .order("added_at", { ascending: false })
-    .limit(5000);
+// Les filtres (mêmes que la recherche) ne gardent que les cartes qui y répondent.
+export async function lireCollection(supabase: SupabaseClient, membre: string, f?: Filtres) {
+  const parSet = !!(f?.serie || f?.annee);
+  const champs = `quantity, market_price, added_at, cards!inner(${CHAMPS_CARTE}${parSet ? ", sets!inner(series_id, release_date)" : ""})`;
+  let requete = supabase.from("collection_items").select(champs).eq("user_id", membre);
+  if (f) {
+    // Texte : chaque mot doit apparaître dans le texte de recherche de la carte (noms FR/EN/local, set, illustrateur).
+    for (const mot of sansAccents(f.q).split(/\s+/).filter(Boolean).slice(0, 5)) {
+      requete = requete.like("cards.search_text", `%${mot.replace(/[%_\\]/g, "")}%`);
+    }
+    if (f.langues.length) requete = requete.in("cards.language", f.langues.flatMap((l) => (l === "CN" ? ["SC", "TC"] : [l])));
+    if (f.rarete) requete = requete.eq("cards.rarity_code", f.rarete);
+    if (f.set) requete = requete.eq("cards.set_id", f.set);
+    if (f.illustrateur) requete = requete.eq("cards.illustrator_id", f.illustrateur);
+    if (f.categorie) requete = requete.eq("cards.category", f.categorie);
+    if (f.serie) requete = requete.eq("cards.sets.series_id", f.serie);
+    if (f.annee) requete = requete.gte("cards.sets.release_date", `${f.annee}-01-01`).lte("cards.sets.release_date", `${f.annee}-12-31`);
+  }
+  const { data, error } = await requete.order("added_at", { ascending: false }).limit(5000);
   if (error) throw new Error(error.message);
-  const lignes = (data ?? []).filter((l) => l.cards) as unknown as { quantity: number; market_price: number | null; cards: LigneCarte }[];
+  const lignes = ((data ?? []) as unknown as { quantity: number; market_price: number | null; cards: LigneCarte | null }[]).filter(
+    (l): l is { quantity: number; market_price: number | null; cards: LigneCarte } => !!l.cards,
+  );
   const sets = await nomsSets(supabase, lignes.map((l) => l.cards));
   return lignes.map((l) => ({ ...versListe(l.cards, sets), quantite: l.quantity, prix: l.market_price === null ? null : Number(l.market_price) }));
 }

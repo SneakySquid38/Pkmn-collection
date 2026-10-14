@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { AvecFiche } from "@/components/AvecFiche";
+import { BarreRecherche } from "@/components/BarreRecherche";
 import { EnTete } from "@/components/EnTete";
 import { EtatVide } from "@/components/EtatVide";
 import { GrilleListe } from "@/components/GrilleListe";
 import { OngletsMembres } from "@/components/OngletsMembres";
+import { ANNEES, listesCourtes, lireFiltres, versParams } from "@/lib/catalogue";
 import { lireCollection, lireMembres, type CarteListe } from "@/lib/collection";
 import { profilConnecte } from "@/lib/profil";
 
@@ -21,16 +23,23 @@ export default async function MaCollection({ searchParams }: PageProps<"/collect
   const carte = typeof params.carte === "string" ? params.carte : null;
   const chezMoi = membre.id === moi;
 
-  let cartes: CarteListe[] = [];
-  let erreur = false;
-  try {
-    cartes = await lireCollection(supabase, membre.id);
-  } catch {
-    erreur = true;
-  }
+  const filtres = lireFiltres(params);
+  const filtre = versParams(filtres).toString() !== "";
 
-  const base = chezMoi ? "/collection" : `/collection?membre=${membre.id}`;
-  const lienCarte = (id: string) => `${base}${chezMoi ? "?" : "&"}carte=${id}`;
+  const [lues, listes, set, illustrateur] = await Promise.all([
+    lireCollection(supabase, membre.id, filtres).catch(() => null),
+    listesCourtes(supabase),
+    filtres.set ? supabase.from("sets_display").select("display_name").eq("set_id", filtres.set).maybeSingle() : null,
+    filtres.illustrateur ? supabase.from("illustrators").select("name").eq("id", filtres.illustrateur).maybeSingle() : null,
+  ]);
+  const erreur = lues === null;
+  const cartes: CarteListe[] = lues ?? [];
+
+  // Adresse de la page avec le membre et les filtres, pour ouvrir et refermer une fiche sans les perdre.
+  const p = versParams(filtres);
+  if (!chezMoi) p.set("membre", membre.id);
+  const base = p.toString() ? `/collection?${p}` : "/collection";
+  const lienCarte = (id: string) => `${base}${p.toString() ? "&" : "?"}carte=${id}`;
   const exemplaires = cartes.reduce((n, c) => n + (c.quantite ?? 1), 0);
   const sets = new Set(cartes.map((c) => c.set_nom)).size;
   const avecPrix = cartes.filter((c) => c.prix != null);
@@ -41,9 +50,23 @@ export default async function MaCollection({ searchParams }: PageProps<"/collect
     <AvecFiche carte={carte} fermer={base} lienCarte={lienCarte}>
       <EnTete titre={chezMoi ? "Ma collection" : `Collection de ${membre.prenom}`} />
       <OngletsMembres membres={membres} actif={membre.id} moi={moi} chemin="/collection" />
+      <div className="mb-4">
+        <BarreRecherche
+          filtres={filtres}
+          raretes={listes.raretes}
+          series={listes.series}
+          annees={ANNEES}
+          nomSet={set?.data?.display_name ?? null}
+          nomIllustrateur={illustrateur?.data?.name ?? null}
+          garder={chezMoi ? undefined : { membre: membre.id }}
+          placeholder="Chercher dans la collection…"
+        />
+      </div>
 
       {erreur ? (
         <EtatVide titre="La collection n'a pas répondu">Réessaie dans un instant.</EtatVide>
+      ) : cartes.length === 0 && filtre ? (
+        <EtatVide titre="Aucune carte avec ces filtres">Essaie un autre nom, ou retire un filtre.</EtatVide>
       ) : cartes.length === 0 ? (
         <EtatVide titre={chezMoi ? "Ta collection est vide" : `${membre.prenom} n'a pas encore de cartes`}>
           {chezMoi ? (
@@ -65,6 +88,7 @@ export default async function MaCollection({ searchParams }: PageProps<"/collect
             <strong className="text-encre">
               {exemplaires.toLocaleString("fr-FR")} carte{exemplaires > 1 ? "s" : ""}
             </strong>
+            {filtre ? " avec ces filtres" : ""}
             {` · ${cartes.length.toLocaleString("fr-FR")} différente${cartes.length > 1 ? "s" : ""} · ${sets} set${sets > 1 ? "s" : ""}`}
           </p>
           {avecPrix.length > 0 && (
