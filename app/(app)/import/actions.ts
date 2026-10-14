@@ -134,7 +134,7 @@ export async function importer(
       card_id: l.card_id && UUID.test(l.card_id) ? l.card_id : null,
       quantity: l.quantite,
       price: l.prix,
-      payload: { nom: l.nom, set: l.set, code: l.code, numero: l.numero, langue: l.langue },
+      payload: { nom: l.nom, set: l.set, code: l.code, numero: l.numero, langue: l.langue, quantite: l.quantite },
     })),
     p_retirer: retirer.filter((r) => UUID.test(r)),
   });
@@ -149,4 +149,47 @@ export async function annulerImport(lot: string) {
   const { error } = await supabase.rpc("undo_import", { p_lot: lot });
   if (error) throw new Error(error.message);
   for (const p of ["/collection", "/import", "/recherche"]) revalidatePath(p);
+}
+
+// ——— Cartes à trouver à la main (lignes « introuvable » des imports actifs) ———
+
+export type Candidate = CarteTrouvee & { score: number; meme_numero: boolean; sure: boolean };
+
+// Cartes candidates d'une ligne à trouver, les plus probables d'abord.
+export async function candidatsLigne(ligne: string): Promise<Candidate[]> {
+  if (!UUID.test(ligne)) throw new Error("Ligne inconnue");
+  const { supabase } = await connecte();
+  const { data, error } = await supabase.rpc("candidats_import", { p_lignes: [ligne], p_max: 60 });
+  if (error) throw new Error(error.message);
+  return (data ?? []).map((c: Record<string, unknown>) => ({
+    id: c.card_id as string,
+    nom: c.nom as string,
+    language: c.language as string,
+    number: (c.number as string | null) ?? null,
+    set_nom: (c.set_nom as string | null) ?? null,
+    image_small: (c.image_small as string | null) ?? null,
+    score: c.score as number,
+    meme_numero: !!c.meme_numero,
+    sure: !!c.sure,
+  }));
+}
+
+// Rattache des lignes à la carte choisie et l'ajoute à la collection.
+export async function choisirCartes(choix: { ligne: string; card: string }[]) {
+  const valides = (Array.isArray(choix) ? choix : []).filter((c) => UUID.test(c?.ligne) && UUID.test(c?.card)).slice(0, 500);
+  if (!valides.length) return 0;
+  const { supabase } = await connecte();
+  const { data, error } = await supabase.rpc("choisir_cartes_import", { p_choix: valides });
+  if (error) throw new Error(error.message);
+  for (const p of ["/collection", "/import", "/import/a-trouver", "/recherche"]) revalidatePath(p);
+  return data as number;
+}
+
+// Range une ligne dans « Absentes du catalogue », ou l'en sort.
+export async function marquerAbsente(ligne: string, absente: boolean) {
+  if (!UUID.test(ligne)) throw new Error("Ligne inconnue");
+  const { supabase } = await connecte();
+  const { error } = await supabase.rpc("marquer_absente", { p_ligne: ligne, p_absente: !!absente });
+  if (error) throw new Error(error.message);
+  for (const p of ["/import", "/import/a-trouver"]) revalidatePath(p);
 }

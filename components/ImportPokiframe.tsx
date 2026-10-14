@@ -12,7 +12,7 @@ type Onglet = "reconnue" | "a_choisir" | "introuvable" | "deja" | "absentes";
 const ONGLETS: { cle: Onglet; label: string; aide: string }[] = [
   { cle: "reconnue", label: "Reconnues", aide: "Ces cartes seront ajoutées à ta collection." },
   { cle: "a_choisir", label: "À choisir", aide: "Plusieurs cartes correspondent : choisis la bonne pour chacune." },
-  { cle: "introuvable", label: "Introuvables", aide: "Pas encore dans le catalogue (souvent des sets très récents). Elles sont gardées de côté et seront retentées au prochain import." },
+  { cle: "introuvable", label: "Introuvables", aide: "Pas reconnues automatiquement. Elles sont gardées de côté : après l'import, choisis la bonne version dans « Cartes à trouver »." },
   { cle: "deja", label: "Déjà importées", aide: "Déjà ajoutées par un import précédent, avec la même quantité : rien ne change." },
   { cle: "absentes", label: "Plus dans le fichier", aide: "Importées avant, mais absentes de ce fichier. Rien n'est retiré sauf si tu choisis « Retirer »." },
 ];
@@ -95,7 +95,7 @@ export function ImportPokiframe() {
         <p className="text-sm text-encre-douce">
           {annule
             ? "Ta collection est revenue à son état d'avant l'import."
-            : `${aAjouter} carte${aAjouter > 1 ? "s" : ""} ajoutée${aAjouter > 1 ? "s" : ""} ou mise${aAjouter > 1 ? "s" : ""} à jour${retirer.size ? `, ${retirer.size} retirée${retirer.size > 1 ? "s" : ""}` : ""}. Les introuvables sont gardées pour le prochain import.`}
+            : `${aAjouter} carte${aAjouter > 1 ? "s" : ""} ajoutée${aAjouter > 1 ? "s" : ""} ou mise${aAjouter > 1 ? "s" : ""} à jour${retirer.size ? `, ${retirer.size} retirée${retirer.size > 1 ? "s" : ""}` : ""}. Les introuvables sont dans « Cartes à trouver ».`}
         </p>
         <div className="grid grid-cols-2 gap-2">
           <Link href="/collection" className="flex h-12 items-center justify-center rounded-2xl bg-accent font-bold text-[#1f1814]">

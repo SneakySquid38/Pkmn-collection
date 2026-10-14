@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { annulerImport } from "@/app/(app)/import/actions";
 import { EnTete } from "@/components/EnTete";
 import { ImportPokiframe } from "@/components/ImportPokiframe";
@@ -16,11 +17,25 @@ export default async function Import() {
         .order("created_at", { ascending: false })
         .limit(10)
     : { data: [] };
+  const { data: aTrouver } = profil ? await profil.supabase.rpc("import_a_trouver") : { data: [] };
+  const nbATrouver = ((aTrouver ?? []) as { absente: boolean }[]).filter((l) => !l.absente).length;
 
   return (
     <div className="mx-auto flex max-w-2xl flex-col gap-6">
       <EnTete titre="Import Pokiframe" />
       <ImportPokiframe />
+
+      {nbATrouver > 0 && (
+        <Link href="/import/a-trouver" className="flex items-center gap-3 rounded-2xl border border-accent bg-accent-doux p-4">
+          <span className="min-w-0 flex-1">
+            <span className="block font-bold">
+              {nbATrouver} carte{nbATrouver > 1 ? "s" : ""} à trouver à la main
+            </span>
+            <span className="block text-sm text-encre-douce">Non reconnues par tes imports : choisis la bonne version dans une liste courte.</span>
+          </span>
+          <span aria-hidden="true" className="shrink-0 font-bold">→</span>
+        </Link>
+      )}
 
       {lots && lots.length > 0 && (
         <section className="flex flex-col gap-2">
