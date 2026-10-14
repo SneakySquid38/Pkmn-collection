@@ -1,8 +1,6 @@
 -- 14 — Images des cartes SC (PTCG-CHS-Datasets)
 -- À lancer dans le SQL Editor de Supabase APRÈS 13-image-source.sql, et AVANT
 -- `npx tsx scripts/images-sc.ts --apply`.
--- 1er passage tel quel (ROLLBACK à la fin : rien n'est gardé), lire le résultat,
--- puis remplacer la dernière ligne par COMMIT et relancer.
 --
 -- 1. image_source accepte 'ptcg-chs'.
 -- 2. Bucket public « cartes-sc » : les images WebP des cartes SC (environ 330 Mo).
@@ -25,4 +23,4 @@ on conflict (id) do nothing;
 -- contrôle : une ligne « cartes-sc », public = true
 select id, public, file_size_limit, allowed_mime_types from storage.buckets where id = 'cartes-sc';
 
-rollback;  -- remplacer par : commit;
+commit;

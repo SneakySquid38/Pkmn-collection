@@ -1,6 +1,5 @@
 -- 16 — Recherche par langue : à score égal, les tuiles en chinois traditionnel passent après le simplifié
 -- (et après les autres langues choisies). La recherche sans filtre de langue ne change pas.
--- À lancer dans le SQL Editor : tel quel (ROLLBACK), lire l'aperçu, puis COMMIT.
 
 begin;
 
@@ -87,4 +86,4 @@ grant execute on function public.search_cards_grouped(text, text[], text[], uuid
 select search_name_fr, language, set_display_name, number
 from public.search_cards_grouped(q => 'dracaufeu', p_languages => array['CN'], p_limit => 20);
 
-rollback;  -- remplacer par : commit;
+commit;

@@ -1,7 +1,5 @@
 -- 15 — Chinois regroupé en « CN » (simplifié d'abord, traditionnel en repli) et publication du simplifié
 -- À lancer dans le SQL Editor APRÈS la fin de `npx tsx scripts/images-sc.ts --apply`.
--- 1er passage tel quel (ROLLBACK à la fin : rien n'est gardé), lire les aperçus,
--- puis remplacer la dernière ligne par COMMIT et relancer.
 --
 -- 1. langues_filtre() : « CN » (et les anciens codes TC / SC) devient SC + TC. Le site envoie « CN ».
 -- 2. search_cards_grouped : filtre CN, la tuile prend le simplifié avant le traditionnel,
@@ -167,4 +165,4 @@ select language, is_published, count(*) from public.sets group by 1, 2 order by 
 select search_name_fr, language, languages, set_display_name, number, image_small is not null as image
 from public.search_cards_grouped(q => 'pikachu', p_languages => array['CN'], p_limit => 8);
 
-rollback;  -- remplacer par : commit;
+commit;

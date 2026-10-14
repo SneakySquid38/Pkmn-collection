@@ -34,4 +34,4 @@ from public.cards
 group by 1, 2
 order by 1, 2;
 
-rollback;  -- remplacer par : commit;
+commit;

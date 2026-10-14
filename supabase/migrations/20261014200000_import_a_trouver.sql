@@ -6,7 +6,6 @@
 --   * candidats_import() : les cartes candidates de chaque ligne, les plus probables d'abord ;
 --   * choisir_cartes_import() : rattache une ou plusieurs lignes à la carte choisie et l'ajoute à la collection ;
 --   * marquer_absente() : range une ligne dans « Absentes du catalogue », ou l'en sort.
--- À lancer dans le SQL Editor : tel quel (ROLLBACK), lire l'aperçu, puis remplacer la dernière ligne par commit;
 
 begin;
 
@@ -197,13 +196,4 @@ grant execute on function public.candidats_import(uuid[], integer) to authentica
 grant execute on function public.choisir_cartes_import(jsonb) to authenticated;
 grant execute on function public.marquer_absente(uuid, boolean) to authenticated;
 
--- Aperçu, vu comme Hugo : cartes à trouver, et combien ont une suggestion sûre.
-select set_config('request.jwt.claims', '{"sub":"2c801386-1da9-4b4d-b78a-88581b4b1109","role":"authenticated"}', true);
-with t as (select * from public.import_a_trouver()),
-     c as (select * from public.candidats_import((select array_agg(ligne) from t), 3))
-select t.payload->>'nom' as carte_pokiframe, t.payload->>'set' as set_pokiframe, t.payload->>'numero' as numero,
-       c.nom as suggestion, c.set_nom, c.number, c.score, c.sure
-from t left join c on c.ligne = t.ligne and c.rang = 1
-order by c.sure desc nulls last, t.payload->>'nom';
-
-rollback;  -- remplacer par : commit;
+commit;
