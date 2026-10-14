@@ -6,6 +6,7 @@ import { ChoixChinois } from "@/components/ChoixChinois";
 import { EtatVide } from "@/components/EtatVide";
 import { libelleLangue, nomLangue, ORDRE_LANGUES } from "@/lib/catalogue";
 import { libellePriorite } from "@/lib/collection";
+import { choisirRepli } from "@/lib/images";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -48,8 +49,8 @@ export async function FicheCarte({
       ? supabase.from("illustrators").select("name").eq("id", carte.illustrator_id).maybeSingle()
       : Promise.resolve({ data: null }),
     carte.card_entity_id
-      ? supabase.from("cards").select("id, language, number, set_id, image_small").eq("card_entity_id", carte.card_entity_id).neq("id", carte.id).limit(24)
-      : Promise.resolve({ data: [] as { id: string; language: string; number: string | null; set_id: string; image_small: string | null }[] }),
+      ? supabase.from("cards").select("id, language, number, set_id, image_small, image_large").eq("card_entity_id", carte.card_entity_id).neq("id", carte.id).limit(24)
+      : Promise.resolve({ data: [] as { id: string; language: string; number: string | null; set_id: string; image_small: string | null; image_large: string | null }[] }),
     supabase.auth.getClaims(),
     // Lecture croisée : qui a cette carte, et qui la veut.
     supabase.from("collection_items").select("user_id, quantity").eq("card_id", carte.id),
@@ -57,6 +58,9 @@ export async function FicheCarte({
     supabase.from("profiles").select("id, display_name"),
   ]);
   const moi = claims.data?.claims?.sub ?? null;
+  // Sans image : celle d'une autre version de la carte, signalée sous le nom par « Attention image CN » (ou JP, KR…).
+  const repli = carte.image_small || carte.image_large ? null : choisirRepli(autres.data ?? []);
+  const image = carte.image_large ?? carte.image_small ?? repli?.large ?? repli?.small ?? null;
   const prenom = (id: string) => membres.data?.find((m) => m.id === id)?.display_name ?? "Un membre";
   const maQuantite = possedes.data?.find((p) => p.user_id === moi)?.quantity ?? 0;
   const monEnvie = envies.data?.find((e) => e.user_id === moi)?.priority ?? null;
@@ -103,8 +107,8 @@ export async function FicheCarte({
       <Fermer href={fermer} />
 
       <div className="relative mx-auto w-full max-w-[300px]">
-        <CardImage src={carte.image_large ?? carte.image_small} alt={nom} lang={libelleLangue(carte.language)} prioritaire />
-        {(carte.image_large ?? carte.image_small) && (
+        <CardImage src={image} alt={nom} lang={libelleLangue(carte.language)} prioritaire />
+        {image && (
           <span className="absolute bottom-2 left-2 rounded-md bg-[#1f1814] px-2 py-0.5 text-xs font-bold text-[#fbf6f0]">
             {libelleLangue(carte.language)}
           </span>
@@ -124,6 +128,11 @@ export async function FicheCarte({
 
       <div className="flex flex-col gap-1">
         <h2 className="font-titre text-2xl font-extrabold tracking-tight">{nom}</h2>
+        {repli && (
+          <p className="text-sm font-bold" style={{ color: "#d62828" }}>
+            ⚠ Attention image {libelleLangue(repli.langue)}
+          </p>
+        )}
         {carte.language !== "FR" && carte.name !== nom && (
           <p className="text-sm text-encre-douce">
             {carte.name} · nom {nomLangueCarte} d&apos;origine

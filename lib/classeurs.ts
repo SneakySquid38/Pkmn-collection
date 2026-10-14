@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { CATEGORIES, codeFiltre, LANGUES, libelleLangue } from "@/lib/catalogue";
+import { completerImages } from "@/lib/images";
 import { CHAMPS_CARTE, lirePossessions, nomsSets, versListe, type CarteListe, type LigneCarte } from "@/lib/collection";
 
 // Formats de page proposés, avec leur disposition [colonnes, lignes] (pages de classeur du commerce).
@@ -103,7 +104,7 @@ type LigneAuto = {
 export async function cartesDuClasseur(supabase: SupabaseClient, regle: Regle, limite = CARTES_MAX): Promise<CarteListe[]> {
   const { data, error } = await supabase.rpc("classeur_cards", { p_rule: regle, p_limit: limite });
   if (error) throw new Error(error.message);
-  return ((data ?? []) as LigneAuto[]).map((c) => ({
+  const cartes: CarteListe[] = ((data ?? []) as LigneAuto[]).map((c) => ({
     card_id: c.card_id,
     nom: c.search_name_fr ?? c.name,
     language: c.language,
@@ -111,6 +112,7 @@ export async function cartesDuClasseur(supabase: SupabaseClient, regle: Regle, l
     image_small: c.image_small,
     set_nom: c.set_display_name,
   }));
+  return completerImages(supabase, cartes);
 }
 
 // Les filtres en clair, pour l'en-tête d'un classeur : « sowsow », « Écarlate et Violet », « JP »…
@@ -225,12 +227,15 @@ export async function lireClasseur(supabase: SupabaseClient, id: string): Promis
   if (error) throw new Error(error.message);
   const lignes = (data ?? []).filter((l) => l.cards) as unknown as { position: number; cards: LigneCarte }[];
   const sets = await nomsSets(supabase, lignes.map((l) => l.cards));
-  const cases: Case[] = lignes.map((l) => ({
-    ...versListe(l.cards, sets),
-    position: l.position,
-    possedee: parCarte.has(l.cards.id),
-    quantite: parCarte.get(l.cards.id),
-  }));
+  const cases: Case[] = await completerImages(
+    supabase,
+    lignes.map((l) => ({
+      ...versListe(l.cards, sets),
+      position: l.position,
+      possedee: parCarte.has(l.cards.id),
+      quantite: parCarte.get(l.cards.id),
+    })),
+  );
   return { classeur: c, cases };
 }
 

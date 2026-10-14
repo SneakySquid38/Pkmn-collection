@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { completerImages } from "@/lib/images";
 
 // Langues proposées dans les filtres. « CN » regroupe le chinois simplifié (SC) et le chinois
 // traditionnel (TC) : les fonctions SQL développent CN en SC + TC.
@@ -62,6 +63,7 @@ export type CarteResultat = {
   rarity_code: string | null;
   rarity_label: string | null;
   image_small: string | null;
+  image_repli?: string | null; // langue de l'image empruntée à une autre version
   card_entity_id: string | null;
   languages: string[]; // langues disponibles pour cette carte, CN pour les deux chinois (une tuile par famille)
   total_count: number;
@@ -126,7 +128,7 @@ export async function chercherCartes(supabase: SupabaseClient, f: Filtres, offse
     p_offset: offset,
   });
   if (error) throw new Error(error.message);
-  return (data ?? []) as CarteResultat[];
+  return completerImages(supabase, (data ?? []) as CarteResultat[]);
 }
 
 export const ANNEES = Array.from({ length: new Date().getFullYear() - 1995 }, (_, i) => new Date().getFullYear() - i);

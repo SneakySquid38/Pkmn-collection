@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Filtres } from "@/lib/catalogue";
+import { completerImages } from "@/lib/images";
 
 export const PRIORITES = [
   { valeur: 1, label: "Très envie" },
@@ -44,6 +45,7 @@ export type CarteListe = {
   language: string;
   number: string | null;
   image_small: string | null;
+  image_repli?: string | null; // langue de l'image empruntée à une autre version
   set_nom: string | null;
   quantite?: number;
   prix?: number | null; // valeur d'un exemplaire en euros (prix Pokiframe à l'import)
@@ -108,7 +110,10 @@ export async function lireCollection(supabase: SupabaseClient, membre: string, f
     (l): l is { quantity: number; market_price: number | null; cards: LigneCarte } => !!l.cards,
   );
   const sets = await nomsSets(supabase, lignes.map((l) => l.cards));
-  return lignes.map((l) => ({ ...versListe(l.cards, sets), quantite: l.quantity, prix: l.market_price === null ? null : Number(l.market_price) }));
+  return completerImages(
+    supabase,
+    lignes.map((l) => ({ ...versListe(l.cards, sets), quantite: l.quantity, prix: l.market_price === null ? null : Number(l.market_price) })),
+  );
 }
 
 // Envies d'un membre, triées par priorité puis les plus récentes ; « possédée » si le membre l'a déjà.
@@ -126,5 +131,8 @@ export async function lireEnvies(supabase: SupabaseClient, membre: string) {
     nomsSets(supabase, lignes.map((l) => l.cards)),
     lirePossessions(supabase, membre),
   ]);
-  return lignes.map((l) => ({ ...versListe(l.cards, sets), priorite: l.priority, possedee: parCarte.has(l.cards.id) }));
+  return completerImages(
+    supabase,
+    lignes.map((l) => ({ ...versListe(l.cards, sets), priorite: l.priority, possedee: parCarte.has(l.cards.id) })),
+  );
 }
