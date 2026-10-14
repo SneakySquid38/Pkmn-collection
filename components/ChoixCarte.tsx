@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { cartesDeMaCollection, chercherDansCatalogue, versionsFamille, type Version } from "@/app/(app)/classeurs/actions";
 import { CardImage } from "@/components/CardImage";
-import { LANGUES, libelleLangue, type CarteResultat } from "@/lib/catalogue";
+import { LANGUES, libelleLangue, libelleVersion, type CarteResultat } from "@/lib/catalogue";
 import type { CarteListe } from "@/lib/collection";
 
 export type CarteChoisie = CarteListe & { possedee: boolean };
@@ -182,7 +182,7 @@ export function ChoixCarte({ titre, choisir, fermer }: { titre: string; choisir:
                       <span className="w-11 shrink-0">
                         <CardImage src={v.image_small} alt="" lang={libelleLangue(v.language)} />
                       </span>
-                      <span className="rounded-md bg-[#1f1814] px-1.5 py-0.5 text-[11px] font-bold text-[#fbf6f0]">{libelleLangue(v.language)}</span>
+                      <span className="rounded-md bg-[#1f1814] px-1.5 py-0.5 text-[11px] font-bold text-[#fbf6f0]">{libelleVersion(v.language)}</span>
                       <span className="min-w-0 flex-1 truncate text-sm">
                         {v.set_nom ?? ""}
                         {v.number ? ` · ${v.number}` : ""}

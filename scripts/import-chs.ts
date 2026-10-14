@@ -16,8 +16,7 @@
  *   - rareté brute = sigle sans le marqueur de finition (C, U, R, RR, 无标记…) ;
  *     la rareté commune est calculée par le déclencheur cards_normalize
  *   - n° de Pokédex -> cards.dex_ids (card_pokemon est rempli par déclencheur)
- *   - sets importés NON PUBLIÉS (is_published = false) tant que l'auteur du jeu
- *     de données n'a pas donné son accord ; aucune image n'est enregistrée
+ *   - sets publiés dès l'import ; les images sont ajoutées ensuite par scripts/images-sc.ts
  *   - relançable sans doublon : (source, language, source_id) unique
  *   - rapport : output/import-chs-<mode>.json
  */
@@ -251,7 +250,7 @@ async function main() {
         source: SOURCE, source_id: s.code, language: LANGUAGE, region: "CN", code: s.code, name: s.name,
         release_date: s.release_date, series_id: s.series_id, product_type: "tcg",
         total_cards: cards.filter((c) => c.set_code === s.code).length,
-        is_published: false,
+        is_published: true,
       }));
       const { data, error } = await supabase.from("sets").insert(part).select("id,source_id");
       if (error) throw new Error(`sets: ${error.message}`);

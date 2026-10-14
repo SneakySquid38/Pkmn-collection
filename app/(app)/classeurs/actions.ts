@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { listesFiltres, type OptionListe } from "@/app/(app)/recherche/actions";
-import { chercherCartes, type CarteResultat } from "@/lib/catalogue";
+import { chercherCartes, codeFiltre, ORDRE_LANGUES, type CarteResultat } from "@/lib/catalogue";
 import {
   CARTES_MAX,
   CHAMPS_CLASSEUR,
@@ -300,7 +300,7 @@ export async function chercherDansCatalogue(q: string, langue: string | null): P
     supabase,
     {
       q: texte,
-      langues: langue && ["FR", "JP", "KR", "TC"].includes(langue) ? [langue] : [],
+      langues: langue && ["FR", "JP", "KR", "CN"].includes(codeFiltre(langue)) ? [codeFiltre(langue)] : [],
       rarete: null,
       serie: null,
       annee: null,
@@ -328,8 +328,7 @@ export async function versionsFamille(famille: string): Promise<Version[]> {
     ? await supabase.from("sets_display").select("set_id, display_name").in("set_id", [...new Set(lignes.map((l) => l.set_id))])
     : { data: [] };
   const nom = new Map((sets ?? []).map((s) => [s.set_id as string, s.display_name as string]));
-  const ordre = ["FR", "JP", "KR", "TC", "SC"];
   return lignes
     .map((l) => ({ id: l.id, language: l.language, number: l.number, image_small: l.image_small, set_nom: nom.get(l.set_id) ?? null }))
-    .sort((a, b) => ordre.indexOf(a.language) - ordre.indexOf(b.language));
+    .sort((a, b) => ORDRE_LANGUES.indexOf(a.language) - ORDRE_LANGUES.indexOf(b.language));
 }

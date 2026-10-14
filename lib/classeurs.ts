@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { CATEGORIES, LANGUES, libelleLangue } from "@/lib/catalogue";
+import { CATEGORIES, codeFiltre, LANGUES, libelleLangue } from "@/lib/catalogue";
 import { CHAMPS_CARTE, lirePossessions, nomsSets, versListe, type CarteListe, type LigneCarte } from "@/lib/collection";
 
 // Formats de page proposés, avec leur disposition [colonnes, lignes] (pages de classeur du commerce).
@@ -71,7 +71,8 @@ const CODE = /^[A-Za-z0-9_.-]{1,40}$/;
 // Garde seulement des filtres valides (ils viennent du navigateur). Au moins une langue.
 export function nettoyerRegle(x: unknown): Regle {
   const r = (x && typeof x === "object" ? x : {}) as Record<string, unknown>;
-  const langues = Array.isArray(r.langues) ? LANGUES.map((l) => l.code as string).filter((c) => (r.langues as unknown[]).includes(c)) : [];
+  const demandees = Array.isArray(r.langues) ? r.langues.map((c) => codeFiltre(String(c))) : [];
+  const langues = LANGUES.map((l) => l.code as string).filter((c) => demandees.includes(c));
   const regle: Regle = { langues: langues.length ? langues : ["FR"] };
   for (const cle of ["pokemon", "illustrateur", "set"] as const) if (typeof r[cle] === "string" && UUID.test(r[cle] as string)) regle[cle] = r[cle] as string;
   for (const cle of ["serie", "rarete"] as const) if (typeof r[cle] === "string" && CODE.test(r[cle] as string)) regle[cle] = r[cle] as string;

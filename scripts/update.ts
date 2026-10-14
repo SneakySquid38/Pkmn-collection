@@ -14,7 +14,7 @@
  *   fr        TCGdex français : crée les sets manquants, importe les cartes manquantes (+ n° de Pokédex)
  *   jp        TCGdex japonais : idem
  *   ptcg      PTCG-database (JP, KR, TC) : scripts/import-ptcg-database-languages-v7.ts
- *   chs       chinois simplifié (non publié) : scripts/import-chs.ts
+ *   chs       chinois simplifié : scripts/import-chs.ts (images ensuite : scripts/images-sc.ts)
  *   post      côté base : dates, séries, noms de sets, familles asiatiques, raretés héritées, noms de
  *             recherche, texte de recherche (fonctions SQL de l'étape 10)
  *   controls  les contrôles de l'étape 9 ; code de sortie 2 si un contrôle est « A VOIR »

@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ActionsCarte } from "@/components/ActionsCarte";
 import { AjoutClasseur } from "@/components/AjoutClasseur";
 import { CardImage } from "@/components/CardImage";
+import { ChoixChinois } from "@/components/ChoixChinois";
 import { EtatVide } from "@/components/EtatVide";
-import { LANGUES, libelleLangue } from "@/lib/catalogue";
+import { libelleLangue, nomLangue, ORDRE_LANGUES } from "@/lib/catalogue";
 import { libellePriorite } from "@/lib/collection";
 import { createSupabaseServer } from "@/lib/supabase-server";
 
@@ -79,11 +80,22 @@ export async function FicheCarte({
   const setsAutres = autres.data?.length
     ? (await supabase.from("sets_display").select("set_id, display_name").in("set_id", [...new Set(autres.data.map((a) => a.set_id))])).data ?? []
     : [];
-  const ordre = (l: string) => LANGUES.findIndex((x) => x.code === l);
-  const autresTries = [...(autres.data ?? [])].sort((a, b) => ordre(a.language) - ordre(b.language));
+  const ordre = (l: string) => ORDRE_LANGUES.indexOf(l);
+  const famille = [...(autres.data ?? [])].sort((a, b) => ordre(a.language) - ordre(b.language));
+  // Chinois (CN) : le simplifié d'abord, le traditionnel en repli. Sur une carte chinoise, l'autre
+  // version se choisit avec les boutons SC / TC, et n'est donc pas répétée dans « Autres langues ».
+  const chinois = carte.language === "SC" || carte.language === "TC";
+  const avecSimplifie = famille.some((a) => a.language === "SC");
+  const autresTries = famille.filter((a) =>
+    chinois ? a.language !== "SC" && a.language !== "TC" : a.language !== "TC" || !avecSimplifie,
+  );
+  const autreChinois =
+    carte.language === "SC" ? famille.find((a) => a.language === "TC")
+    : carte.language === "TC" ? famille.find((a) => a.language === "SC")
+    : undefined;
 
   const nom = carte.search_name_fr ?? carte.name;
-  const nomLangue = LANGUES.find((l) => l.code === carte.language)?.nom.toLowerCase();
+  const nomLangueCarte = nomLangue(carte.language).toLowerCase();
   const nomIllustrateur = illustrateur.data?.name ?? carte.artist;
 
   return (
@@ -99,11 +111,22 @@ export async function FicheCarte({
         )}
       </div>
 
+      {chinois && (
+        <ChoixChinois
+          actuelle={carte.language as "SC" | "TC"}
+          versions={(["SC", "TC"] as const).map((code) => ({
+            code,
+            nom: nomLangue(code),
+            href: code === carte.language ? null : autreChinois ? lienCarte(autreChinois.id) : null,
+          }))}
+        />
+      )}
+
       <div className="flex flex-col gap-1">
         <h2 className="font-titre text-2xl font-extrabold tracking-tight">{nom}</h2>
         {carte.language !== "FR" && carte.name !== nom && (
           <p className="text-sm text-encre-douce">
-            {carte.name} · nom {nomLangue} d&apos;origine
+            {carte.name} · nom {nomLangueCarte} d&apos;origine
           </p>
         )}
         {carte.search_name_official === false && (

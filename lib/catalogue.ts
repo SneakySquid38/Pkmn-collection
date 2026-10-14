@@ -1,19 +1,41 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-// Langues affichées. Le chinois simplifié (SC) n'est pas publié : la RLS le masque déjà.
+// Langues proposées dans les filtres. « CN » regroupe le chinois simplifié (SC) et le chinois
+// traditionnel (TC) : les fonctions SQL développent CN en SC + TC.
 export const LANGUES = [
   { code: "FR", label: "FR", nom: "Français" },
   { code: "JP", label: "JP", nom: "Japonais" },
   { code: "KR", label: "KR", nom: "Coréen" },
-  { code: "TC", label: "CN", nom: "Chinois traditionnel" },
+  { code: "CN", label: "CN", nom: "Chinois" },
 ] as const;
+
+// Langues réelles des cartes, dans l'ordre d'affichage : le simplifié passe avant le traditionnel.
+export const ORDRE_LANGUES = ["FR", "JP", "KR", "SC", "TC"];
+
+const NOMS_CHINOIS: Record<string, string> = { SC: "Chinois simplifié", TC: "Chinois traditionnel" };
 
 export const CATEGORIES = ["Pokémon", "Dresseur", "Énergie"] as const;
 
 export const TAILLE_PAGE = 30;
 
 export function libelleLangue(code: string) {
+  if (code === "SC" || code === "TC") return "CN";
   return LANGUES.find((l) => l.code === code)?.label ?? code;
+}
+
+// Nom complet d'une langue de carte (« Chinois simplifié » plutôt que « Chinois »).
+export function nomLangue(code: string) {
+  return NOMS_CHINOIS[code] ?? LANGUES.find((l) => l.code === code)?.nom ?? code;
+}
+
+// Pastille qui distingue les deux chinois quand on doit choisir entre eux.
+export function libelleVersion(code: string) {
+  return code === "SC" ? "CN simpl." : code === "TC" ? "CN trad." : libelleLangue(code);
+}
+
+// Anciens codes (adresses et règles enregistrées avant le regroupement) : TC ou SC → CN.
+export function codeFiltre(code: string) {
+  return code === "TC" || code === "SC" ? "CN" : code;
 }
 
 export type Filtres = {
@@ -41,7 +63,7 @@ export type CarteResultat = {
   rarity_label: string | null;
   image_small: string | null;
   card_entity_id: string | null;
-  languages: string[]; // langues disponibles pour cette carte (une tuile par famille JP/KR/CN)
+  languages: string[]; // langues disponibles pour cette carte, CN pour les deux chinois (une tuile par famille)
   total_count: number;
 };
 
@@ -58,7 +80,8 @@ function un(v: string | string[] | undefined) {
 export function lireFiltres(p: Params): Filtres {
   const langues = (un(p.langue) ?? "")
     .split(",")
-    .filter((c) => LANGUES.some((l) => l.code === c));
+    .map(codeFiltre)
+    .filter((c, i, t) => LANGUES.some((l) => l.code === c) && t.indexOf(c) === i);
   const annee = Number(un(p.annee));
   const categorie = un(p.categorie);
   const set = un(p.set);
